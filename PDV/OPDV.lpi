@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="OPDV"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="12">
+      <Item1>
+        <PackageName Value="rx"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="rxnew"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="ACBr_TEFD"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="ACBrComum"/>
+      </Item4>
+      <Item5>
+        <PackageName Value="ACBr_SPED"/>
+      </Item5>
+      <Item6>
+        <PackageName Value="ACBr_Sintegra"/>
+      </Item6>
+      <Item7>
+        <PackageName Value="ACBr_PAF"/>
+      </Item7>
+      <Item8>
+        <PackageName Value="ACBrSerial"/>
+      </Item8>
+      <Item9>
+        <PackageName Value="SQLDBLaz"/>
+      </Item9>
+      <Item10>
+        <PackageName Value="FCL"/>
+      </Item10>
+      <Item11>
+        <PackageName Value="zcomponent"/>
+      </Item11>
+      <Item12>
+        <PackageName Value="LCL"/>
+      </Item12>
+    </RequiredPackages>
+    <Units Count="10">
+      <Unit0>
+        <Filename Value="OPDV.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OPDV"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="..\Framework\UfrmBase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmBase"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmBase"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="UfrmCheckout.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCheckout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmCheckout"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\Framework\udmprincipalbase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmPrincipalBase"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="UdmPrincipalBase"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="udmprincipal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmPrincipal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="UdmPrincipal"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\Framework\utiposdados.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Utiposdados"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="ufrmefetuapagamento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmEfetuaPagamento"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmEfetuaPagamento"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\Framework\uvariaveisbase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Uvariaveisbase"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="ufrmsplash.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSplash"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ufrmSplash"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="ufrmmenufiscal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMenuFiscal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmMenuFiscal"/>
+      </Unit9>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="OPDV"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="..\Framework"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerMessages>
+        <MsgFileName Value=""/>
+      </CompilerMessages>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

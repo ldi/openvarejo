@@ -1,0 +1,8 @@
+inherited frmSplash: TfrmSplash
+  Left = 444
+  Height = 256
+  Top = 244
+  Width = 673
+  BorderStyle = bsNone
+  Caption = 'frmSplash'
+end

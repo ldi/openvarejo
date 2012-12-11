@@ -1,0 +1,116 @@
+inherited dmPrincipal: TdmPrincipal
+  OnCreate = DataModuleCreate
+  Height = 280
+  HorizontalOffset = 511
+  VerticalOffset = 211
+  Width = 373
+  object ACBrECF: TACBrECF[1]
+    Porta = 'COM1'
+    MsgAguarde = 'Aguardando a resposta da Impressora: %d segundos'
+    MsgTrabalhando = 'Impressora está trabalhando'
+    MsgRelatorio = 'Imprimindo %s  %dª Via '
+    MsgPausaRelatorio = 'Destaque a %dª via, <ENTER> proxima, %d seg.'
+    PaginaDeCodigo = 0
+    FormMsgColor = clHighlight
+    MemoParams.Strings = (
+      '[Cabecalho]'
+      'LIN000=<center><b>Nome da Empresa</b></center>'
+      'LIN001=<center>Nome da Rua , 1234  -  Bairro</center>'
+      'LIN002=<center>Cidade  -  UF  -  99999-999</center>'
+      'LIN003=<center>CNPJ: 01.234.567/0001-22    IE: 012.345.678.90</center>'
+      'LIN004=<table width=100%><tr><td align=left><code>Data</code> <code>Hora</code></td><td align=right>COO: <b><code>NumCupom</code></b></td></tr></table>'
+      'LIN005=<hr>'
+      ' '
+      '[Cabecalho_Item]'
+      'LIN000=ITEM   CODIGO      DESCRICAO'
+      'LIN001=QTD         x UNITARIO       Aliq     VALOR (R$)'
+      'LIN002=<hr>'
+      'MascaraItem=III CCCCCCCCCCCCCC DDDDDDDDDDDDDDDDDDDDDDDDDDDDDQQQQQQQQ UU x VVVVVVVVVVVVV AAAAAA TTTTTTTTTTTTT'
+      ' '
+      '[Rodape]'
+      'LIN000=<hr>'
+      'LIN001=<table width=100%><tr><td align=left><code>Data</code> <code>Hora</code></td><td align=right>Projeto ACBr: <b><code>ACBR</code></b></td></tr></table>'
+      'LIN002=<center>Obrigado Volte Sempre</center>'
+      'LIN003=<hr>'
+      ' '
+      '[Formato]'
+      'Colunas=48'
+      'HTML=1'
+      'HTML_Title_Size=2'
+      'HTML_Font=<font size="2" face="Lucida Console">'
+    )
+    ConfigBarras.MostrarCodigo = True
+    ConfigBarras.LarguraLinha = 3
+    ConfigBarras.Altura = 10
+    InfoRodapeCupom.CupomMania = False
+    InfoRodapeCupom.MinasLegal = False
+    InfoRodapeCupom.ParaibaLegal = False
+    InfoRodapeCupom.NotaLegalDF.Imprimir = False
+    InfoRodapeCupom.NotaLegalDF.ProgramaDeCredito = False
+    InfoRodapeCupom.NotaLegalDF.ValorICMS = 0
+    InfoRodapeCupom.NotaLegalDF.ValorISS = 0
+    left = 45
+    top = 88
+  end
+  object ACBrPAF: TACBrPAF[2]
+    Path = 'C:\lazarus\'
+    left = 98
+    top = 88
+  end
+  object ACBrSintegra: TACBrSintegra[3]
+    VersaoValidador = vv524
+    Informa88SME = False
+    Informa88SMS = False
+    Informa88EAN = False
+    Informa88C = False
+    InformaSapiMG = False
+    left = 154
+    top = 88
+  end
+  object ACBrSPEDFiscal: TACBrSPEDFiscal[4]
+    Path = 'C:\lazarus\'
+    Delimitador = '|'
+    TrimString = True
+    CurMascara = '#0.00'
+    left = 216
+    top = 88
+  end
+  object ACBrAAC: TACBrAAC[5]
+    IdentPAF.Paf.TipoFuncionamento = tpfStandAlone
+    IdentPAF.Paf.TipoDesenvolvimento = tpdComercializavel
+    IdentPAF.Paf.IntegracaoPAFECF = tpiRetaguarda
+    IdentPAF.Paf.RealizaPreVenda = False
+    IdentPAF.Paf.RealizaDAVECF = False
+    IdentPAF.Paf.RealizaDAVNaoFiscal = False
+    IdentPAF.Paf.RealizaDAVOS = False
+    IdentPAF.Paf.DAVConfAnexoII = False
+    IdentPAF.Paf.RealizaLancamentoMesa = False
+    IdentPAF.Paf.IndiceTecnicoProd = False
+    IdentPAF.Paf.BarSimilarECFRestaurante = False
+    IdentPAF.Paf.BarSimilarECFComum = False
+    IdentPAF.Paf.BarSimilarBalanca = False
+    IdentPAF.Paf.UsaImpressoraNaoFiscal = False
+    IdentPAF.Paf.DAVDiscrFormula = False
+    IdentPAF.Paf.ImpedeVendaVlrZero = False
+    IdentPAF.Paf.AcumulaVolumeDiario = False
+    IdentPAF.Paf.ArmazenaEncerranteIniFinal = False
+    IdentPAF.Paf.EmiteContrEncerrAposREDZLEIX = False
+    IdentPAF.Paf.IntegradoComBombas = False
+    IdentPAF.Paf.CriaAbastDivergEncerrante = False
+    IdentPAF.Paf.CadastroPlacaBomba = False
+    IdentPAF.Paf.TransportePassageiro = False
+    IdentPAF.Paf.TotalizaValoresLista = False
+    IdentPAF.Paf.TransfPreVenda = False
+    IdentPAF.Paf.TransfDAV = False
+    IdentPAF.Paf.RecompoeGT = False
+    IdentPAF.Paf.RecompoeNumSerie = False
+    IdentPAF.Paf.EmitePED = False
+    IdentPAF.Paf.CupomMania = False
+    IdentPAF.Paf.MinasLegal = False
+    IdentPAF.Paf.NotaLegalDF = False
+    IdentPAF.Paf.ParaibaLegal = False
+    IdentPAF.Paf.TrocoEmCartao = False
+    left = 280
+    top = 88
+  end
+end

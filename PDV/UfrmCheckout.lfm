@@ -1,0 +1,449 @@
+inherited frmCheckout: TfrmCheckout
+  Left = 344
+  Height = 600
+  Top = 66
+  Width = 800
+  Caption = 'frmCheckout'
+  ClientHeight = 600
+  ClientWidth = 800
+  OnActivate = FormActivate
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  object Panel1: TPanel[0]
+    Left = 0
+    Height = 46
+    Top = 554
+    Width = 800
+    Align = alBottom
+    ClientHeight = 46
+    ClientWidth = 800
+    TabOrder = 0
+    object Image1: TImage
+      Left = 19
+      Height = 18
+      Top = 4
+      Width = 18
+    end
+    object Image2: TImage
+      Left = 19
+      Height = 18
+      Top = 25
+      Width = 18
+    end
+    object Label8: TLabel
+      Left = 43
+      Height = 16
+      Top = 6
+      Width = 70
+      Caption = 'F1 - Teste 1'
+      ParentColor = False
+    end
+    object Label9: TLabel
+      Left = 168
+      Height = 16
+      Top = 6
+      Width = 70
+      Caption = 'F2 - Teste 2'
+      ParentColor = False
+    end
+    object Image3: TImage
+      Left = 144
+      Height = 18
+      Top = 4
+      Width = 18
+    end
+    object Image4: TImage
+      Left = 256
+      Height = 18
+      Top = 4
+      Width = 18
+    end
+    object Label10: TLabel
+      Left = 280
+      Height = 16
+      Top = 6
+      Width = 70
+      Caption = 'F3 - Teste 3'
+      ParentColor = False
+    end
+    object imgOnline: TImage
+      Left = 760
+      Height = 34
+      Top = 6
+      Width = 32
+    end
+    object imgOffline: TImage
+      Left = 736
+      Height = 34
+      Top = 6
+      Width = 32
+    end
+    object Label11: TLabel
+      Left = 392
+      Height = 16
+      Top = 6
+      Width = 70
+      Caption = 'F4 - Teste 4'
+      ParentColor = False
+    end
+    object Image5: TImage
+      Left = 368
+      Height = 18
+      Top = 4
+      Width = 18
+    end
+    object Label12: TLabel
+      Left = 512
+      Height = 16
+      Top = 6
+      Width = 70
+      Caption = 'F5 - Teste 5'
+      ParentColor = False
+    end
+    object Image6: TImage
+      Left = 488
+      Height = 18
+      Top = 4
+      Width = 18
+    end
+  end
+  object pnlTOP: TPanel[1]
+    Left = 0
+    Height = 34
+    Top = 0
+    Width = 800
+    Align = alTop
+    Caption = 'OPDV'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+  end
+  object pnlclient: TPanel[2]
+    Left = 0
+    Height = 520
+    Top = 34
+    Width = 800
+    Align = alClient
+    ClientHeight = 520
+    ClientWidth = 800
+    TabOrder = 2
+    object edtCodigo: TCurrencyEdit
+      Left = 313
+      Height = 37
+      Top = 104
+      Width = 187
+      Alignment = taRightJustify
+      DisplayFormat = '0.00'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      MaxValue = 0
+      MinValue = 0
+      ParentFont = False
+      TabOrder = 0
+      Value = 0
+    end
+    object LstbBobina: TListBox
+      Left = 11
+      Height = 344
+      Top = 74
+      Width = 296
+      ItemHeight = 0
+      TabOrder = 1
+    end
+    object imgProduto: TImage
+      Left = 512
+      Height = 217
+      Top = 84
+      Width = 282
+    end
+    object edtquantidade: TCurrencyEdit
+      Left = 313
+      Height = 37
+      Top = 178
+      Width = 187
+      Alignment = taRightJustify
+      DisplayFormat = '0.00'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      MaxValue = 0
+      MinValue = 0
+      ParentFont = False
+      TabOrder = 2
+      TabStop = False
+      Value = 0
+    end
+    object edtvalorunit: TCurrencyEdit
+      Left = 313
+      Height = 37
+      Top = 250
+      Width = 187
+      Alignment = taRightJustify
+      DisplayFormat = '0.00'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      MaxValue = 0
+      MinValue = 0
+      ParentFont = False
+      TabOrder = 3
+      TabStop = False
+      Value = 0
+    end
+    object edtvalortotal: TCurrencyEdit
+      Left = 316
+      Height = 41
+      Top = 336
+      Width = 187
+      Alignment = taRightJustify
+      DisplayFormat = '0.00'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      MaxValue = 0
+      MinValue = 0
+      ParentFont = False
+      TabOrder = 4
+      TabStop = False
+      Value = 0
+    end
+    object edtsubtotal: TCurrencyEdit
+      Left = 512
+      Height = 41
+      Top = 336
+      Width = 282
+      Alignment = taRightJustify
+      DisplayFormat = '0.00'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      MaxValue = 0
+      MinValue = 0
+      ParentFont = False
+      TabOrder = 5
+      TabStop = False
+      Value = 0
+    end
+    object Label1: TLabel
+      Left = 316
+      Height = 19
+      Top = 80
+      Width = 56
+      Caption = 'Codigo'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 316
+      Height = 19
+      Top = 154
+      Width = 94
+      Caption = 'Quantidade'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 316
+      Height = 19
+      Top = 226
+      Width = 114
+      Caption = 'Valor Unitario'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 316
+      Height = 19
+      Top = 312
+      Width = 91
+      Caption = 'Valor Total'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 721
+      Height = 19
+      Top = 312
+      Width = 73
+      Caption = 'SubTotal'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object pnlDescricaoProduto: TPanel
+      Left = 8
+      Height = 57
+      Top = 9
+      Width = 782
+      BevelOuter = bvLowered
+      Color = 16098058
+      ParentColor = False
+      TabOrder = 6
+    end
+    object pnlTotalGeral: TPanel
+      Left = 8
+      Height = 57
+      Top = 447
+      Width = 312
+      BevelOuter = bvLowered
+      ClientHeight = 57
+      ClientWidth = 312
+      Color = 16098058
+      ParentColor = False
+      TabOrder = 7
+      object curedttotalgeral: TCurrencyEdit
+        Left = 14
+        Height = 41
+        Top = 8
+        Width = 281
+        Alignment = taRightJustify
+        BorderStyle = bsNone
+        Color = 16098058
+        DisplayFormat = '0.00'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -27
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        MaxValue = 0
+        MinValue = 0
+        ParentFont = False
+        TabOrder = 0
+        TabStop = False
+        Value = 0
+      end
+    end
+    object Label6: TLabel
+      Left = 8
+      Height = 19
+      Top = 424
+      Width = 92
+      Caption = 'Total Geral'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object pnlMensagens: TPanel
+      Left = 336
+      Height = 57
+      Top = 447
+      Width = 448
+      BevelOuter = bvLowered
+      ClientHeight = 57
+      ClientWidth = 448
+      Color = 11015691
+      ParentColor = False
+      TabOrder = 8
+      object lblMensagem: TLabel
+        Left = 5
+        Height = 47
+        Top = 4
+        Width = 436
+        AutoSize = False
+        Caption = 'lblMensagem'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -24
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Layout = tlCenter
+        ParentColor = False
+        ParentFont = False
+        WordWrap = True
+      end
+    end
+    object Label7: TLabel
+      Left = 342
+      Height = 19
+      Top = 424
+      Width = 90
+      Caption = 'Mensagens'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lbldescontoacrescimo: TLabel
+      Left = 144
+      Height = 19
+      Top = 422
+      Width = 174
+      Caption = 'lbldescontoacrescimo'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object Timer1: TTimer[3]
+    left = 140
+    top = 147
+  end
+  object tmmIntegracao: TTimer[4]
+    left = 204
+    top = 148
+  end
+  object pmFuncoes: TPopupMenu[5]
+    left = 190
+    top = 228
+  end
+end

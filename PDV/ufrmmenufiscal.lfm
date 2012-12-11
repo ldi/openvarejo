@@ -1,0 +1,237 @@
+inherited frmMenuFiscal: TfrmMenuFiscal
+  Left = 361
+  Height = 387
+  Top = 170
+  BorderStyle = bsDialog
+  Caption = 'frmMenuFiscal'
+  ClientHeight = 387
+  object Image1: TImage[0]
+    Left = 16
+    Height = 72
+    Top = 8
+    Width = 64
+  end
+  object GroupBox1: TGroupBox[1]
+    Left = 88
+    Height = 320
+    Top = 16
+    Width = 480
+    Caption = 'Opções do Menu Fiscal'
+    ClientHeight = 302
+    ClientWidth = 476
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    object Button1: TButton
+      Left = 14
+      Height = 25
+      Top = 16
+      Width = 190
+      Action = actLX
+      TabOrder = 0
+    end
+    object Panel1: TPanel
+      Left = 232
+      Height = 279
+      Top = 6
+      Width = 5
+      Caption = 'Panel1'
+      TabOrder = 1
+    end
+    object Button2: TButton
+      Left = 14
+      Height = 25
+      Top = 52
+      Width = 190
+      Action = actLMFC
+      TabOrder = 2
+    end
+    object Button3: TButton
+      Left = 14
+      Height = 25
+      Top = 131
+      Width = 190
+      Action = actEspelhoMFD
+      TabOrder = 3
+    end
+    object Button4: TButton
+      Left = 14
+      Height = 25
+      Top = 90
+      Width = 190
+      Action = actLMFS
+      TabOrder = 4
+    end
+    object Button6: TButton
+      Left = 14
+      Height = 25
+      Top = 250
+      Width = 190
+      Action = actEstoque
+      TabOrder = 5
+    end
+    object Button7: TButton
+      Left = 14
+      Height = 25
+      Top = 211
+      Width = 190
+      Action = actTabProdutos
+      TabOrder = 6
+    end
+    object Button8: TButton
+      Left = 14
+      Height = 25
+      Top = 171
+      Width = 190
+      Action = actArquivoMFD
+      TabOrder = 7
+    end
+    object Button5: TButton
+      Left = 262
+      Height = 25
+      Top = 8
+      Width = 190
+      Caption = 'Button5'
+      TabOrder = 8
+    end
+    object Button9: TButton
+      Left = 262
+      Height = 25
+      Top = 44
+      Width = 190
+      Caption = 'Button9'
+      TabOrder = 9
+    end
+    object Button10: TButton
+      Left = 262
+      Height = 25
+      Top = 82
+      Width = 190
+      Caption = 'Button10'
+      TabOrder = 10
+    end
+    object Button11: TButton
+      Left = 262
+      Height = 25
+      Top = 123
+      Width = 190
+      Caption = 'Button11'
+      TabOrder = 11
+    end
+    object Button12: TButton
+      Left = 262
+      Height = 25
+      Top = 163
+      Width = 190
+      Caption = 'Button12'
+      TabOrder = 12
+    end
+    object Button13: TButton
+      Left = 262
+      Height = 25
+      Top = 203
+      Width = 190
+      Caption = 'Button13'
+      TabOrder = 13
+    end
+    object Button14: TButton
+      Left = 262
+      Height = 25
+      Top = 241
+      Width = 190
+      Caption = 'Button14'
+      TabOrder = 14
+    end
+  end
+  object pnlbotoes: TPanel[2]
+    Left = 0
+    Height = 45
+    Top = 342
+    Width = 588
+    Align = alBottom
+    BorderStyle = bsSingle
+    ClientHeight = 41
+    ClientWidth = 584
+    TabOrder = 1
+    object BitBtn1: TBitBtn
+      Left = 399
+      Height = 30
+      Top = 4
+      Width = 89
+      Action = actConfirmar
+      TabOrder = 0
+    end
+    object BitBtn2: TBitBtn
+      Left = 492
+      Height = 30
+      Top = 4
+      Width = 85
+      Action = actCancelar
+      TabOrder = 1
+    end
+  end
+  object ImglMenuFiscal: TImageList[3]
+    left = 24
+    top = 248
+  end
+  object actlMenuFiscal: TActionList[4]
+    Images = ImglMenuFiscal
+    left = 56
+    top = 249
+    object actConfirmar: TAction
+      Category = 'Botoes'
+      Caption = 'Confirmar'
+    end
+    object actCancelar: TAction
+      Category = 'Botoes'
+      Caption = 'Cancelar'
+    end
+    object actLX: TAction
+      Caption = 'LX'
+    end
+    object actLMFC: TAction
+      Caption = 'LMFC'
+    end
+    object actLMFS: TAction
+      Caption = 'LMFS'
+    end
+    object actEspelhoMFD: TAction
+      Caption = 'Espelho MFD'
+    end
+    object actArquivoMFD: TAction
+      Caption = 'Arq. MFD'
+    end
+    object actTabProdutos: TAction
+      Caption = 'Tab. Produtos'
+    end
+    object actEstoque: TAction
+      Caption = 'Estoque'
+    end
+    object Action8: TAction
+      Caption = 'Action8'
+    end
+    object Action9: TAction
+      Caption = 'Action9'
+    end
+    object Action10: TAction
+      Caption = 'Action10'
+    end
+    object Action11: TAction
+      Caption = 'Action11'
+    end
+    object Action12: TAction
+      Caption = 'Action12'
+    end
+    object Action13: TAction
+      Caption = 'Action13'
+    end
+    object Action14: TAction
+      Caption = 'Action14'
+    end
+  end
+end

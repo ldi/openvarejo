@@ -1,0 +1,16 @@
+object dmPrincipalBase: TdmPrincipalBase
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 275
+  HorizontalOffset = 494
+  VerticalOffset = 260
+  Width = 373
+  object IBCon: TIBConnection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    LogEvents = []
+    left = 40
+    top = 24
+  end
+end
