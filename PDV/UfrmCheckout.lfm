@@ -1,7 +1,7 @@
 inherited frmCheckout: TfrmCheckout
-  Left = 344
+  Left = 329
   Height = 600
-  Top = 66
+  Top = 60
   Width = 800
   Caption = 'frmCheckout'
   ClientHeight = 600
@@ -384,13 +384,13 @@ inherited frmCheckout: TfrmCheckout
       Color = 11015691
       ParentColor = False
       TabOrder = 8
-      object lblMensagem: TLabel
+      object labelMensagens: TLabel
         Left = 5
         Height = 47
         Top = 4
         Width = 436
         AutoSize = False
-        Caption = 'lblMensagem'
+        Caption = 'labelMensagens'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clWhite
         Font.Height = -24
@@ -438,7 +438,7 @@ inherited frmCheckout: TfrmCheckout
     left = 140
     top = 147
   end
-  object tmmIntegracao: TTimer[4]
+  object TimeIntegracao: TTimer[4]
     left = 204
     top = 148
   end

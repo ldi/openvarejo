@@ -1,15 +1,18 @@
 inherited dmPrincipal: TdmPrincipal
   OnCreate = DataModuleCreate
   Height = 280
-  HorizontalOffset = 511
-  VerticalOffset = 211
+  HorizontalOffset = 494
+  VerticalOffset = 223
   Width = 373
+  inherited IBCon: TSQLConnector
+    top = 16
+  end
   object ACBrECF: TACBrECF[1]
     Porta = 'COM1'
     MsgAguarde = 'Aguardando a resposta da Impressora: %d segundos'
-    MsgTrabalhando = 'Impressora está trabalhando'
-    MsgRelatorio = 'Imprimindo %s  %dª Via '
-    MsgPausaRelatorio = 'Destaque a %dª via, <ENTER> proxima, %d seg.'
+    MsgTrabalhando = 'Impressora estÃ¡ trabalhando'
+    MsgRelatorio = 'Imprimindo %s  %dÂª Via '
+    MsgPausaRelatorio = 'Destaque a %dÂª via, <ENTER> proxima, %d seg.'
     PaginaDeCodigo = 0
     FormMsgColor = clHighlight
     MemoParams.Strings = (
@@ -112,5 +115,13 @@ inherited dmPrincipal: TdmPrincipal
     IdentPAF.Paf.TrocoEmCartao = False
     left = 280
     top = 88
+  end
+  object IBBalcao: TSQLConnector[6]
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    LogEvents = []
+    left = 128
+    top = 17
   end
 end

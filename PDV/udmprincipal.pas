@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ACBrECF,
   ACBrBAL, ACBrPAF, ACBrSintegra, ACBrAAC, ACBrTEFD, ACBrSpedFiscal,
-  ZConnection, UdmPrincipalBase, IBConnection;
+  ZConnection, UdmPrincipalBase, IBConnection, sqldb;
 
 type
 
@@ -19,10 +19,13 @@ type
     ACBrPAF: TACBrPAF;
     ACBrSintegra: TACBrSintegra;
     ACBrSPEDFiscal: TACBrSPEDFiscal;
+    IBBalcao: TSQLConnector;
     procedure DataModuleCreate(Sender: TObject);
   private
     { private declarations }
   public
+    BancoPAF: String;
+    EmpresaID, QuantidadeECF: Integer;
     procedure Conecta_Banco;
   end;
 

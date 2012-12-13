@@ -1,10 +1,10 @@
 inherited frmMenuFiscal: TfrmMenuFiscal
-  Left = 361
-  Height = 387
-  Top = 170
+  Left = 348
+  Height = 395
   BorderStyle = bsDialog
   Caption = 'frmMenuFiscal'
-  ClientHeight = 387
+  ClientHeight = 395
+  OnCreate = FormCreate
   object Image1: TImage[0]
     Left = 16
     Height = 72
@@ -33,6 +33,13 @@ inherited frmMenuFiscal: TfrmMenuFiscal
       Top = 16
       Width = 190
       Action = actLX
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 0
     end
     object Panel1: TPanel
@@ -49,6 +56,13 @@ inherited frmMenuFiscal: TfrmMenuFiscal
       Top = 52
       Width = 190
       Action = actLMFC
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 2
     end
     object Button3: TButton
@@ -57,6 +71,13 @@ inherited frmMenuFiscal: TfrmMenuFiscal
       Top = 131
       Width = 190
       Action = actEspelhoMFD
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 3
     end
     object Button4: TButton
@@ -65,6 +86,13 @@ inherited frmMenuFiscal: TfrmMenuFiscal
       Top = 90
       Width = 190
       Action = actLMFS
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 4
     end
     object Button6: TButton
@@ -73,6 +101,13 @@ inherited frmMenuFiscal: TfrmMenuFiscal
       Top = 250
       Width = 190
       Action = actEstoque
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 5
     end
     object Button7: TButton
@@ -81,6 +116,13 @@ inherited frmMenuFiscal: TfrmMenuFiscal
       Top = 211
       Width = 190
       Action = actTabProdutos
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 6
     end
     object Button8: TButton
@@ -89,69 +131,125 @@ inherited frmMenuFiscal: TfrmMenuFiscal
       Top = 171
       Width = 190
       Action = actArquivoMFD
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 7
     end
     object Button5: TButton
       Left = 262
       Height = 25
-      Top = 8
+      Top = 16
       Width = 190
-      Caption = 'Button5'
+      Action = actMovECF
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 8
     end
     object Button9: TButton
       Left = 262
       Height = 25
-      Top = 44
+      Top = 52
       Width = 190
-      Caption = 'Button9'
+      Action = actMeiosPag
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 9
     end
     object Button10: TButton
       Left = 262
       Height = 25
-      Top = 82
+      Top = 90
       Width = 190
-      Caption = 'Button10'
+      Action = actDavEmitidos
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 10
     end
     object Button11: TButton
       Left = 262
       Height = 25
-      Top = 123
+      Top = 131
       Width = 190
-      Caption = 'Button11'
+      Action = actIdentiPaf
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 11
     end
     object Button12: TButton
       Left = 262
       Height = 25
-      Top = 163
+      Top = 171
       Width = 190
-      Caption = 'Button12'
+      Action = actVendasPeriodo
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 12
     end
     object Button13: TButton
       Left = 262
       Height = 25
-      Top = 203
+      Top = 211
       Width = 190
-      Caption = 'Button13'
+      Action = actTabIndTecProd
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 13
     end
     object Button14: TButton
       Left = 262
       Height = 25
-      Top = 241
+      Top = 250
       Width = 190
-      Caption = 'Button14'
+      Action = actParametrosConfig
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 14
     end
   end
   object pnlbotoes: TPanel[2]
     Left = 0
     Height = 45
-    Top = 342
+    Top = 350
     Width = 588
     Align = alBottom
     BorderStyle = bsSingle
@@ -176,62 +274,78 @@ inherited frmMenuFiscal: TfrmMenuFiscal
     end
   end
   object ImglMenuFiscal: TImageList[3]
-    left = 24
-    top = 248
+    left = 40
+    top = 176
   end
   object actlMenuFiscal: TActionList[4]
     Images = ImglMenuFiscal
-    left = 56
-    top = 249
+    left = 40
+    top = 232
     object actConfirmar: TAction
       Category = 'Botoes'
       Caption = 'Confirmar'
+      OnExecute = actConfirmarExecute
     end
     object actCancelar: TAction
       Category = 'Botoes'
       Caption = 'Cancelar'
+      OnExecute = actCancelarExecute
     end
     object actLX: TAction
       Caption = 'LX'
+      OnExecute = actLXExecute
     end
     object actLMFC: TAction
       Caption = 'LMFC'
+      OnExecute = actLMFCExecute
     end
     object actLMFS: TAction
       Caption = 'LMFS'
+      OnExecute = actLMFSExecute
     end
     object actEspelhoMFD: TAction
       Caption = 'Espelho MFD'
+      OnExecute = actEspelhoMFDExecute
     end
     object actArquivoMFD: TAction
       Caption = 'Arq. MFD'
+      OnExecute = actArquivoMFDExecute
     end
     object actTabProdutos: TAction
       Caption = 'Tab. Produtos'
+      OnExecute = actTabProdutosExecute
     end
     object actEstoque: TAction
       Caption = 'Estoque'
+      OnExecute = actEstoqueExecute
     end
-    object Action8: TAction
-      Caption = 'Action8'
+    object actMovECF: TAction
+      Caption = 'Movimento por ECF'
+      OnExecute = actMovECFExecute
     end
-    object Action9: TAction
-      Caption = 'Action9'
+    object actMeiosPag: TAction
+      Caption = 'Meios de Pagto.'
+      OnExecute = actMeiosPagExecute
     end
-    object Action10: TAction
-      Caption = 'Action10'
+    object actDavEmitidos: TAction
+      Caption = 'Dav Emitidos'
+      OnExecute = actDavEmitidosExecute
     end
-    object Action11: TAction
-      Caption = 'Action11'
+    object actIdentiPaf: TAction
+      Caption = 'Identificação do PAF'
+      OnExecute = actIdentiPafExecute
     end
-    object Action12: TAction
-      Caption = 'Action12'
+    object actVendasPeriodo: TAction
+      Caption = 'Vendas do Periodo'
+      OnExecute = actVendasPeriodoExecute
     end
-    object Action13: TAction
-      Caption = 'Action13'
+    object actTabIndTecProd: TAction
+      Caption = 'Tab. Índice Técnico Produção'
+      OnExecute = actTabIndTecProdExecute
     end
-    object Action14: TAction
-      Caption = 'Action14'
+    object actParametrosConfig: TAction
+      Caption = 'Parâmetros de Configuração'
+      OnExecute = actParametrosConfigExecute
     end
   end
 end
