@@ -32,7 +32,7 @@ type
 end;
 
 type
-TSintegra60DistaVO = class(specialize TFPGObjectList<TSintegra60DVO>);
+TSintegra60DListaVO = class(specialize TFPGObjectList<TSintegra60DVO>);
 
 implementation
 

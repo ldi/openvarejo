@@ -34,14 +34,15 @@ implementation
 uses
 R02VO, R03VO, R04VO, R05VO, R06VO, R07VO, RegistroRController, EmpresaController,
 EmpresaVO, Udmprincipal, ImpressoraController, TotalTipoPagamentoController,
-MeiosPagamentoVO, SintegraController, Sintegra60MVO, Sintegra60AVO, EAD_Class, R01VO, strutils;
+MeiosPagamentoVO, SintegraController, Sintegra60MVO, Sintegra60AVO,  R01VO, strutils;
+//EAD_Class,
 
 procedure PreencherHeader(Header: TRegistroX1);
 var
   Empresa: TEmpresaVO;
 begin
   try
-    Empresa := TEmpresaController.PegaEmpresa(UCaixa.Configuracao.IdEmpresa);
+    Empresa := TEmpresaController.PegaEmpresa(Configuracao.IdEmpresa);
     Header.UF          := Empresa.UF;
     Header.CNPJ        := Empresa.CNPJ;
     Header.IE          := Empresa.InscricaoEstadual;
@@ -57,7 +58,7 @@ procedure GeraTabelaProdutos;
 var
   P2: TRegistroP2;
   i: Integer;
-  ListaProduto: TObjectList<TProdutoVO>;
+  ListaProduto: TProdutoListaVO;
   Mensagem, Tripa: String;
 begin
   try
@@ -65,9 +66,9 @@ begin
     if Assigned(ListaProduto) then
     begin
       // registro P1
-      PreencherHeader(FDataModule.ACBrPAF.PAF_P.RegistroP1);
+      PreencherHeader(dmprincipal.ACBrPAF.PAF_P.RegistroP1);
       // registro P2
-      FDataModule.ACBrPAF.PAF_P.RegistroP2.Clear;
+      dmprincipal.ACBrPAF.PAF_P.RegistroP2.Clear;
       for i := 0 to ListaProduto.Count - 1 do
       begin
         DecimalSeparator := '.';
@@ -82,13 +83,13 @@ begin
                   IntToStr(TProdutoVO(ListaProduto.Items[i]).HashIncremento);
         DecimalSeparator := ',';
 
-        P2                := FDataModule.ACBrPAF.PAF_P.RegistroP2.New;
+        P2                := dmprincipal.ACBrPAF.PAF_P.RegistroP2.New;
         P2.COD_MERC_SERV  := TProdutoVO(ListaProduto.Items[i]).GTIN;
         P2.DESC_MERC_SERV := TProdutoVO(ListaProduto.Items[i]).DescricaoPDV;
 
-        if MD5String(Tripa) <> TProdutoVO(ListaProduto.Items[i]).HashTripa then
+        {if MD5String(Tripa) <> TProdutoVO(ListaProduto.Items[i]).HashTripa then
           P2.UN_MED   := StringOfChar('?',6)
-        else
+        else}
           P2.UN_MED    := TProdutoVO(ListaProduto.Items[i]).UnidadeProduto;
 
         P2.IAT            := TProdutoVO(ListaProduto.Items[i]).IAT;
@@ -97,11 +98,11 @@ begin
         P2.ALIQ           := TProdutoVO(ListaProduto.Items[i]).AliquotaICMS;
         P2.VL_UNIT        := TProdutoVO(ListaProduto.Items[i]).ValorVenda;
       end;
-      FDataModule.ACBrPAF.SaveFileTXT_P('PAF_P.txt');
-      TEAD_Class.SingEAD('PAF_P.txt');
+      dmprincipal.ACBrPAF.SaveFileTXT_P('PAF_P.txt');
+      //TEAD_Class.SingEAD('PAF_P.txt');
 
-      Mensagem := 'Arquivo armazenado em: ' + gsAppPath + 'PAF_P.txt';
-      Application.MessageBox(PWideChar(mensagem), 'Informação do Sistema', MB_OK + MB_ICONINFORMATION);
+      //Mensagem := 'Arquivo armazenado em: ' + gsAppPath + 'PAF_P.txt';
+      Application.MessageBox(PChar(mensagem), 'Informação do Sistema', MB_OK + MB_ICONINFORMATION);
     end
     else
       Application.MessageBox('Não existem produtos na tabela.', 'Informação do Sistema', MB_OK + MB_ICONINFORMATION);
@@ -113,7 +114,7 @@ end;
 
 procedure GeraArquivoEstoque;
 var
-  ListaProduto: TObjectList<TProdutoVO>;
+  ListaProduto: TProdutoListaVO;
 begin
   try
     ListaProduto := TProdutoController.TabelaProduto;
@@ -129,7 +130,7 @@ end;
 
 procedure GeraArquivoEstoque(CodigoInicio: Integer; CodigoFim: Integer);
 var
-  ListaProduto: TObjectList<TProdutoVO>;
+  ListaProduto: TProdutoListaVO;
 begin
   try
     ListaProduto := TProdutoController.TabelaProduto(CodigoInicio,CodigoFim);
@@ -145,7 +146,7 @@ end;
 
 procedure GeraArquivoEstoque(NomeInicio: String; NomeFim: String);
 var
-  ListaProduto: TObjectList<TProdutoVO>;
+  ListaProduto: TProdutoListaVO;
 begin
   try
     ListaProduto := TProdutoController.TabelaProduto(NomeInicio, NomeFim);
@@ -159,16 +160,16 @@ begin
   end;
 end;
 
-procedure GeraEstoque(ListaProduto: TObjectList<TProdutoVO>);
+procedure GeraEstoque(ListaProduto: TProdutoListaVO);
 var
   E2: TRegistroE2;
   i: Integer;
   Mensagem, Tripa: String;
 begin
   // registro E1
-  PreencherHeader(FDataModule.ACBrPAF.PAF_E.RegistroE1); // preencher header do arquivo
+  PreencherHeader(dmprincipal.ACBrPAF.PAF_E.RegistroE1); // preencher header do arquivo
   // registro E2
-  FDataModule.ACBrPAF.PAF_E.RegistroE2.Clear;
+  dmprincipal.ACBrPAF.PAF_E.RegistroE2.Clear;
   for i := 0 to ListaProduto.Count - 1 do
   begin
     DecimalSeparator := '.';
@@ -183,46 +184,46 @@ begin
               IntToStr(TProdutoVO(ListaProduto.Items[i]).HashIncremento);
     DecimalSeparator := ',';
 
-    E2           := FDataModule.ACBrPAF.PAF_E.RegistroE2.New;
+    E2           := dmprincipal.ACBrPAF.PAF_E.RegistroE2.New;
     E2.COD_MERC  := TProdutoVO(ListaProduto.Items[i]).GTIN;
     E2.DESC_MERC := TProdutoVO(ListaProduto.Items[i]).DescricaoPDV;
 
-    if MD5String(Tripa) <> TProdutoVO(ListaProduto.Items[i]).HashTripa then
+    {if MD5String(Tripa) <> TProdutoVO(ListaProduto.Items[i]).HashTripa then
       E2.UN_MED   := StringOfChar('?',6)
-    else
+    else   }
       E2.UN_MED    := TProdutoVO(ListaProduto.Items[i]).UnidadeProduto;
 
     E2.QTDE_EST  := TProdutoVO(ListaProduto.Items[i]).QtdeEstoqueAnterior;
 //    E2.DT_EST    := StrToDateTime(TProdutoVO(ListaProduto.Items[i]).DataEstoque);
   end;
-  FDataModule.ACBrPAF.SaveFileTXT_E('PAF_E.txt');
-  TEAD_Class.SingEAD('PAF_E.txt');
+  dmprincipal.ACBrPAF.SaveFileTXT_E('PAF_E.txt');
+  //TEAD_Class.SingEAD('PAF_E.txt');
 
-  Mensagem := 'Arquivo armazenado em: ' + gsAppPath + 'PAF_E.txt';
-  Application.MessageBox(PWideChar(mensagem), 'Informação do Sistema', MB_OK + MB_ICONINFORMATION);
+  //Mensagem := 'Arquivo armazenado em: ' + gsAppPath + 'PAF_E.txt';
+  Application.MessageBox(PChar(mensagem), 'Informação do Sistema', MB_OK + MB_ICONINFORMATION);
 end;
 
 procedure GravaR02R03;
 var
   R02: TR02VO;
   R03: TR03VO;
-  ListaR03: TObjectList<TR03VO>;
+  ListaR03: TR03ListaVO;
   i: Integer;
   Indice, Aliquota: String;
 begin
   try
-    ListaR03 := TObjectList<TR03VO>.Create;
+    ListaR03 := TR03ListaVO.Create(True);
     //Dados para o registro R02
     R02 := TR02VO.Create;
-    R02.IdCaixa := UCaixa.Movimento.IdCaixa;
-    R02.IdOperador := UCaixa.Movimento.IdOperador;
-    R02.IdImpressora := UCaixa.Movimento.IdImpressora;
+    R02.IdCaixa := Movimento.IdCaixa;
+    R02.IdOperador := Movimento.IdOperador;
+    R02.IdImpressora := Movimento.IdImpressora;
 
-    FDataModule.ACBrECF.DadosReducaoZ;
-    with FDataModule.ACBrECF.DadosReducaoZClass do
+    dmprincipal.ACBrECF.DadosReducaoZ;
+    with dmprincipal.ACBrECF.DadosReducaoZClass do
     begin
       R02.CRZ := CRZ + 1;
-      R02.COO := StrtoInt(FDataModule.ACBrECF.NumCOO) + 1;
+      R02.COO := StrtoInt(dmprincipal.ACBrECF.NumCOO) + 1;
       R02.CRO := CRO;
       R02.DataMovimento := FormatDateTime('yyyy-mm-dd', DataDoMovimento);
       R02.DataEmissao   := FormatDateTime('yyyy-mm-dd', DataDaImpressora);
@@ -234,7 +235,7 @@ begin
     R02 := TRegistroRController.GravaR02(R02);
 
     //Dados para o registro R03
-    with FDataModule.ACBrECF.DadosReducaoZClass do
+    with dmprincipal.ACBrECF.DadosReducaoZClass do
     begin
       //Dados ICMS
       for i := 0 to ICMS.Count -1 do
@@ -375,28 +376,28 @@ var
   i,j: Integer;
   Empresa: TEmpresaVO;
   R01: TR01VO;
-  ListaR02: TObjectList<TR02VO>;
-  ListaR03: TObjectList<TR03VO>;
-  ListaR04: TObjectList<TR04VO>;
-  ListaR05: TObjectList<TR05VO>;
-  ListaR06: TObjectList<TR06VO>;
-  ListaR07: TObjectList<TR07VO>;
+  ListaR02: TR02ListaVO;
+  ListaR03: TR03ListaVO;
+  ListaR04: TR04ListaVO;
+  ListaR05: TR05ListaVO;
+  ListaR06:  TR06ListaVO;
+  ListaR07:  TR07ListaVO;
   Mensagem, NomeArquivo, TripaR01, TripaR02, TripaR03, TripaR04, TripaR05, TripaR06, TripaR07: String;
 begin
   try
     //dados da empresa
-    Empresa := TEmpresaController.PegaEmpresa(UCaixa.Configuracao.IdEmpresa);
+    Empresa := TEmpresaController.PegaEmpresa(Configuracao.IdEmpresa);
     //dados software house e demais do R01
     R01 := TRegistroRController.RegistroR01;
 
     // Registro R1 - Identificação do ECF, do Usuário, do PAF-ECF e da Empresa Desenvolvedora e Dados do Arquivo
-    with FDataModule.ACBrPAF.PAF_R.RegistroR01 do
+    with dmprincipal.ACBrPAF.PAF_R.RegistroR01 do
     begin
       TripaR01 := R01.SerieEcf +
                   R01.CnpjEmpresa +
                   IntToStr(R01.HashIncremento);
-      if (MD5String(TripaR01) <> R01.HashTripa) then
-        RegistroValido := False;
+      {if (MD5String(TripaR01) <> R01.HashTripa) then
+        RegistroValido := False;}
 
       NUM_FAB      := R01.SerieEcf;
       MF_ADICIONAL := Impressora.MFD;
@@ -443,11 +444,11 @@ begin
                   TR02VO(ListaR02.Items[i]).SerieEcf +
                   IntToStr(TR02VO(ListaR02.Items[i]).HashIncremento);
 
-        with FDataModule.ACBrPAF.PAF_R.RegistroR02.New do
+        with dmprincipal.ACBrPAF.PAF_R.RegistroR02.New do
         begin
-          if (MD5String(TripaR02) <> TR02VO(ListaR02.Items[i]).HashTripa)
+          {if (MD5String(TripaR02) <> TR02VO(ListaR02.Items[i]).HashTripa)
           then
-            RegistroValido := False;
+            RegistroValido := False;}
 
           NUM_USU     := TR02VO(ListaR02.Items[i]).IdOperador;
           CRZ         := TR02VO(ListaR02.Items[i]).CRZ;
@@ -473,15 +474,15 @@ begin
 
               with RegistroR03.New do
               begin
-                if (MD5String(TripaR03) <> TR03VO(ListaR03.Items[j]).HashTripa) then
-                  RegistroValido := False;
+                {if (MD5String(TripaR03) <> TR03VO(ListaR03.Items[j]).HashTripa) then
+                  RegistroValido := False; }
 
                 TOT_PARCIAL := TR03VO(ListaR03.Items[j]).TotalizadorParcial;
                 VL_ACUM     := TR03VO(ListaR03.Items[j]).ValorAcumulado;
               end;//with RegistroR03.New do
             end;//for j := 0 to ListaR03.Count - 1 do
           end;//if Assigned(ListaR03) then
-        end;//with FDataModule.ACBrPAF.PAF_R.RegistroR02.New do
+        end;//with dmprincipal.ACBrPAF.PAF_R.RegistroR02.New do
       end;//for i := 0 to ListaR02.Count - 1 do
     end;//if Assigned(ListaR02) then
 
@@ -501,10 +502,10 @@ begin
                  TR04VO(ListaR04.Items[i]).Cancelado +
                  IntToStr(TR04VO(ListaR04.Items[i]).HashIncremento);
 
-        with FDataModule.ACBrPAF.PAF_R.RegistroR04.New do
+        with dmprincipal.ACBrPAF.PAF_R.RegistroR04.New do
         begin
-          if (MD5String(TripaR04) <> TR04VO(ListaR04.Items[i]).HashTripa) then
-            RegistroValido := False;
+          {if (MD5String(TripaR04) <> TR04VO(ListaR04.Items[i]).HashTripa) then
+            RegistroValido := False;}
 
           NUM_USU     := TR04VO(ListaR04.Items[i]).IdOperador;
           NUM_CONT    := TR04VO(ListaR04.Items[i]).CCF;
@@ -543,8 +544,8 @@ begin
 
               with RegistroR05.New do
               begin
-                if (MD5String(TripaR05) <> TR05VO(ListaR05.Items[j]).HashTripa) then
-                  RegistroValido := False;
+                {if (MD5String(TripaR05) <> TR05VO(ListaR05.Items[j]).HashTripa) then
+                  RegistroValido := False;   }
 
                 NUM_ITEM     := TR05VO(ListaR05.Items[j]).Item;
                 COD_ITEM     := TR05VO(ListaR05.Items[j]).GTIN;
@@ -585,8 +586,8 @@ begin
               with RegistroR07.New do
               begin
 
-                if (MD5String(TripaR07) <> TR07VO(ListaR07.Items[j]).HashTripa) then
-                  RegistroValido := False;
+                {if (MD5String(TripaR07) <> TR07VO(ListaR07.Items[j]).HashTripa) then
+                  RegistroValido := False;}
 
                  CCF         := TR07VO(ListaR07.Items[j]).CCF;
                  GNF         := TR07VO(ListaR07.Items[j]).Gnf;
@@ -597,7 +598,7 @@ begin
               end;//with RegistroR07.New do
             end;//for j := 0 to ListaR07.Count - 1 do
           end;//if Assigned(ListaR07) then
-        end;//with FDataModule.ACBrPAF.PAF_R.RegistroR04.New do
+        end;//with dmprincipal.ACBrPAF.PAF_R.RegistroR04.New do
       end;//for i := 0 to ListaR04.Count - 1 do
     end;//if Assigned(ListaR04) then
 
@@ -619,10 +620,10 @@ begin
                  TR06VO(ListaR06.Items[i]).SerieEcf +
                  IntToStr(TR06VO(ListaR06.Items[i]).HashIncremento);
 
-        with FDataModule.ACBrPAF.PAF_R.RegistroR06.New do
+        with dmprincipal.ACBrPAF.PAF_R.RegistroR06.New do
         begin
-          if (MD5String(TripaR06) <> TR06VO(ListaR06.Items[i]).HashTripa) then
-            RegistroValido := False;
+          {if (MD5String(TripaR06) <> TR06VO(ListaR06.Items[i]).HashTripa) then
+            RegistroValido := False;    }
 
           NUM_USU     := TR06VO(ListaR06.Items[i]).IdOperador;
           COO         := TR06VO(ListaR06.Items[i]).COO;
@@ -641,8 +642,8 @@ begin
             begin
               with RegistroR07.New do
               begin
-                if (MD5String(TripaR07) <> TR07VO(ListaR07.Items[j]).HashTripa) then
-                  RegistroValido := False;
+                {if (MD5String(TripaR07) <> TR07VO(ListaR07.Items[j]).HashTripa) then
+                  RegistroValido := False;   }
 
                  CCF         := TR07VO(ListaR07.Items[j]).CCF;
                  GNF         := TR07VO(ListaR07.Items[j]).Gnf;
@@ -653,7 +654,7 @@ begin
               end;//with RegistroR07.New do
             end;//for j := 0 to ListaR07.Count - 1 do
           end;//if Assigned(ListaR07) then
-        end;//with FDataModule.ACBrPAF.PAF_R.RegistroR06.New do
+        end;//with dmprincipal.ACBrPAF.PAF_R.RegistroR06.New do
       end;//for i := 0 to ListaR06.Count - 1 do
     end;//if Assigned(ListaR06) then
 
@@ -667,11 +668,11 @@ begin
     NomeArquivo := NomeArquivo + FormatDateTime('ddmmyyyy',StrToDateTime(DataMovimento));
     NomeArquivo := NomeArquivo + '.txt';
 
-    FDataModule.ACBrPAF.SaveFileTXT_R(NomeArquivo);
-    TEAD_Class.SingEAD(NomeArquivo);
+    dmprincipal.ACBrPAF.SaveFileTXT_R(NomeArquivo);
+    //TEAD_Class.SingEAD(NomeArquivo);
 
-    Mensagem := 'Arquivo armazenado em: ' + gsAppPath + NomeArquivo;
-    Application.MessageBox(PWideChar(mensagem), 'Informação do Sistema', MB_OK + MB_ICONINFORMATION);
+    //Mensagem := 'Arquivo armazenado em: ' + gsAppPath + NomeArquivo;
+    Application.MessageBox(PChar(mensagem), 'Informação do Sistema', MB_OK + MB_ICONINFORMATION);
 
   finally
     if Assigned(Empresa) then
@@ -695,27 +696,27 @@ end;
 
 procedure MeiosPagamento(DataIni: String; DataFim: String);
 var
-  ListaMeiosPagamento: TObjectList<TMeiosPagamentoVO>;
+  ListaMeiosPagamento:  TMeiosPagamentoListaVO;
   i: Integer;
   Meio, TipoDoc, Valor, Data, DataAnterior: String;
 begin
   if Application.MessageBox('Deseja imprimir o relatório MEIOS DE PAGAMENTOS?', 'Pergunta do Sistema', Mb_YesNo + Mb_IconQuestion) = IdYes then
   begin
    try
-    ListaMeiosPagamento := TTotalTipoPagamentoController.MeiosPagamento(DataIni, DataFim, UCaixa.Movimento.IdImpressora);
+    ListaMeiosPagamento := TTotalTipoPagamentoController.MeiosPagamento(DataIni, DataFim, Movimento.IdImpressora);
 
-    FDataModule.ACBrECF.AbreRelatorioGerencial(UCaixa.Configuracao.MeiosDePagamento);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('MEIOS DE PAGAMENTO');
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('PERIODO: ' + DataIni + ' A ' + DataFim);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('DT.ACUMUL. MEIO DE PGTO.   TIPO DOC. VLR.ACUMUL.');
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+    dmprincipal.ACBrECF.AbreRelatorioGerencial(Configuracao.MeiosDePagamento);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('MEIOS DE PAGAMENTO');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('PERIODO: ' + DataIni + ' A ' + DataFim);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('DT.ACUMUL. MEIO DE PGTO.   TIPO DOC. VLR.ACUMUL.');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
     for i := 0 to ListaMeiosPagamento.Count - 1 do
     begin
       Data := TMeiosPagamentoVO(ListaMeiosPagamento.Items[I]).DataHora;
       if Data <> DataAnterior then
-        FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('-',48));
+        dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('-',48));
       Meio := TMeiosPagamentoVO(ListaMeiosPagamento.Items[I]).Descricao;
       Meio := ' ' +Meio + StringOfChar(' ', 15 - Length(Meio));
       if TMeiosPagamentoVO(ListaMeiosPagamento.Items[I]).Descricao <> 'SUPRIMENTO' then
@@ -724,14 +725,14 @@ begin
         TipoDoc := ' NAO FISC';
       Valor := FloatToStrF(TMeiosPagamentoVO(ListaMeiosPagamento.Items[I]).Total,ffNumber,13,2);
       Valor := StringOfChar(' ', 13 - Length(Valor)) + Valor;
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(Data+Meio+TipoDoc+Valor);
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(Data+Meio+TipoDoc+Valor);
       DataAnterior := Data;
     end;
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('TOTAIS ACUMULADOS NO PERIODO:');
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('TOTAIS ACUMULADOS NO PERIODO:');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
 
-    ListaMeiosPagamento := TTotalTipoPagamentoController.MeiosPagamentoTotal(DataIni, DataFim, UCaixa.Movimento.IdImpressora);
+    ListaMeiosPagamento := TTotalTipoPagamentoController.MeiosPagamentoTotal(DataIni, DataFim, Movimento.IdImpressora);
 
     for i := 0 to ListaMeiosPagamento.Count - 1 do
     begin
@@ -739,11 +740,11 @@ begin
       Meio := Meio + StringOfChar(' ', 18 - Length(Meio));
       Valor := FloatToStrF(TMeiosPagamentoVO(ListaMeiosPagamento.Items[I]).Total,ffNumber,15,2);
       Valor := StringOfChar(' ', 30 - Length(Valor)) + Valor;
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(Meio+Valor);
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(Meio+Valor);
     end;
 
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-    FDataModule.ACBrECF.FechaRelatorio;
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+    dmprincipal.ACBrECF.FechaRelatorio;
     GravaR06('RG');
    finally
      if Assigned(ListaMeiosPagamento) then
@@ -760,61 +761,61 @@ begin
     try
       ini := TIniFile.Create(ExtractFilePath(Application.ExeName)+'ArquivoAuxiliar.ini');
 
-      FDataModule.ACBrECF.AbreRelatorioGerencial(UCaixa.Configuracao.ParametrosDeConfiguracao);
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('***********PARAMETROS DE CONFIGURACAO***********');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('<n>CONFIGURAÇÃO:</n>');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+      dmprincipal.ACBrECF.AbreRelatorioGerencial(Configuracao.ParametrosDeConfiguracao);
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('***********PARAMETROS DE CONFIGURACAO***********');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('<n>CONFIGURAÇÃO:</n>');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
 
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('<s><n>Funcionalidades:</n></s>');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('TIPO DE FUNCIONAMENTO: ......... ' + (Codifica('D',trim(ini.ReadString('FUNCIONALIDADES','FUN1','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('TIPO DE DESENVOLVIMENTO: ....... ' + (Codifica('D',trim(ini.ReadString('FUNCIONALIDADES','FUN2','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('INTEGRACAO DO PAF-ECF: ......... ' + (Codifica('D',trim(ini.ReadString('FUNCIONALIDADES','FUN3','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('<s><n>Funcionalidades:</n></s>');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('TIPO DE FUNCIONAMENTO: ......... ' + (Codifica('D',trim(ini.ReadString('FUNCIONALIDADES','FUN1','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('TIPO DE DESENVOLVIMENTO: ....... ' + (Codifica('D',trim(ini.ReadString('FUNCIONALIDADES','FUN2','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('INTEGRACAO DO PAF-ECF: ......... ' + (Codifica('D',trim(ini.ReadString('FUNCIONALIDADES','FUN3','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
 
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('<s><n>Parâmetros Para Não Concomitância:</n></s>');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('PRÉ-VENDA: ................................. ' + (Codifica('D',trim(ini.ReadString('PARAMETROSPARANAOCONCOMITANCIA','PAR1','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('DAV POR ECF: ............................... ' + (Codifica('D',trim(ini.ReadString('PARAMETROSPARANAOCONCOMITANCIA','PAR2','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('DAV IMPRESSORA NÃO FISCAL: ................. ' + (Codifica('D',trim(ini.ReadString('PARAMETROSPARANAOCONCOMITANCIA','PAR3','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('DAV-OS: .................................... ' + (Codifica('D',trim(ini.ReadString('PARAMETROSPARANAOCONCOMITANCIA','PAR4','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('<s><n>Parâmetros Para Não Concomitância:</n></s>');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('PRÉ-VENDA: ................................. ' + (Codifica('D',trim(ini.ReadString('PARAMETROSPARANAOCONCOMITANCIA','PAR1','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('DAV POR ECF: ............................... ' + (Codifica('D',trim(ini.ReadString('PARAMETROSPARANAOCONCOMITANCIA','PAR2','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('DAV IMPRESSORA NÃO FISCAL: ................. ' + (Codifica('D',trim(ini.ReadString('PARAMETROSPARANAOCONCOMITANCIA','PAR3','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('DAV-OS: .................................... ' + (Codifica('D',trim(ini.ReadString('PARAMETROSPARANAOCONCOMITANCIA','PAR4','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
 
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('<s><n>Aplicações Especiais:</n></s>');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('TAB. ÍNDICE TÉCNICO DE PRODUÇÃO: ........... ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL1','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('POSTO REVENDEDOR DE COMBUSTÍVEIS: .......... ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL2','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('Bar, Restaurante e Similar - ECF-Restaurante:' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL3','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('Bar, Restaurante e Similar - ECF-Comum: .... ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL4','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('FARMÁCIA DE MANIPULAÇÃO: ................... ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL5','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('OFICINA DE CONSERTO: ....................... ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL6','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('TRANSPORTE DE PASSAGEIROS: ................. ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL7','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('<s><n>Aplicações Especiais:</n></s>');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('TAB. ÍNDICE TÉCNICO DE PRODUÇÃO: ........... ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL1','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('POSTO REVENDEDOR DE COMBUSTÍVEIS: .......... ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL2','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('Bar, Restaurante e Similar - ECF-Restaurante:' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL3','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('Bar, Restaurante e Similar - ECF-Comum: .... ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL4','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('FARMÁCIA DE MANIPULAÇÃO: ................... ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL5','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('OFICINA DE CONSERTO: ....................... ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL6','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('TRANSPORTE DE PASSAGEIROS: ................. ' + (Codifica('D',trim(ini.ReadString('APLICATIVOSESPECIAIS','APL7','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
 
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('<s><n>Critérios por Unidade Federada:</n></s>');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('<n>REQUISITO XVIII - Tela Consulta de Preço:</n>');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('TOTALIZAÇÃO DOS VALORES DA LISTA: .......... ' + (Codifica('D',trim(ini.ReadString('CRITERIOSPORUNIDADEFEDERADA','CRI1','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('TRANSFORMAÇÃO DAS INFORMÇÕES EM PRÉ-VENDA: . ' + (Codifica('D',trim(ini.ReadString('CRITERIOSPORUNIDADEFEDERADA','CRI2','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('TRANSFORMAÇÃO DAS INFORMÇÕES EM DAV: ....... ' + (Codifica('D',trim(ini.ReadString('CRITERIOSPORUNIDADEFEDERADA','CRI3','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('<s><n>Critérios por Unidade Federada:</n></s>');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('<n>REQUISITO XVIII - Tela Consulta de Preço:</n>');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('TOTALIZAÇÃO DOS VALORES DA LISTA: .......... ' + (Codifica('D',trim(ini.ReadString('CRITERIOSPORUNIDADEFEDERADA','CRI1','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('TRANSFORMAÇÃO DAS INFORMÇÕES EM PRÉ-VENDA: . ' + (Codifica('D',trim(ini.ReadString('CRITERIOSPORUNIDADEFEDERADA','CRI2','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('TRANSFORMAÇÃO DAS INFORMÇÕES EM DAV: ....... ' + (Codifica('D',trim(ini.ReadString('CRITERIOSPORUNIDADEFEDERADA','CRI3','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
 
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('<s><n>REQUISITO XXII - PAF-ECF Integrado ao ECF:</n></s>');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('NÃO COINCIDÊNCIA GT(ECF) x ARQUIVO CRIPTOGRAFADO');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('RECOMPOE VALOR DO GT ARQUIVO CRIPTOGRAFADO:  ' + (Codifica('D',trim(ini.ReadString('XXIIREQUISITO','XXII1','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('<s><n>REQUISITO XXII - PAF-ECF Integrado ao ECF:</n></s>');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('NÃO COINCIDÊNCIA GT(ECF) x ARQUIVO CRIPTOGRAFADO');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('RECOMPOE VALOR DO GT ARQUIVO CRIPTOGRAFADO:  ' + (Codifica('D',trim(ini.ReadString('XXIIREQUISITO','XXII1','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
 
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('<s><n>REQUISITO XXXVI - A - PAF-ECF Combustível:</n></s>');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('Impedir Registro de Venda com Valor Zero ou');
-      FDataModule.ACBrECF.LinhaRelatorioGerencial('Negativo: .................................. ' + (Codifica('D',trim(ini.ReadString('XXXVIREQUISITO','XXXVI1','')))));
-      FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('<s><n>REQUISITO XXXVI - A - PAF-ECF Combustível:</n></s>');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('Impedir Registro de Venda com Valor Zero ou');
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial('Negativo: .................................. ' + (Codifica('D',trim(ini.ReadString('XXXVIREQUISITO','XXXVI1','')))));
+      dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
 
-      FDataModule.ACBrECF.FechaRelatorio;
+      dmprincipal.ACBrECF.FechaRelatorio;
     except
       Application.MessageBox('Não foi possível carregar dados do ArquivoAuxiliar.ini.', 'Informação do Sistema', MB_OK + MB_ICONERROR);
     end;
@@ -830,63 +831,63 @@ var
   sQtd, sSerie, sMD5: String;
   iQtd, x: Integer;
 begin
-  iQtd := FDataModule.QuantidadeECF;
+  iQtd := dmprincipal.QuantidadeECF;
   try
     R01 := TRegistroRController.RegistroR01;
 
-    FDataModule.ACBrECF.AbreRelatorioGerencial(UCaixa.Configuracao.IdentificacaoPaf);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('************IDENTIFICACAO DO PAF-ECF************');
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('NUMERO DO LAUDO...: ' + R01.NumeroLaudoPaf);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('*****IDENTIFICACAO DA EMPRESA DESENVOLVEDORA****');
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('C.N.P.J. .........: ' + R01.CnpjSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('RAZAO SOCIAL......: ' + R01.RazaoSocialSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('ENDERECO..........: ' + R01.EnderecoSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('NUMERO............: ' + R01.NumeroSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('COMPLEMENTO.......: ' + R01.ComplementoSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('BAIRRO............: ' + R01.BairroSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('CIDADE............: ' + R01.CidadeSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('CEP...............: ' + R01.CepSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('UF................: ' + R01.UfSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('TELEFONE..........: ' + R01.TelefoneSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('CONTATO...........: ' + R01.ContatoSh);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('************IDENTIFICACAO DO PAF-ECF************');
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('NOME COMERCIAL....: ' + R01.NomePafEcf);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('VERSAO DO PAF-ECF.: ' + R01.VersaoPafEcf);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('**********PRINCIPAL ARQUIVO EXECUTAVEL**********');
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('NOME..............: ' + R01.PrincipalExecutavel);
-    sMD5:= MD5File(ExtractFilePath(Application.ExeName)+R01.PrincipalExecutavel);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('MD5.: ' + sMD5);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('****************DEMAIS ARQUIVOS*****************');
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('NOME..............: ' + 'Balcao.exe');
-    sMD5:= MD5File(ExtractFilePath(Application.ExeName)+'Balcao.exe');
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('MD5.: ' + sMD5);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('**************NOME DO ARQUIVO TEXTO*************');
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('NOME..............: ' + 'ArquivoMD5.txt');
+    dmprincipal.ACBrECF.AbreRelatorioGerencial(Configuracao.IdentificacaoPaf);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('************IDENTIFICACAO DO PAF-ECF************');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('NUMERO DO LAUDO...: ' + R01.NumeroLaudoPaf);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('*****IDENTIFICACAO DA EMPRESA DESENVOLVEDORA****');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('C.N.P.J. .........: ' + R01.CnpjSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('RAZAO SOCIAL......: ' + R01.RazaoSocialSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('ENDERECO..........: ' + R01.EnderecoSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('NUMERO............: ' + R01.NumeroSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('COMPLEMENTO.......: ' + R01.ComplementoSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('BAIRRO............: ' + R01.BairroSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('CIDADE............: ' + R01.CidadeSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('CEP...............: ' + R01.CepSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('UF................: ' + R01.UfSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('TELEFONE..........: ' + R01.TelefoneSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('CONTATO...........: ' + R01.ContatoSh);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('************IDENTIFICACAO DO PAF-ECF************');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('NOME COMERCIAL....: ' + R01.NomePafEcf);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('VERSAO DO PAF-ECF.: ' + R01.VersaoPafEcf);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('**********PRINCIPAL ARQUIVO EXECUTAVEL**********');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('NOME..............: ' + R01.PrincipalExecutavel);
+    //sMD5:= MD5File(ExtractFilePath(Application.ExeName)+R01.PrincipalExecutavel);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('MD5.: ' + sMD5);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('****************DEMAIS ARQUIVOS*****************');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('NOME..............: ' + 'Balcao.exe');
+    //sMD5:= MD5File(ExtractFilePath(Application.ExeName)+'Balcao.exe');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('MD5.: ' + sMD5);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('**************NOME DO ARQUIVO TEXTO*************');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('NOME..............: ' + 'ArquivoMD5.txt');
 
     try
       ini  := TIniFile.Create(ExtractFilePath(Application.ExeName)+'ArquivoAuxiliar.ini');
-      sMD5 :=  Codifica('D',ini.ReadString('MD5','ARQUIVOS',''));
+     // sMD5 :=  Codifica('D',ini.ReadString('MD5','ARQUIVOS',''));
     finally
       ini.Free;
     end;
 
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('MD5.: ' + sMD5);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('VERSAO ER PAF-ECF.: ' + R01.VersaoEr);
-    FDataModule.ACBrECF.LinhaRelatorioGerencial('**********RELACAO DOS ECF AUTORIZADOS***********');
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('MD5.: ' + sMD5);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('VERSAO ER PAF-ECF.: ' + R01.VersaoEr);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial('**********RELACAO DOS ECF AUTORIZADOS***********');
     try
       ini  := TIniFile.Create(ExtractFilePath(Application.ExeName)+'ArquivoAuxiliar.ini');
       for x := 1 to iQtd do
       begin
         sSerie := ini.ReadString('ECF','SERIE'+IntToStr(x),'');
-        FDataModule.ACBrECF.LinhaRelatorioGerencial(Codifica('D',sSerie));
+        dmprincipal.ACBrECF.LinhaRelatorioGerencial(Codifica('D',sSerie));
       end;
     finally
       ini.Free;
     end;
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-    FDataModule.ACBrECF.FechaRelatorio;
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+    dmprincipal.ACBrECF.FechaRelatorio;
     GravaR06('RG');
   finally
     if Assigned(R01) then
@@ -899,29 +900,29 @@ var
   i: Integer;
   Sintegra60M: TSintegra60MVO;
   Sintegra60A: TSintegra60AVO;
-  Lista60A: TObjectList<TSintegra60AVO>;
+  Lista60A:  TSintegra60AListaVO;
   Impressora: TImpressoraVO;
 begin
   try
     Impressora := TImpressoraController.PegaImpressora(IdImpressora);
 
     Sintegra60M := TSintegra60MVO.Create;
-    Lista60A := TObjectList<TSintegra60AVO>.Create;
-    Sintegra60M.DataEmissao := FormatDateTime('yyyy-mm-dd', FDataModule.ACBrECF.DataHora);
-    Sintegra60M.SerieImpressora := FDataModule.ACBrECF.NumSerie;
-    Sintegra60M.NumeroEquipamento := StrToInt(FDataModule.ACBrECF.NumECF);
+    Lista60A :=  TSintegra60AListaVO.Create;
+    Sintegra60M.DataEmissao := FormatDateTime('yyyy-mm-dd', dmprincipal.ACBrECF.DataHora);
+    Sintegra60M.SerieImpressora := dmprincipal.ACBrECF.NumSerie;
+    Sintegra60M.NumeroEquipamento := StrToInt(dmprincipal.ACBrECF.NumECF);
     Sintegra60M.ModeloDocumentoFiscal := Impressora.ModeloDocumentoFiscal;
-    Sintegra60M.COOInicial := StrToInt(FDataModule.ACBrECF.NumCOOInicial);
-    Sintegra60M.COOFinal := StrToInt(FDataModule.ACBrECF.NumCOO) + 1;
-    Sintegra60M.CRZ := StrToInt(FDataModule.ACBrECF.NumCRZ) + 1;
-    Sintegra60M.CRO := StrToInt(FDataModule.ACBrECF.NumCRO);
-    Sintegra60M.VendaBruta  := FDataModule.ACBrECF.VendaBruta;
-    Sintegra60M.GrandeTotal := FDataModule.ACBrECF.GrandeTotal;
+    Sintegra60M.COOInicial := StrToInt(dmprincipal.ACBrECF.NumCOOInicial);
+    Sintegra60M.COOFinal := StrToInt(dmprincipal.ACBrECF.NumCOO) + 1;
+    Sintegra60M.CRZ := StrToInt(dmprincipal.ACBrECF.NumCRZ) + 1;
+    Sintegra60M.CRO := StrToInt(dmprincipal.ACBrECF.NumCRO);
+    Sintegra60M.VendaBruta  := dmprincipal.ACBrECF.VendaBruta;
+    Sintegra60M.GrandeTotal := dmprincipal.ACBrECF.GrandeTotal;
 
     TSintegraController.Grava60M(Sintegra60M);
 
     //Dados para o registro R03
-    with FDataModule.ACBrECF.DadosReducaoZClass do
+    with dmprincipal.ACBrECF.DadosReducaoZClass do
     begin
       //Dados ICMS
       for i := 0 to ICMS.Count -1 do
@@ -1005,10 +1006,10 @@ begin
     try
       Result := False;
       ini := TIniFile.Create(ExtractFilePath(Application.ExeName)+'ArquivoAuxiliar.ini');
-      Quantidade := FDataModule.QuantidadeECF;
+      Quantidade := dmprincipal.QuantidadeECF;
       if ini.ValueExists('ECF','SERIE1') then
       begin
-        MD5Serie:= FDataModule.ACBrECF.NumSerie;
+        MD5Serie:= dmprincipal.ACBrECF.NumSerie;
         if Quantidade > 0 then
         begin
           for I := 1 to Quantidade do
@@ -1027,7 +1028,7 @@ begin
         try
           ConsultaSQL := 'select max(ID) as ID from R02';
           Query := TSQLQuery.Create(nil);
-          Query.SQLConnection := FDataModule.Conexao;
+          Query.DataBase := dmPrincipal.IBCon;
           Query.sql.Text := ConsultaSQL;
           Query.Open;
           nID := Query.FieldByName('ID').AsInteger;
@@ -1037,11 +1038,11 @@ begin
           Query.sql.Text := ConsultaSQL;
           Query.Open;
 
-          if (Query.FieldByName('CRZ').AsInteger = StrtoInt(FDataModule.ACBrECF.NumCRZ)) and
-             (Query.FieldByName('CRO').AsInteger = StrtoInt(FDataModule.ACBrECF.NumCRO)) and
-             (Query.FieldByName('GRANDE_TOTAL').AsFloat = FDataModule.ACBrECF.GrandeTotal) then
+          if (Query.FieldByName('CRZ').AsInteger = StrtoInt(dmprincipal.ACBrECF.NumCRZ)) and
+             (Query.FieldByName('CRO').AsInteger = StrtoInt(dmprincipal.ACBrECF.NumCRO)) and
+             (Query.FieldByName('GRANDE_TOTAL').AsFloat = dmprincipal.ACBrECF.GrandeTotal) then
           begin
-            ini.WriteString('ECF','SERIE1',Codifica('C',FDataModule.ACBrECF.NumSerie));
+            ini.WriteString('ECF','SERIE1',Codifica('C',dmprincipal.ACBrECF.NumSerie));
             Result := True;
           end
           else
@@ -1070,7 +1071,7 @@ begin
     try
       ini := TIniFile.Create(ExtractFilePath(Application.ExeName)+'ArquivoAuxiliar.ini');
       sGT := Codifica('D',ini.ReadString('ECF','GT',''));
-      if sGT = FloatToStr(FDataModule.ACBrECF.GrandeTotal) then
+      if sGT = FloatToStr(dmprincipal.ACBrECF.GrandeTotal) then
         Result := True
       else
       begin
@@ -1083,13 +1084,13 @@ begin
             ConsultaSQL := 'select max(CRO) as CRO from R02';
             try
               Query := TSQLQuery.Create(nil);
-              Query.SQLConnection := FDataModule.Conexao;
+              Query.DataBase := dmPrincipal.IBCon;
               Query.sql.Text := ConsultaSQL;
               Query.Open();
               nCRO := Query.FieldByName('CRO').AsInteger;
-              if (StrToInt(FDataModule.ACBrECF.NumCRO) > nCRO) then
+              if (StrToInt(dmprincipal.ACBrECF.NumCRO) > nCRO) then
               begin
-                ini.WriteString('ECF','GT',Codifica('C',FloatToStr(FDataModule.ACBrECF.GrandeTotal)));
+                ini.WriteString('ECF','GT',Codifica('C',FloatToStr(dmprincipal.ACBrECF.GrandeTotal)));
                 Result := True;
               end;
             finally
@@ -1102,7 +1103,7 @@ begin
           try
             ConsultaSQL := 'select max(ID) as ID from R02';
             Query := TSQLQuery.Create(nil);
-            Query.SQLConnection := FDataModule.Conexao;
+            Query.DataBase := dmPrincipal.IBCon;
             Query.sql.Text := ConsultaSQL;
             Query.Open;
             nID := Query.FieldByName('ID').AsInteger;
@@ -1112,11 +1113,11 @@ begin
             Query.sql.Text := ConsultaSQL;
             Query.Open;
 
-            if (Query.FieldByName('CRZ').AsInteger = StrtoInt(FDataModule.ACBrECF.NumCRZ)) and
-               (Query.FieldByName('CRO').AsInteger = StrtoInt(FDataModule.ACBrECF.NumCRO)) and
-               (Query.FieldByName('GRANDE_TOTAL').AsFloat = FDataModule.ACBrECF.GrandeTotal) then
+            if (Query.FieldByName('CRZ').AsInteger = StrtoInt(dmprincipal.ACBrECF.NumCRZ)) and
+               (Query.FieldByName('CRO').AsInteger = StrtoInt(dmprincipal.ACBrECF.NumCRO)) and
+               (Query.FieldByName('GRANDE_TOTAL').AsFloat = dmprincipal.ACBrECF.GrandeTotal) then
             begin
-              ini.WriteString('ECF','GT',Codifica('C',FloatToStr(FDataModule.ACBrECF.GrandeTotal)));
+              ini.WriteString('ECF','GT',Codifica('C',FloatToStr(dmprincipal.ACBrECF.GrandeTotal)));
               Result := True;
             end
             else
@@ -1125,7 +1126,7 @@ begin
             FreeAndNil(Query);
           end;
         end;//if ini.ValueExists('ECF','GT') then
-      end;//if sGT = FloatToStr(FDataModule.ACBrECF.GrandeTotal) then
+      end;//if sGT = FloatToStr(dmprincipal.ACBrECF.GrandeTotal) then
     finally
       ini.Free;
     end;
@@ -1138,7 +1139,7 @@ var
 begin
   try
     ini := TIniFile.Create(ExtractFilePath(Application.ExeName)+'ArquivoAuxiliar.ini');
-    ini.WriteString('ECF','GT',Codifica('C',FloatToStr(FDataModule.ACBrECF.GrandeTotal)));
+    ini.WriteString('ECF','GT',Codifica('C',FloatToStr(dmprincipal.ACBrECF.GrandeTotal)));
   finally
     ini.Free;
   end;
@@ -1150,35 +1151,35 @@ var
   NomeArquivo, Mensagem, MD5ArquivoMD5 : String;
   Ini:TIniFile;
 begin
-  PreencherHeader(FDataModule.ACBrPAF.PAF_N.RegistroN1); // preencher header do arquivo
+  PreencherHeader(dmprincipal.ACBrPAF.PAF_N.RegistroN1); // preencher header do arquivo
   // registro N2
   try
     R01 := TRegistroRController.RegistroR01;
 
-    FDataModule.ACBrPAF.PAF_N.RegistroN2.LAUDO  := R01.NumeroLaudoPaf;
-    FDataModule.ACBrPAF.PAF_N.RegistroN2.NOME   := R01.NomePafEcf;
-    FDataModule.ACBrPAF.PAF_N.RegistroN2.VERSAO := R01.VersaoPafEcf;
+    dmprincipal.ACBrPAF.PAF_N.RegistroN2.LAUDO  := R01.NumeroLaudoPaf;
+    dmprincipal.ACBrPAF.PAF_N.RegistroN2.NOME   := R01.NomePafEcf;
+    dmprincipal.ACBrPAF.PAF_N.RegistroN2.VERSAO := R01.VersaoPafEcf;
 
-    FDataModule.ACBrPAF.PAF_N.RegistroN3.Clear;
+    dmprincipal.ACBrPAF.PAF_N.RegistroN3.Clear;
 
     NomeArquivo := ExtractFilePath(Application.ExeName)+'PafEcf.exe';
-    with FDataModule.ACBrPAF.PAF_N.RegistroN3.New do
+    with dmprincipal.ACBrPAF.PAF_N.RegistroN3.New do
     begin
       NOME_ARQUIVO := R01.PrincipalExecutavel;
-      MD5          := MD5File(NomeArquivo);
+      //MD5          := MD5File(NomeArquivo);
     end;
 
     NomeArquivo := ExtractFilePath(Application.ExeName)+'Balcao.exe';
-    with FDataModule.ACBrPAF.PAF_N.RegistroN3.New do
+    with dmprincipal.ACBrPAF.PAF_N.RegistroN3.New do
     begin
       NOME_ARQUIVO := 'Balcao.exe';
-      MD5          := MD5File(NomeArquivo);
+      //MD5          := MD5File(NomeArquivo);
     end;
 
-    FDataModule.ACBrPAF.SaveFileTXT_N('ArquivoMD5.txt');
-    TEAD_Class.SingEAD('ArquivoMD5.txt');
+    dmprincipal.ACBrPAF.SaveFileTXT_N('ArquivoMD5.txt');
+    //TEAD_Class.SingEAD('ArquivoMD5.txt');
 
-    MD5ArquivoMD5 := MD5File(ExtractFilePath(Application.ExeName)+'ArquivoMD5.txt');
+    //MD5ArquivoMD5 := MD5File(ExtractFilePath(Application.ExeName)+'ArquivoMD5.txt');
 
     try
       ini := TIniFile.Create(ExtractFilePath(Application.ExeName)+'ArquivoAuxiliar.ini');
@@ -1187,8 +1188,8 @@ begin
       ini.Free;
     end;
 
-    Mensagem := 'Arquivo armazenado em: ' + gsAppPath + 'ArquivoMD5.txt';
-    Application.MessageBox(PWideChar(Mensagem), 'Informação do Sistema', MB_OK + MB_ICONINFORMATION);
+    //Mensagem := 'Arquivo armazenado em: ' + gsAppPath + 'ArquivoMD5.txt';
+    Application.MessageBox(PChar(Mensagem), 'Informação do Sistema', MB_OK + MB_ICONINFORMATION);
   finally
     if Assigned(R01) then
       FreeAndNil(R01);
@@ -1202,15 +1203,15 @@ var
 begin
   try
     R06 := TR06VO.Create;
-    R06.IdCaixa := UCaixa.Movimento.IdCaixa;
-    R06.IdOperador := UCaixa.Movimento.IdOperador;
-    R06.IdImpressora := UCaixa.Movimento.IdImpressora;
-    R06.COO := StrToInt(FDataModule.ACBrECF.NumCOO);
-    R06.GNF := StrToInt(FDataModule.ACBrECF.NumGNF);
-    R06.GRG := StrToInt(FDataModule.ACBrECF.NumGRG);
+    R06.IdCaixa := Movimento.IdCaixa;
+    R06.IdOperador := Movimento.IdOperador;
+    R06.IdImpressora := Movimento.IdImpressora;
+    R06.COO := StrToInt(dmprincipal.ACBrECF.NumCOO);
+    R06.GNF := StrToInt(dmprincipal.ACBrECF.NumGNF);
+    R06.GRG := StrToInt(dmprincipal.ACBrECF.NumGRG);
 
-    if FDataModule.ACBrECF.MFD then
-      R06.CDC := StrToInt(FDataModule.ACBrECF.NumCDC)
+    if dmprincipal.ACBrECF.MFD then
+      R06.CDC := StrToInt(dmprincipal.ACBrECF.NumCDC)
     else
       R06.CDC := 0;
 
@@ -1224,8 +1225,8 @@ begin
       Comprovante Não-Fiscal              - CN
       Comprovante Não-Fiscal Cancelamento - NC
       Relatório Gerencial                 - RG }
-    R06.DataEmissao := FormatDateTime('yyyy-mm-dd', FDataModule.ACBrECF.DataHora);
-    R06.HoraEmissao := FormatDateTime('hh:nn:ss', FDataModule.ACBrECF.DataHora);
+    R06.DataEmissao := FormatDateTime('yyyy-mm-dd', dmprincipal.ACBrECF.DataHora);
+    R06.HoraEmissao := FormatDateTime('hh:nn:ss', dmprincipal.ACBrECF.DataHora);
     TRegistroRController.GravaR06(R06);
   finally
     FreeAndNil(R06);

@@ -64,7 +64,7 @@ type
 
 implementation
 
-uses UDataModule, UCaixa, Biblioteca;
+uses Udmprincipal, UfrmCheckout, Biblioteca;
 
 var
   ConsultaSQL: String;
@@ -100,7 +100,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pTurno').AsInteger := pMovimento.IdTurno;
       Query.ParamByName('pImpressora').AsInteger := pMovimento.IdImpressora;
@@ -153,7 +153,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
 
       //total de suprimentos
       Query.sql.Text := 'select sum(VALOR) as TOTAL from ECF_SUPRIMENTO where ID_ECF_MOVIMENTO='+IntToStr(pMovimento.Id);
@@ -222,7 +222,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pId').AsInteger := pMovimento.Id;
       Query.ExecSQL();
@@ -241,7 +241,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pId').AsInteger := pMovimento.Id;
       Query.ExecSQL();
@@ -293,7 +293,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
@@ -377,7 +377,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
@@ -460,7 +460,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
@@ -509,7 +509,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pIdMovimento').AsInteger := pSuprimento.IdMovimento;
       Query.ParamByName('pDataSuprimento').AsString := pSuprimento.DataSuprimento;
@@ -542,7 +542,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pIdMovimento').AsInteger := pSangria.IdMovimento;
       Query.ParamByName('pDataSangria').AsString := pSangria.DataSangria;
@@ -573,7 +573,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pDataAbertura').AsDateTime := Data;
       Query.Open;

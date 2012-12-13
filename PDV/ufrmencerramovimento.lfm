@@ -1,0 +1,291 @@
+inherited frmEncerraMovimento: TfrmEncerraMovimento
+  Left = 342
+  Height = 495
+  Top = 138
+  Width = 713
+  Caption = 'frmEncerraMovimento'
+  ClientHeight = 495
+  ClientWidth = 713
+  object Image1: TImage[0]
+    Left = 15
+    Height = 117
+    Top = 17
+    Width = 115
+  end
+  object GroupBox1: TGroupBox[1]
+    Left = 136
+    Height = 440
+    Top = 8
+    Width = 568
+    Caption = 'Dados do movimento aberto:'
+    ClientHeight = 422
+    ClientWidth = 564
+    TabOrder = 0
+    object Panel1: TPanel
+      Left = 12
+      Height = 27
+      Top = 13
+      Width = 544
+      BevelOuter = bvLowered
+      ClientHeight = 27
+      ClientWidth = 544
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 8
+        Height = 16
+        Top = 4
+        Width = 42
+        Caption = 'Label1'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label2: TLabel
+        Left = 80
+        Height = 16
+        Top = 4
+        Width = 37
+        Caption = 'Label2'
+        ParentColor = False
+      end
+    end
+    object Panel2: TPanel
+      Left = 12
+      Height = 27
+      Top = 48
+      Width = 544
+      BevelOuter = bvLowered
+      ClientHeight = 27
+      ClientWidth = 544
+      TabOrder = 1
+      object Label3: TLabel
+        Left = 8
+        Height = 16
+        Top = 4
+        Width = 42
+        Caption = 'Label1'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label4: TLabel
+        Left = 80
+        Height = 16
+        Top = 4
+        Width = 37
+        Caption = 'Label2'
+        ParentColor = False
+      end
+    end
+    object Panel3: TPanel
+      Left = 12
+      Height = 27
+      Top = 116
+      Width = 544
+      BevelOuter = bvLowered
+      ClientHeight = 27
+      ClientWidth = 544
+      TabOrder = 2
+      object Label5: TLabel
+        Left = 8
+        Height = 16
+        Top = 4
+        Width = 42
+        Caption = 'Label1'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label6: TLabel
+        Left = 80
+        Height = 16
+        Top = 4
+        Width = 37
+        Caption = 'Label2'
+        ParentColor = False
+      end
+    end
+    object Panel4: TPanel
+      Left = 12
+      Height = 27
+      Top = 81
+      Width = 544
+      BevelOuter = bvLowered
+      ClientHeight = 27
+      ClientWidth = 544
+      TabOrder = 3
+      object Label7: TLabel
+        Left = 8
+        Height = 16
+        Top = 4
+        Width = 42
+        Caption = 'Label1'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label8: TLabel
+        Left = 80
+        Height = 16
+        Top = 4
+        Width = 37
+        Caption = 'Label2'
+        ParentColor = False
+      end
+    end
+    object GroupBox2: TGroupBox
+      Left = 14
+      Height = 178
+      Top = 144
+      Width = 538
+      Caption = 'Encerrantes'
+      ClientHeight = 160
+      ClientWidth = 534
+      TabOrder = 4
+      object BitBtn4: TBitBtn
+        Left = 174
+        Height = 28
+        Top = 24
+        Width = 102
+        Caption = 'BitBtn4'
+        TabOrder = 0
+      end
+      object BitBtn3: TBitBtn
+        Left = 174
+        Height = 28
+        Top = 54
+        Width = 102
+        Caption = 'BitBtn3'
+        TabOrder = 1
+      end
+      object ComboTipoPagamento: TComboBox
+        Left = 14
+        Height = 24
+        Top = 30
+        Width = 140
+        ItemHeight = 16
+        TabOrder = 2
+        Text = 'ComboTipoPagamento'
+      end
+      object Label9: TLabel
+        Left = 14
+        Height = 16
+        Top = 11
+        Width = 123
+        Caption = '&Tipo de Documento'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object CurrencyEdit1: TCurrencyEdit
+        Left = 14
+        Height = 24
+        Top = 82
+        Width = 128
+        Alignment = taRightJustify
+        DisplayFormat = '0.00'
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 3
+        Value = 0
+      end
+      object CurrencyEdit2: TCurrencyEdit
+        Left = 14
+        Height = 24
+        Top = 128
+        Width = 128
+        Alignment = taRightJustify
+        DisplayFormat = '0.00'
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 4
+        Value = 0
+      end
+      object Label10: TLabel
+        Left = 14
+        Height = 16
+        Top = 64
+        Width = 34
+        Caption = 'Valor'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label11: TLabel
+        Left = 14
+        Height = 16
+        Top = 112
+        Width = 32
+        Caption = '&Total'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBGrid1: TDBGrid
+        Left = 305
+        Height = 136
+        Top = 9
+        Width = 211
+        Color = clWindow
+        Columns = <>
+        TabOrder = 5
+        TitleFont.CharSet = ANSI_CHARSET
+        TitleFont.Height = -13
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Pitch = fpVariable
+        TitleFont.Quality = fqDraft
+      end
+    end
+  end
+  object BitBtn1: TBitBtn[2]
+    Left = 475
+    Height = 28
+    Top = 458
+    Width = 102
+    Caption = 'BitBtn1'
+    TabOrder = 1
+  end
+  object BitBtn2: TBitBtn[3]
+    Left = 585
+    Height = 28
+    Top = 458
+    Width = 102
+    Caption = 'BitBtn2'
+    TabOrder = 2
+  end
+end

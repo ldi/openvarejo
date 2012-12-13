@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="112">
+    <Units Count="114">
       <Unit0>
         <Filename Value="OPDV.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="26" Y="28"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="43"/>
       </Unit0>
       <Unit1>
         <Filename Value="..\Framework\UfrmBase.pas"/>
@@ -24,7 +24,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="7" Y="4"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="43"/>
       </Unit1>
       <Unit2>
         <Filename Value="UfrmCheckout.pas"/>
@@ -36,7 +36,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="97"/>
         <CursorPos X="3" Y="110"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="43"/>
       </Unit2>
       <Unit3>
         <Filename Value="..\Framework\udmprincipalbase.pas"/>
@@ -48,7 +48,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="57" Y="2"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="43"/>
       </Unit3>
       <Unit4>
         <Filename Value="udmprincipal.pas"/>
@@ -60,7 +60,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
         <CursorPos X="24" Y="13"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="43"/>
       </Unit4>
       <Unit5>
         <Filename Value="..\Framework\utiposdados.pas"/>
@@ -69,7 +69,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="23" Y="7"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="42"/>
       </Unit5>
       <Unit6>
         <Filename Value="ufrmefetuapagamento.pas"/>
@@ -81,7 +81,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
         <CursorPos X="36" Y="11"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="41"/>
       </Unit6>
       <Unit7>
         <Filename Value="..\Framework\uvariaveisbase.pas"/>
@@ -90,7 +90,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="20" Y="10"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="41"/>
       </Unit7>
       <Unit8>
         <Filename Value="ufrmsplash.pas"/>
@@ -102,7 +102,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="37"/>
       </Unit8>
       <Unit9>
         <Filename Value="ufrmmenufiscal.pas"/>
@@ -114,16 +114,18 @@
         <WindowIndex Value="0"/>
         <TopLine Value="110"/>
         <CursorPos X="6" Y="126"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="37"/>
       </Unit9>
       <Unit10>
         <Filename Value="uecf.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UECF"/>
+        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="3"/>
-        <UsageCount Value="34"/>
+        <TopLine Value="18"/>
+        <CursorPos X="80" Y="33"/>
+        <UsageCount Value="36"/>
+        <Loaded Value="True"/>
       </Unit10>
       <Unit11>
         <Filename Value="Controller\BancoController.pas"/>
@@ -132,7 +134,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="37" Y="11"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit11>
       <Unit12>
         <Filename Value="Controller\CaixaController.pas"/>
@@ -141,7 +143,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit12>
       <Unit13>
         <Filename Value="Controller\CFOPController.pas"/>
@@ -150,7 +152,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit13>
       <Unit14>
         <Filename Value="Controller\ChequeController.pas"/>
@@ -159,7 +161,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit14>
       <Unit15>
         <Filename Value="Controller\ClienteController.pas"/>
@@ -168,7 +170,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit15>
       <Unit16>
         <Filename Value="Controller\ComponentesController.pas"/>
@@ -177,7 +179,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit16>
       <Unit17>
         <Filename Value="Controller\ConfiguracaoController.pas"/>
@@ -186,7 +188,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="799"/>
         <CursorPos X="43" Y="816"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit17>
       <Unit18>
         <Filename Value="Controller\ContadorController.pas"/>
@@ -195,7 +197,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit18>
       <Unit19>
         <Filename Value="Controller\DAVController.pas"/>
@@ -204,7 +206,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="599"/>
         <CursorPos X="27" Y="623"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit19>
       <Unit20>
         <Filename Value="Controller\EmpresaController.pas"/>
@@ -213,7 +215,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="212"/>
         <CursorPos X="43" Y="227"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit20>
       <Unit21>
         <Filename Value="Controller\FechamentoController.pas"/>
@@ -222,7 +224,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit21>
       <Unit22>
         <Filename Value="Controller\FichaTecnicaController.pas"/>
@@ -231,7 +233,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit22>
       <Unit23>
         <Filename Value="Controller\ImpressoraController.pas"/>
@@ -240,7 +242,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="260"/>
         <CursorPos X="43" Y="277"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit23>
       <Unit24>
         <Filename Value="Controller\LogImportacaoController.pas"/>
@@ -249,16 +251,16 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit24>
       <Unit25>
         <Filename Value="Controller\MovimentoController.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MovimentoController"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <TopLine Value="560"/>
+        <CursorPos X="43" Y="576"/>
+        <UsageCount Value="35"/>
       </Unit25>
       <Unit26>
         <Filename Value="Controller\NFeController.pas"/>
@@ -267,7 +269,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit26>
       <Unit27>
         <Filename Value="Controller\NotaFiscalController.pas"/>
@@ -276,7 +278,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit27>
       <Unit28>
         <Filename Value="Controller\OperadorController.pas"/>
@@ -285,7 +287,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit28>
       <Unit29>
         <Filename Value="Controller\ParcelaController.pas"/>
@@ -294,7 +296,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit29>
       <Unit30>
         <Filename Value="Controller\PreVendaController.pas"/>
@@ -303,7 +305,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="51" Y="30"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit30>
       <Unit31>
         <Filename Value="Controller\ProdutoController.pas"/>
@@ -312,7 +314,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1075"/>
         <CursorPos X="43" Y="1092"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit31>
       <Unit32>
         <Filename Value="Controller\ProdutoPromocaoController.pas"/>
@@ -321,7 +323,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit32>
       <Unit33>
         <Filename Value="Controller\RegistroRController.pas"/>
@@ -330,7 +332,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1098"/>
         <CursorPos X="5" Y="1129"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit33>
       <Unit34>
         <Filename Value="Controller\ResolucaoController.pas"/>
@@ -339,19 +341,16 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit34>
       <Unit35>
         <Filename Value="Controller\SintegraController.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SintegraController"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="26"/>
-        <CursorPos X="91" Y="42"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
+        <TopLine Value="708"/>
+        <CursorPos X="81" Y="733"/>
+        <UsageCount Value="35"/>
       </Unit35>
       <Unit36>
         <Filename Value="Controller\SituacaoClienteController.pas"/>
@@ -360,7 +359,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit36>
       <Unit37>
         <Filename Value="Controller\SpedFiscalController.pas"/>
@@ -369,7 +368,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit37>
       <Unit38>
         <Filename Value="Controller\TipoPagamentoController.pas"/>
@@ -378,7 +377,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit38>
       <Unit39>
         <Filename Value="Controller\TotalTipoPagamentoController.pas"/>
@@ -387,7 +386,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="424"/>
         <CursorPos X="43" Y="435"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit39>
       <Unit40>
         <Filename Value="Controller\TurnoController.pas"/>
@@ -396,7 +395,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit40>
       <Unit41>
         <Filename Value="Controller\UnidadeController.pas"/>
@@ -405,7 +404,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit41>
       <Unit42>
         <Filename Value="Controller\VendaController.pas"/>
@@ -414,7 +413,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="604"/>
         <CursorPos X="36" Y="618"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit42>
       <Unit43>
         <Filename Value="Controller\VendedorController.pas"/>
@@ -423,7 +422,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="124"/>
         <CursorPos X="43" Y="137"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit43>
       <Unit44>
         <Filename Value="VO\BancoVO.pas"/>
@@ -432,7 +431,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit44>
       <Unit45>
         <Filename Value="VO\CaixaVO.pas"/>
@@ -441,7 +440,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit45>
       <Unit46>
         <Filename Value="VO\CfopVO.pas"/>
@@ -450,7 +449,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit46>
       <Unit47>
         <Filename Value="VO\ChequeClienteVO.pas"/>
@@ -459,7 +458,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit47>
       <Unit48>
         <Filename Value="VO\ClienteVO.pas"/>
@@ -468,7 +467,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit48>
       <Unit49>
         <Filename Value="VO\ConfiguracaoVO.pas"/>
@@ -477,7 +476,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="62"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit49>
       <Unit50>
         <Filename Value="VO\ContadorVO.pas"/>
@@ -486,7 +485,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit50>
       <Unit51>
         <Filename Value="VO\ContasPagarReceberVO.pas"/>
@@ -495,7 +494,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit51>
       <Unit52>
         <Filename Value="VO\ContasParcelasVO.pas"/>
@@ -504,7 +503,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="22" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit52>
       <Unit53>
         <Filename Value="VO\DavCabecalhoVO.pas"/>
@@ -513,7 +512,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="32"/>
         <CursorPos X="1" Y="58"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit53>
       <Unit54>
         <Filename Value="VO\DAVDetalheVO.pas"/>
@@ -522,7 +521,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="23"/>
         <CursorPos X="1" Y="50"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit54>
       <Unit55>
         <Filename Value="VO\DocumentosEmitidosVO.pas"/>
@@ -531,7 +530,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit55>
       <Unit56>
         <Filename Value="VO\EmpresaVO.pas"/>
@@ -540,7 +539,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit56>
       <Unit57>
         <Filename Value="VO\FechamentoVO.pas"/>
@@ -549,7 +548,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit57>
       <Unit58>
         <Filename Value="VO\FichaTecnicaVO.pas"/>
@@ -558,7 +557,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit58>
       <Unit59>
         <Filename Value="VO\FuncionarioVO.pas"/>
@@ -567,7 +566,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit59>
       <Unit60>
         <Filename Value="VO\ImpressoraVO.pas"/>
@@ -576,7 +575,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="10" Y="7"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit60>
       <Unit61>
         <Filename Value="VO\LogImportacaoVO.pas"/>
@@ -585,7 +584,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit61>
       <Unit62>
         <Filename Value="VO\MeiosPagamentoVO.pas"/>
@@ -594,7 +593,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="73" Y="26"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit62>
       <Unit63>
         <Filename Value="VO\MovimentoVO.pas"/>
@@ -603,7 +602,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit63>
       <Unit64>
         <Filename Value="VO\NfeCabecalhoVO.pas"/>
@@ -612,7 +611,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit64>
       <Unit65>
         <Filename Value="VO\NfeCupomFiscalVO.pas"/>
@@ -621,7 +620,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit65>
       <Unit66>
         <Filename Value="VO\NfeDetalheVO.pas"/>
@@ -630,7 +629,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit66>
       <Unit67>
         <Filename Value="VO\NotaFiscalCabecalhoVO.pas"/>
@@ -639,7 +638,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit67>
       <Unit68>
         <Filename Value="VO\NotaFiscalDetalheVO.pas"/>
@@ -648,7 +647,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="6"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit68>
       <Unit69>
         <Filename Value="VO\OperadorVO.pas"/>
@@ -657,7 +656,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit69>
       <Unit70>
         <Filename Value="VO\PosicaoComponentesVO.pas"/>
@@ -666,7 +665,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="48"/>
         <CursorPos X="3" Y="73"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit70>
       <Unit71>
         <Filename Value="VO\PreVendaCabecalhoVO.pas"/>
@@ -675,7 +674,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="19"/>
         <CursorPos X="1" Y="45"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit71>
       <Unit72>
         <Filename Value="VO\PreVendaDetalheVO.pas"/>
@@ -684,7 +683,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="7"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit72>
       <Unit73>
         <Filename Value="VO\ProdutoPromocaoVO.pas"/>
@@ -693,7 +692,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit73>
       <Unit74>
         <Filename Value="VO\ProdutoVO.pas"/>
@@ -702,7 +701,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="54"/>
         <CursorPos X="16" Y="81"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit74>
       <Unit75>
         <Filename Value="VO\R01VO.pas"/>
@@ -711,7 +710,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="7"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit75>
       <Unit76>
         <Filename Value="VO\R02VO.pas"/>
@@ -720,7 +719,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="24"/>
         <CursorPos X="51" Y="51"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit76>
       <Unit77>
         <Filename Value="VO\R03VO.pas"/>
@@ -729,7 +728,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
         <CursorPos X="51" Y="34"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit77>
       <Unit78>
         <Filename Value="VO\R04VO.pas"/>
@@ -738,7 +737,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="43"/>
         <CursorPos X="51" Y="70"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit78>
       <Unit79>
         <Filename Value="VO\R05VO.pas"/>
@@ -747,7 +746,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="60"/>
         <CursorPos X="51" Y="87"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit79>
       <Unit80>
         <Filename Value="VO\R06VO.pas"/>
@@ -756,7 +755,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="23"/>
         <CursorPos X="51" Y="50"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit80>
       <Unit81>
         <Filename Value="VO\R07VO.pas"/>
@@ -765,7 +764,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="18"/>
         <CursorPos X="1" Y="44"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit81>
       <Unit82>
         <Filename Value="VO\RecebimentoNaoFiscalVO.pas"/>
@@ -774,7 +773,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit82>
       <Unit83>
         <Filename Value="VO\ResolucaoVO.pas"/>
@@ -783,7 +782,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit83>
       <Unit84>
         <Filename Value="VO\SangriaVO.pas"/>
@@ -792,73 +791,61 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit84>
       <Unit85>
         <Filename Value="VO\Sintegra60AVO.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Sintegra60AVO"/>
-        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="72" Y="24"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
+        <CursorPos X="1" Y="24"/>
+        <UsageCount Value="35"/>
       </Unit85>
       <Unit86>
         <Filename Value="VO\Sintegra60DVO.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Sintegra60DVO"/>
-        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
-        <CursorPos X="71" Y="35"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
+        <CursorPos X="14" Y="35"/>
+        <UsageCount Value="35"/>
       </Unit86>
       <Unit87>
         <Filename Value="VO\Sintegra60MVO.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Sintegra60MVO"/>
-        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="11"/>
         <CursorPos X="72" Y="38"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="35"/>
       </Unit87>
       <Unit88>
         <Filename Value="VO\Sintegra60RVO.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Sintegra60RVO"/>
-        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="5"/>
         <CursorPos X="72" Y="32"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="35"/>
       </Unit88>
       <Unit89>
         <Filename Value="VO\Sintegra61RVO.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Sintegra61RVO"/>
-        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="3"/>
         <CursorPos X="72" Y="30"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="35"/>
       </Unit89>
       <Unit90>
         <Filename Value="VO\SintegraVO.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SintegraVO"/>
-        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="71"/>
         <CursorPos X="61" Y="98"/>
-        <UsageCount Value="33"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="35"/>
       </Unit90>
       <Unit91>
         <Filename Value="VO\SituacaoClienteVO.pas"/>
@@ -867,7 +854,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit91>
       <Unit92>
         <Filename Value="VO\SpedFiscalC321VO.pas"/>
@@ -876,7 +863,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit92>
       <Unit93>
         <Filename Value="VO\SpedFiscalC370VO.pas"/>
@@ -885,7 +872,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit93>
       <Unit94>
         <Filename Value="VO\SpedFiscalC390VO.pas"/>
@@ -894,7 +881,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit94>
       <Unit95>
         <Filename Value="VO\SpedFiscalC425VO.pas"/>
@@ -903,7 +890,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit95>
       <Unit96>
         <Filename Value="VO\SpedFiscalC490VO.pas"/>
@@ -912,7 +899,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit96>
       <Unit97>
         <Filename Value="VO\SuprimentoVO.pas"/>
@@ -921,7 +908,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit97>
       <Unit98>
         <Filename Value="VO\TipoPagamentoVO.pas"/>
@@ -930,7 +917,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit98>
       <Unit99>
         <Filename Value="VO\TotalTipoPagamentoVO.pas"/>
@@ -939,7 +926,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="7"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit99>
       <Unit100>
         <Filename Value="VO\TurnoVO.pas"/>
@@ -948,7 +935,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit100>
       <Unit101>
         <Filename Value="VO\UnidadeProdutoVO.pas"/>
@@ -957,7 +944,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit101>
       <Unit102>
         <Filename Value="VO\VendaCabecalhoVO.pas"/>
@@ -966,7 +953,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="61"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit102>
       <Unit103>
         <Filename Value="VO\VendaDetalheVO.pas"/>
@@ -975,7 +962,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="66"/>
         <CursorPos X="1" Y="92"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
       </Unit103>
       <Unit104>
         <Filename Value="ufrmcargapdv.pas"/>
@@ -987,7 +974,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="40"/>
         <CursorPos X="64" Y="60"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="31"/>
       </Unit104>
       <Unit105>
         <Filename Value="..\Framework\UfrmCadBase.pas"/>
@@ -1046,30 +1033,54 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UPAF"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="20"/>
-        <CursorPos X="24" Y="36"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="1191"/>
+        <CursorPos X="25" Y="1209"/>
+        <UsageCount Value="24"/>
       </Unit111>
+      <Unit112>
+        <Filename Value="EAD_Class.pas"/>
+        <UnitName Value="EAD_Class"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="4"/>
+        <CursorPos X="25" Y="56"/>
+        <UsageCount Value="20"/>
+      </Unit112>
+      <Unit113>
+        <Filename Value="ufrmencerramovimento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmEncerraMovimento"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmEncerraMovimento"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="26" Y="7"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit113>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
     <JumpHistory Count="4" HistoryIndex="3">
       <Position1>
-        <Filename Value="Controller\SintegraController.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="uecf.pas"/>
+        <Caret Line="3" Column="1" TopLine="1"/>
       </Position1>
       <Position2>
-        <Filename Value="VO\Sintegra61RVO.pas"/>
-        <Caret Line="30" Column="67" TopLine="3"/>
+        <Filename Value="uecf.pas"/>
+        <Caret Line="34" Column="80" TopLine="176"/>
       </Position2>
       <Position3>
-        <Filename Value="VO\Sintegra60RVO.pas"/>
-        <Caret Line="32" Column="67" TopLine="5"/>
+        <Filename Value="ufrmencerramovimento.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position3>
       <Position4>
-        <Filename Value="Controller\SintegraController.pas"/>
-        <Caret Line="39" Column="1" TopLine="34"/>
+        <Filename Value="ufrmencerramovimento.pas"/>
+        <Caret Line="4" Column="31" TopLine="1"/>
       </Position4>
     </JumpHistory>
   </ProjectSession>

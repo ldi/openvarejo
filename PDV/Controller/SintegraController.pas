@@ -94,7 +94,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pDataEmissao').AsString := Sintegra60M.DataEmissao;
       Query.ParamByName('pSerieImpressora').AsString := Sintegra60M.SerieImpressora;
@@ -121,9 +121,9 @@ begin
   end;
 end;
 
-class function TSintegraController.Tabela60M(DataInicio: String; DataFim: String): TObjectList<TSintegra60MVO>;
+class function TSintegraController.Tabela60M(DataInicio: String; DataFim: String): TSintegra60MListaVO;
 var
-  Lista60M: TObjectList<TSintegra60MVO>;
+  Lista60M: TSintegra60MLIstaVO;
   Sintegra60M: TSintegra60MVO;
   TotalRegistros: Integer;
 begin
@@ -137,13 +137,13 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
       if TotalRegistros > 0 then
       begin
-        Lista60M := TObjectList<TSintegra60MVO>.Create;
+        Lista60M := TSintegra60MListaVO.Create(True);
 
         ConsultaSQL := 'select * from SINTEGRA_60M where ' +
         '(DATA_EMISSAO between ' +
@@ -181,7 +181,7 @@ begin
   end;
 end;
 
-class procedure TSintegraController.Grava60A(Lista60A: TObjectList<TSintegra60AVO>);
+class procedure TSintegraController.Grava60A(Lista60A: TSintegra60AListaVO);
 var
   i: Integer;
 begin
@@ -198,7 +198,7 @@ begin
     try
       try
         Query := TSQLQuery.Create(nil);
-        Query.SQLConnection := FDataModule.Conexao;
+        Query.DataBase := dmPrincipal.IBCon;
         Query.sql.Text := ConsultaSQL;
         Query.ParamByName('pId60M').AsInteger := TSintegra60AVO(Lista60A.Items[i]).Id60M;
         Query.ParamByName('pST').AsString := TSintegra60AVO(Lista60A.Items[i]).SituacaoTributaria;
@@ -212,9 +212,9 @@ begin
   end;
 end;
 
-class function TSintegraController.Tabela50(DataInicio, DataFim: String): TObjectList<TSintegraVO>;
+class function TSintegraController.Tabela50(DataInicio, DataFim: String): TSintegraListaVO;
 var
-  ListaSintegra: TObjectList<TSintegraVO>;
+  ListaSintegra: TSintegraListaVO;
   Sintegra: TSintegraVO;
   TotalRegistros: Integer;
 begin
@@ -228,13 +228,13 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
       if TotalRegistros > 0 then
       begin
-        ListaSintegra := TObjectList<TSintegraVO>.Create;
+        ListaSintegra := TSintegraListaVO.Create(True);
 
         ConsultaSQL := 'select '+
                        ' C.ID, '+
@@ -310,9 +310,9 @@ begin
 end;
 
 
-class function TSintegraController.Tabela54(DataInicio, DataFim: String): TObjectList<TSintegraVO>;
+class function TSintegraController.Tabela54(DataInicio, DataFim: String): TSintegraListaVO;
 var
-  ListaSintegra: TObjectList<TSintegraVO>;
+  ListaSintegra: TSintegraListaVO;
   Sintegra: TSintegraVO;
   TotalRegistros: Integer;
 begin
@@ -327,13 +327,13 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
       if TotalRegistros > 0 then
       begin
-        ListaSintegra := TObjectList<TSintegraVO>.Create;
+        ListaSintegra := TSintegraListaVO.Create(True);
 
         ConsultaSQL := 'select '+
                        ' C.ID, '+
@@ -409,9 +409,9 @@ begin
 end;
 
 
-class function TSintegraController.Tabela51(DataInicio, DataFim: String): TObjectList<TSintegraVO>;
+class function TSintegraController.Tabela51(DataInicio, DataFim: String): TSintegraListaVO;
 var
-  ListaSintegra: TObjectList<TSintegraVO>;
+  ListaSintegra: TSintegraListaVO;
   Sintegra: TSintegraVO;
   TotalRegistros: Integer;
 begin
@@ -426,13 +426,13 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
       if TotalRegistros > 0 then
       begin
-        ListaSintegra := TObjectList<TSintegraVO>.Create;
+        ListaSintegra := TSintegraListaVO.Create(True);
 
         ConsultaSQL := 'select '+
                        ' D.ID, '+
@@ -485,9 +485,9 @@ begin
   end;
 end;
 
-class function TSintegraController.Tabela60A(Id: Integer): TObjectList<TSintegra60AVO>;
+class function TSintegraController.Tabela60A(Id: Integer): TSintegra60AListaVO;
 var
-  Lista60A: TObjectList<TSintegra60AVO>;
+  Lista60A: TSintegra60AListaVO;
   Sintegra60A: TSintegra60AVO;
   TotalRegistros: Integer;
 begin
@@ -495,14 +495,14 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
 
       if TotalRegistros > 0 then
       begin
-        Lista60A := TObjectList<TSintegra60AVO>.Create;
+        Lista60A := TSintegra60AListaVO.Create(True);
 
         ConsultaSQL := 'select * from SINTEGRA_60A where ID_SINTEGRA_60M='+IntToStr(Id);
         Query.sql.Text := ConsultaSQL;
@@ -530,9 +530,9 @@ begin
   end;
 end;
 
-class function TSintegraController.Tabela60D(DataInicio: String; DataFim: String): TObjectList<TSintegra60DVO>;
+class function TSintegraController.Tabela60D(DataInicio: String; DataFim: String): TSintegra60DListaVO;
 var
-  Lista60D: TObjectList<TSintegra60DVO>;
+  Lista60D: TSintegra60DListaVO;
   Sintegra60D: TSintegra60DVO;
 begin
   DataInicio := FormatDateTime('yyyy-mm-dd', StrToDate(DataInicio));
@@ -545,10 +545,10 @@ begin
 
   try
     try
-      Lista60D := TObjectList<TSintegra60DVO>.Create;
+      Lista60D := TSintegra60DListaVO.Create;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       Query.First;
@@ -575,9 +575,9 @@ begin
   end;
 end;
 
-class function TSintegraController.Tabela60R(DataInicio: String; DataFim: String): TObjectList<TSintegra60RVO>;
+class function TSintegraController.Tabela60R(DataInicio: String; DataFim: String): TSintegra60RListaVO;
 var
-  Lista60R: TObjectList<TSintegra60RVO>;
+  Lista60R: TSintegra60RListaVO;
   Sintegra60R: TSintegra60RVO;
 begin
   DataInicio := FormatDateTime('yyyy-mm-dd', StrToDate(DataInicio));
@@ -589,10 +589,10 @@ begin
     QuotedStr(DataInicio) + ' and ' + QuotedStr(DataFim);
   try
     try
-      Lista60R := TObjectList<TSintegra60RVO>.Create;
+      Lista60R := TSintegra60RListaVO.Create(True);
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       Query.First;
@@ -620,9 +620,9 @@ begin
   end;
 end;
 
-class function TSintegraController.Tabela61R(DataInicio:String; DataFim:String): TObjectList<TSintegra61RVO>;
+class function TSintegraController.Tabela61R(DataInicio:String; DataFim:String): TSintegra61RListaVO;
 var
-  Lista61R: TObjectList<TSintegra61RVO>;
+  Lista61R: TSintegra61RListaVO;
   Sintegra61R: TSintegra61RVO;
 begin
   DataInicio := FormatDateTime('yyyy-mm-dd', StrToDate(DataInicio));
@@ -635,10 +635,10 @@ begin
 
   try
     try
-      Lista61R := TObjectList<TSintegra61RVO>.Create;
+      Lista61R := TSintegra61RListaVO.Create(True);
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       Query.First;
@@ -666,9 +666,9 @@ begin
   end;
 end;
 
-class function TSintegraController.Registro54e75(Id: String): TObjectList<TSintegraVO>;
+class function TSintegraController.Registro54e75(Id: String): TSintegraListaVO;
 var
-  ListaSintegra: TObjectList<TSintegraVO>;
+  ListaSintegra: TSintegraListaVO;
   Sintegra: TSintegraVO;
   TotalRegistros: Integer;
 begin
@@ -678,13 +678,13 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
       if TotalRegistros > 0 then
       begin
-        ListaSintegra := TObjectList<TSintegraVO>.Create;
+        ListaSintegra := TSintegraListaVO.Create(True);
 
         ConsultaSQL := 'select '+
                        ' numero_item, '+
@@ -719,18 +719,18 @@ begin
           Sintegra.CST := Query.FieldByName('cst_icms').AsString;
           Sintegra.Codigo := Query.FieldByName('codigo_produto').AsString;
           Sintegra.Cfop := Query.FieldByName('cfop').AsString;
-          Sintegra.Quantidade := Query.FieldByName('quantidade_comercial').AsExtended;
-          Sintegra.Valor := Query.FieldByName('valor_total').AsExtended;
-          Sintegra.BasedeCalculo := Query.FieldByName('valor_total').AsExtended;
-//          Sintegra.BasedeCalculo := Query.FieldByName('base_calculo_icms').AsExtended;
-          Sintegra.BaseST := Query.FieldByName('base_calculo_icms_st').AsExtended;
+          Sintegra.Quantidade := Query.FieldByName('quantidade_comercial').AsCurrency;
+          Sintegra.Valor := Query.FieldByName('valor_total').AsCurrency;
+          Sintegra.BasedeCalculo := Query.FieldByName('valor_total').AsCurrency;
+//          Sintegra.BasedeCalculo := Query.FieldByName('base_calculo_icms').AsCurrency;
+          Sintegra.BaseST := Query.FieldByName('base_calculo_icms_st').AsCurrency;
           Sintegra.Despesas := 0;
-          Sintegra.ValorIpi := Query.FieldByName('valor_ipi').AsExtended;
-          Sintegra.AliquotaICMS := Query.FieldByName('aliquota_icms').AsExtended;
+          Sintegra.ValorIpi := Query.FieldByName('valor_ipi').AsCurrency;
+          Sintegra.AliquotaICMS := Query.FieldByName('aliquota_icms').AsCurrency;
           Sintegra.NCM := Query.FieldByName('ncm').AsString;
           Sintegra.Unidade := Query.FieldByName('unidade_comercial').AsString;
-          Sintegra.AliquotaIpi := Query.FieldByName('aliquota_ipi').AsExtended;
-          Sintegra.Reducao := Query.FieldByName('reducao_bc_icms_st').AsExtended;
+          Sintegra.AliquotaIpi := Query.FieldByName('aliquota_ipi').AsCurrency;
+          Sintegra.Reducao := Query.FieldByName('reducao_bc_icms_st').AsCurrency;
           ListaSintegra.Add(Sintegra);
           Query.next;
         end;
