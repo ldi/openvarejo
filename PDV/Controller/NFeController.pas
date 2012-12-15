@@ -3,28 +3,28 @@ unit NFeController;
 interface
 
 uses
-  Classes, SQLExpr, SysUtils, NFeDetalheVO, NFeCabecalhoVO, DB, NfeCupomFiscalVO;
+  Classes, SQLdb, SysUtils, NFeDetalheVO, NFeCabecalhoVO, DB, NfeCupomFiscalVO;
 
 type
   TNFeController = class
   protected
   public
-    class function NfeSPED(pDataInicial, pDataFinal : String): TObjectList<TNfeCabecalhoVO>;
-    class function NfeAnaliticoSPED(id : string): TObjectList<TNfeDetalheVO>;
-    class function CupomNfeSPED(id : string): TObjectList<TNfeCupomFiscalVO>;
+    class function NfeSPED(pDataInicial, pDataFinal : String):  TNfeCabecalhoListaVO;
+    class function NfeAnaliticoSPED(id : string):  TNfeDetalheListaVO;
+    class function CupomNfeSPED(id : string):  TNfeCupomFiscalListaVO;
   end;
 
 implementation
 
-uses UDataModule;
+uses Udmprincipal;
 
 var
   ConsultaSQL: String;
   Query: TSQLQuery;
 
-class function TNFeController.NfeSPED(pDataInicial, pDataFinal: String): TObjectList<TNfeCabecalhoVO>;
+class function TNFeController.NfeSPED(pDataInicial, pDataFinal: String):  TNfeCabecalhoListaVO;
 var
-  ListaNfe: TObjectList<TNfeCabecalhoVO>;
+  ListaNfe:  TNfeCabecalhoListaVO;
   Nfe: TNfeCabecalhoVO;
   TotalRegistros: Integer;
   DataInicio, DataFim : String ;
@@ -37,14 +37,14 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection :=  FDataModule.ConexaoBalcao;;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
 
       if TotalRegistros > 0 then
       begin
-        ListaNfe := TObjectList<TNfeCabecalhoVO>.Create;
+        ListaNfe :=  TNfeCabecalhoListaVO.Create;
         ConsultaSQL := ' select ' +
                        ' ID, ' +
                        ' NATUREZA_OPERACAO, ' +
@@ -120,9 +120,9 @@ begin
   end;
 end;
 
-class function TNFeController.NfeAnaliticoSPED(Id: string): TObjectList<TNfeDetalheVO>;
+class function TNFeController.NfeAnaliticoSPED(Id: string):  TNfeDetalheListaVO;
 var
-  ListaNfe: TObjectList<TNfeDetalheVO>;
+  ListaNfe:  TNfeDetalheListaVO;
   Nfe: TNfeDetalheVO;
   TotalRegistros: Integer;
   DataInicio, DataFim: String ;
@@ -133,14 +133,14 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
 
       if TotalRegistros > 0 then
       begin
-        ListaNfe := TObjectList<TNfeDetalheVO>.Create;
+        ListaNfe :=  TNfeDetalheListaVO.Create;
         ConsultaSQL := 'select '+
                        ' CST_A, '+
                        ' CFOP, '+
@@ -188,9 +188,9 @@ begin
   end;
 end;
 
-class function TNFeController.CupomNfeSPED(Id: String): TObjectList<TNfeCupomFiscalVO>;
+class function TNFeController.CupomNfeSPED(Id: String):  TNfeCupomFiscalListaVO;
 var
-  ListaNfe: TObjectList<TNfeCupomFiscalVO>;
+  ListaNfe:  TNfeCupomFiscalListaVO;
   Nfe: TNfeCupomFiscalVO;
   TotalRegistros: Integer;
   DataInicio, DataFim: String ;
@@ -202,14 +202,14 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
 
       if TotalRegistros > 0 then
       begin
-        ListaNfe := TObjectList<TNfeCupomFiscalVO>.Create;
+        ListaNfe :=  TNfeCupomFiscalListaVO.Create;
         ConsultaSQL := 'select '+
                        ' modelo_documento_fiscal, '+
                        ' numero_serie_ecf, '+

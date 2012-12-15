@@ -3,40 +3,40 @@ unit SituacaoClienteController;
 interface
 
 uses
-  Classes, SQLExpr, SysUtils, SituacaoClienteVO;
+  Classes, SQLdb, SysUtils, SituacaoClienteVO;
 
 type
   TSituacaoClienteController = class
   protected
   public
-    class function TabelaSituacaoCliente: TObjectList<TSituacaoClienteVO>;
+    class function TabelaSituacaoCliente:  TSituacaoClienteListaVO;
     class function ConsultaIdSituacaoCliente(Id: Integer): Boolean;
     class function GravaCargaSituacaoCliente(vTupla: String): Boolean;
   end;
 
 implementation
 
-uses UDataModule, Biblioteca;
+uses Udmprincipal, Biblioteca;
 
 var
   ConsultaSQL: String;
   Query: TSQLQuery;
 
 
-class function TSituacaoClienteController.TabelaSituacaoCliente: TObjectList<TSituacaoClienteVO>;
+class function TSituacaoClienteController.TabelaSituacaoCliente:  TSituacaoClienteListaVO;
 var
-  ListaSituacaoCliente: TObjectList<TSituacaoClienteVO>;
+  ListaSituacaoCliente:  TSituacaoClienteListaVO;
   SituacaoCliente: TSituacaoClienteVO;
 begin
   try
     try
       ConsultaSQL := 'select * from SITUACAO_CLIENTE';
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
-      ListaSituacaoCliente := TObjectList<TSituacaoClienteVO>.Create;
+      ListaSituacaoCliente :=  TSituacaoClienteListaVO.Create;
 
       Query.First;
       while not Query.Eof do
@@ -63,7 +63,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pID').AsInteger:=Id;
       Query.Open;
@@ -85,7 +85,7 @@ var
 begin
   try
     try
-      if FDataModule.BancoPAF = 'FIREBIRD' then
+      if dmprincipal.BancoPAF = 'FIREBIRD' then
       begin
         ConsultaSQL := 'UPDATE OR INSERT INTO SITUACAO_CLIENTE '+
         ' (ID, '+
@@ -96,7 +96,7 @@ begin
         DevolveConteudoDelimitado('|',vTupla)+','+  //   NOME       VARCHAR(20),
         DevolveConteudoDelimitado('|',vTupla)+')';  //   DESCRICAO  VARCHAR(250)
       end
-      else if FDataModule.BancoPAF = 'MYSQL' then
+      else if dmprincipal.BancoPAF = 'MYSQL' then
       begin
         ID := StrToInt(DevolveConteudoDelimitado('|',vTupla));
         if not ConsultaIdSituacaoCliente(ID) then
@@ -116,7 +116,7 @@ begin
       end;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ExecSQL();
 

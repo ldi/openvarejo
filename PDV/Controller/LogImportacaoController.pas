@@ -53,7 +53,7 @@ type
 
 implementation
 
-uses UDataModule, UCaixa;
+uses Udmprincipal, UfrmCheckout;
 
 var
   ConsultaSQL : String;
@@ -73,7 +73,7 @@ begin
                           ':pLOG_ERRO)';
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
 
       Query.ParamByName('pDATA_IMPORTACAO').AsDate := Now;
@@ -81,8 +81,8 @@ begin
 
       Query.ExecSQL();
 
-      FCaixa.GifAnimadoLogErro.Visible := true;
-      FCaixa.GifAnimadoLogErro.Animate := true;
+      {frmCheckout.GifAnimadoLogErro.Visible := true;
+      frmCheckout.GifAnimadoLogErro.Animate := true;}
     except
       //
     end;
@@ -98,7 +98,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pID').AsInteger := Id;
       Query.ExecSQL();
@@ -119,7 +119,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ExecSQL();
       result := True;

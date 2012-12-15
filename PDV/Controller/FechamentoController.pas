@@ -20,7 +20,7 @@ type
 
 implementation
 
-uses UDataModule, UCaixa, Biblioteca;
+uses Udmprincipal, UfrmCheckout, Biblioteca;
 
 var
   ConsultaSQL : String;
@@ -41,7 +41,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
 
       Query.ParamByName('pID_ECF_MOVIMENTO').AsInteger := Fechamento.IdMovimento;
@@ -78,7 +78,7 @@ begin
     try
       try
         Query := TSQLQuery.Create(nil);
-        Query.SQLConnection := FDataModule.Conexao;
+        Query.DataBase := dmPrincipal.IBCon;
         Query.sql.Text := ConsultaSQL;
         Query.ParamByName('pID').AsInteger := Id;
         Query.ExecSQL();
@@ -121,7 +121,7 @@ begin
     Writeln(atFechamento);
     CloseFile(atFechamento);
     Application.ProcessMessages;
-    FCaixa.ExportaParaRetaguarda('Fechamento.txt',3);
+    frmCheckout.ExportaParaRetaguarda('Fechamento.txt',3);
   finally
     //
   end;
@@ -143,7 +143,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open();
       if not query.IsEmpty then
@@ -165,7 +165,7 @@ begin
         Writeln(atFechamento);
         CloseFile(atFechamento);
         Application.ProcessMessages;
-        FCaixa.ExportaParaRetaguarda('Fechamento.txt',3);
+        frmCheckout.ExportaParaRetaguarda('Fechamento.txt',3);
       end;
     except
       //

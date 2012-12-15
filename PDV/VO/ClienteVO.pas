@@ -4,6 +4,8 @@ unit ClienteVO;
 
 interface
 
+Uses Fgl;
+
 type
   TClienteVO = class
   private
@@ -64,6 +66,9 @@ type
     property CodigoIbgeCidade: Integer  read FCODIGO_IBGE_CIDADE write FCODIGO_IBGE_CIDADE;
     property CodigoIbgeUf: Integer  read FCODIGO_IBGE_UF write FCODIGO_IBGE_UF;
   end;
+
+type
+TClienteListaVO = class(specialize TFPGObjectList<TClienteVO>);
 
 implementation
 

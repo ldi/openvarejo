@@ -646,7 +646,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := dmprincipal.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
@@ -662,9 +662,9 @@ begin
   end;
 end;
 
-class function TVendaController.VendaComProblemas: TObjectList<TVendaDetalheVO>;
+class function TVendaController.VendaComProblemas: TVendaDetalheListaVO;
 var
-  ListaVenda: TVendaDetalheVO;
+  ListaVenda: TVendaDetalheListaVO;
   VendaDetalhe: TVendaDetalheVO;
   TotalRegistros: Integer;
 begin
@@ -675,7 +675,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := dmprincipal.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
@@ -701,7 +701,7 @@ begin
           'where ' +
           ' C.STATUS_VENDA = ' + QuotedStr('P') + ' and D.ID_ECF_PRODUTO=P.ID';
 
-        ListaVenda := TObjectList<TVendaDetalheVO>.Create;
+        ListaVenda := TVendaDetalheListaVO.Create(True);
 
         Query.sql.Text := ConsultaSQL;
         Query.Open;
@@ -738,7 +738,7 @@ begin
   end;
 end;
 
-class procedure TVendaController.CancelaVenda(pVendaCabecalho: TVendaCabecalhoVO; pListaVendaDetalhe: TObjectList<TVendaDetalheVO>);
+class procedure TVendaController.CancelaVenda(pVendaCabecalho: TVendaCabecalhoVO; pListaVendaDetalhe: TVendaDetalheListaVO);
 var
   Tripa, Hash: String;
   i: integer;
@@ -765,10 +765,10 @@ begin
       Coo := StrToInt(dmprincipal.ACBrECF.NumCOO);
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := dmprincipal.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
 
-      Impressora := TImpressoraController.PegaImpressora(UCaixa.Configuracao.IdImpressora);
+      Impressora := TImpressoraController.PegaImpressora(Configuracao.IdImpressora);
       //calcula e grava o hash
       Tripa := IntToStr(pVendaCabecalho.Id) +
                IntToStr(pVendaCabecalho.CCF) +
@@ -779,7 +779,7 @@ begin
                'S' +
                '0';
 
-      Hash := MD5String(Tripa);
+      //Hash := MD5String(Tripa);
 
       Query.ParamByName('pHash').AsString := Hash;
       Query.ParamByName('pHashIncremento').AsInteger := -1;
@@ -809,7 +809,7 @@ begin
           'HASH_INCREMENTO=:pHashIncremento '+
           ' where ID = :pId';
 
-        Impressora := TImpressoraController.PegaImpressora(UCaixa.Configuracao.IdImpressora);
+        Impressora := TImpressoraController.PegaImpressora(Configuracao.IdImpressora);
         //calcula e grava o hash
         Tripa :=
                  Impressora.Serie +
@@ -822,7 +822,7 @@ begin
                  VendaDetalhe.TotalizadorParcial +
                  VendaDetalhe.Cancelado +
                  '0';
-        Hash := MD5String(Tripa);
+        //Hash := MD5String(Tripa);
 
         Query.ParamByName('pCancelado').AsString := VendaDetalhe.Cancelado;
         Query.ParamByName('pTotalizadorParcial').AsString := VendaDetalhe.TotalizadorParcial;
@@ -876,10 +876,10 @@ begin
       Coo := StrToInt(dmprincipal.ACBrECF.NumCOO);
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := dmprincipal.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
 
-      Impressora := TImpressoraController.PegaImpressora(UCaixa.Configuracao.IdImpressora);
+      Impressora := TImpressoraController.PegaImpressora(Configuracao.IdImpressora);
       //calcula e grava o hash
 
       Tripa :=
@@ -893,7 +893,7 @@ begin
                pVendaDetalhe.TotalizadorParcial +
                pVendaDetalhe.Cancelado +
                '0';
-      Hash := MD5String(Tripa);
+      //Hash := MD5String(Tripa);
 
       Query.ParamByName('pCancelado').AsString := pVendaDetalhe.Cancelado;
       Query.ParamByName('pTotalizadorParcial').AsString := pVendaDetalhe.TotalizadorParcial;
@@ -929,7 +929,7 @@ begin
       Coo := StrToInt(dmprincipal.ACBrECF.NumCOO);
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := dmprincipal.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.open();
 
@@ -956,7 +956,7 @@ begin
 
         Query.sql.Text := ConsultaSQL;
 
-        Impressora := TImpressoraController.PegaImpressora(UCaixa.Configuracao.IdImpressora);
+        Impressora := TImpressoraController.PegaImpressora(Configuracao.IdImpressora);
         //calcula e grava o hash
         Tripa := IntToStr(VendaCabecalho.Id) +
                  IntToStr(VendaCabecalho.CCF) +
@@ -966,7 +966,7 @@ begin
                  VendaCabecalho.StatusVenda +
                  'S' +
                  '0';
-        Hash := MD5String(Tripa);
+       // Hash := MD5String(Tripa);
 
         Query.ParamByName('pHash').AsString := Hash;
         Query.ParamByName('pHashIncremento').AsInteger := -1;
@@ -993,7 +993,7 @@ begin
                       ' and VD.ID_ECF_VENDA_CABECALHO = ' + IntToStr(VendaCabecalho.Id);
 
         QueryVendaDetalhe := TSQLQuery.Create(nil);
-        QueryVendaDetalhe.SQLConnection := dmprincipal.Conexao;
+        QueryVendaDetalhe.DataBase := dmPrincipal.IBCon;
         QueryVendaDetalhe.sql.Text := ConsultaSQL;
 
         QueryVendaDetalhe.open();
@@ -1023,7 +1023,7 @@ begin
                    'Can-T' +
                    'S' +
                    '0';
-          Hash := MD5String(Tripa);
+          //Hash := MD5String(Tripa);
 
           Query.ParamByName('pCancelado').AsString := 'S';
           Query.ParamByName('pTotalizadorParcial').AsString := 'Can-T';
@@ -1071,7 +1071,7 @@ begin
   try
     try
       QueryLocal := TSQLQuery.Create(nil);
-      QueryLocal.SQLConnection := dmprincipal.Conexao;
+      QueryLocal.DataBase := dmPrincipal.IBCon;
       QueryLocal.sql.Text := ConsultaSQL;
       QueryLocal.open();
 
@@ -1098,7 +1098,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := dmprincipal.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.open;
 
@@ -1162,11 +1162,11 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := dmprincipal.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
-      ListaVenda := TObjectList<TVendaDetalheVO>.Create;
+      ListaVenda := TVendaDetalheListaVO.Create(True);
       Query.First;
 
       while not Query.Eof do
@@ -1234,7 +1234,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := dmprincipal.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pIDVenda').AsInteger := IDVenda;
       Query.ParamByName('pIDCliente').AsInteger := IDCliente;

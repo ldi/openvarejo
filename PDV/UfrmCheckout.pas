@@ -26,6 +26,7 @@ type
     Image4: TImage;
     Image5: TImage;
     Image6: TImage;
+    GifAnimadoLogErro: TImage;
     imgOnline: TImage;
     imgOffline: TImage;
     imgProduto: TImage;

@@ -18,7 +18,7 @@ type
 
 implementation
 
-uses UDataModule, Biblioteca;
+uses Udmprincipal, Biblioteca;
 
 var
   ConsultaSQL: String;
@@ -30,7 +30,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pID').AsInteger:=Id;
       Query.Open;
@@ -56,7 +56,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
@@ -90,7 +90,7 @@ var
 begin
   try
     try
-      if FDataModule.BancoPAF = 'FIREBIRD' then
+      if dmprincipal.BancoPAF = 'FIREBIRD' then
       begin
         ConsultaSQL := 'UPDATE OR INSERT INTO ecf_contador '+
         ' (ID, '+
@@ -127,7 +127,7 @@ begin
         DevolveConteudoDelimitado('|',vTupla)+','+  //    UF                CHAR(2),
         DevolveConteudoDelimitado('|',vTupla)+')';  //    EMAIL             VARCHAR(250)
       end
-      else if FDataModule.BancoPAF = 'MYSQL' then
+      else if dmprincipal.BancoPAF = 'MYSQL' then
       begin
         ID := StrToInt(DevolveConteudoDelimitado('|',vTupla));            //    ID              INTEGER NOT NULL,
 
@@ -189,7 +189,7 @@ begin
       end;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ExecSQL();
 

@@ -3,14 +3,14 @@ unit UnidadeController;
 interface
 
 uses
-  Classes, SQLExpr, SysUtils, UnidadeProdutoVO;
+  Classes, SQLdb, SysUtils, UnidadeProdutoVO;
 
 type
   TUnidadeController = class
   protected
   public
-    class Function TabelaUnidade: TObjectList<TUnidadeProdutoVO>;
-    class Function UnidadeSPED(pDataInicial, pDataFinal: String): TObjectList<TUnidadeProdutoVO>;
+    class Function TabelaUnidade: TUnidadeProdutoListaVO;
+    class Function UnidadeSPED(pDataInicial, pDataFinal: String): TUnidadeProdutoListaVO;
     class function ConsultaIdUnidade(Id: Integer): Boolean;
     class function GravaCargaUnidadeProduto(vTupla: String): Boolean;
 
@@ -18,26 +18,26 @@ type
 
 implementation
 
-uses UDataModule, Biblioteca;
+uses Udmprincipal, Biblioteca;
 
 var
   ConsultaSQL: String;
   Query: TSQLQuery;
 
-class function TUnidadeController.TabelaUnidade: TObjectList<TUnidadeProdutoVO>;
+class function TUnidadeController.TabelaUnidade: TUnidadeProdutoListaVO;
 var
-  ListaUnidade: TObjectList<TUnidadeProdutoVO>;
+  ListaUnidade: TUnidadeProdutoListaVO;
   Unidade: TUnidadeProdutoVO;
 begin
   try
     try
       ConsultaSQL := 'select * from UNIDADE_PRODUTO';
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
-      ListaUnidade := TObjectList<TUnidadeProdutoVO>.Create;
+      ListaUnidade := TUnidadeProdutoListaVO.Create;
 
       Query.First;
       while not Query.Eof do
@@ -59,9 +59,9 @@ begin
   end;
 end;
 
-class function TUnidadeController.UnidadeSPED(pDataInicial, pDataFinal: String): TObjectList<TUnidadeProdutoVO>;
+class function TUnidadeController.UnidadeSPED(pDataInicial, pDataFinal: String): TUnidadeProdutoListaVO;
 var
-  ListaUnidade: TObjectList<TUnidadeProdutoVO>;
+  ListaUnidade: TUnidadeProdutoListaVO;
   Unidade: TUnidadeProdutoVO;
   DataInicio, DataFim : String ;
 begin
@@ -78,11 +78,11 @@ begin
                      ' AND D.ID_ECF_PRODUTO=P.ID';
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
-      ListaUnidade := TObjectList<TUnidadeProdutoVO>.Create;
+      ListaUnidade := TUnidadeProdutoListaVO.Create(True);
 
       Query.First;
       while not Query.Eof do
@@ -111,7 +111,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pID').AsInteger:=Id;
       Query.Open;
@@ -133,7 +133,7 @@ var ID: integer;
 begin
   try
     try
-      if FDataModule.BancoPAF = 'FIREBIRD' then
+      if dmprincipal.BancoPAF = 'FIREBIRD' then
       begin
         ConsultaSQL := 'UPDATE OR INSERT INTO UNIDADE_PRODUTO ' +
                         ' (ID,'+
@@ -147,7 +147,7 @@ begin
                         DevolveConteudoDelimitado('|',vTupla)+')';   //    PODE_FRACIONAR  CHAR(1)
 
       end
-      else if FDataModule.BancoPAF = 'MYSQL' then
+      else if dmprincipal.BancoPAF = 'MYSQL' then
       begin
         ID := StrToInt(DevolveConteudoDelimitado('|',vTupla));            //    ID              INTEGER NOT NULL,
 
@@ -173,7 +173,7 @@ begin
       end;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ExecSQL();
       result := True;

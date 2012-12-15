@@ -1,7 +1,7 @@
 inherited frmCheckout: TfrmCheckout
-  Left = 329
+  Left = 338
   Height = 600
-  Top = 60
+  Top = 111
   Width = 800
   Caption = 'frmCheckout'
   ClientHeight = 600
@@ -432,6 +432,13 @@ inherited frmCheckout: TfrmCheckout
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
+    end
+    object GifAnimadoLogErro: TImage
+      Left = 564
+      Height = 129
+      Top = 120
+      Width = 190
+      Visible = False
     end
   end
   object Timer1: TTimer[3]

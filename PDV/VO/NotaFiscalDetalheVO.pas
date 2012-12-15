@@ -4,6 +4,8 @@ unit NotaFiscalDetalheVO;
 
 interface
 
+Uses Fgl;
+
 type
 
   TNotaFiscalDetalheVO = class
@@ -40,7 +42,6 @@ type
     FECF_ICMS_ST: String;
     FDescricaoUnidade: String;
     FTotalizadorParcial: String;
-
   public
     property Id: Integer  read FID write FID;
     property IdNfCabecalho: Integer  read FID_NF_CABECALHO write FID_NF_CABECALHO;
@@ -74,12 +75,12 @@ type
     property ECFIcmsST: String read FECF_ICMS_ST write FECF_ICMS_ST;
     property DescricaoUnidade : String read FDescricaoUnidade write FDescricaoUnidade;
     property TotalizadorParcial: String read FTotalizadorParcial write FTotalizadorParcial;
-
   end;
 
+type
+TNotaFiscalDetalheListaVO = class(specialize TFPGObjectList<TNotaFiscalDetalheVO>);
+
 implementation
-
-
 
 end.
 

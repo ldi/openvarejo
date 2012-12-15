@@ -1,11 +1,16 @@
 inherited frmEncerraMovimento: TfrmEncerraMovimento
-  Left = 342
+  Left = 390
   Height = 495
-  Top = 138
+  Top = 134
   Width = 713
   Caption = 'frmEncerraMovimento'
   ClientHeight = 495
   ClientWidth = 713
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   object Image1: TImage[0]
     Left = 15
     Height = 117
@@ -14,11 +19,11 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
   end
   object GroupBox1: TGroupBox[1]
     Left = 136
-    Height = 440
+    Height = 442
     Top = 8
     Width = 568
     Caption = 'Dados do movimento aberto:'
-    ClientHeight = 422
+    ClientHeight = 424
     ClientWidth = 564
     TabOrder = 0
     object Panel1: TPanel
@@ -35,7 +40,7 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         Height = 16
         Top = 4
         Width = 42
-        Caption = 'Label1'
+        Caption = 'Turno:'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -13
         Font.Name = 'Tahoma'
@@ -45,12 +50,12 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         ParentColor = False
         ParentFont = False
       end
-      object Label2: TLabel
-        Left = 80
+      object LabelTurno: TLabel
+        Left = 97
         Height = 16
         Top = 4
-        Width = 37
-        Caption = 'Label2'
+        Width = 64
+        Caption = 'LabelTurno'
         ParentColor = False
       end
     end
@@ -67,8 +72,8 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         Left = 8
         Height = 16
         Top = 4
-        Width = 42
-        Caption = 'Label1'
+        Width = 59
+        Caption = 'Terminal:'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -13
         Font.Name = 'Tahoma'
@@ -78,12 +83,12 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         ParentColor = False
         ParentFont = False
       end
-      object Label4: TLabel
-        Left = 80
+      object LabelTerminal: TLabel
+        Left = 97
         Height = 16
         Top = 4
-        Width = 37
-        Caption = 'Label2'
+        Width = 81
+        Caption = 'LabelTerminal'
         ParentColor = False
       end
     end
@@ -100,8 +105,8 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         Left = 8
         Height = 16
         Top = 4
-        Width = 42
-        Caption = 'Label1'
+        Width = 79
+        Caption = 'Impressora:'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -13
         Font.Name = 'Tahoma'
@@ -111,12 +116,12 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         ParentColor = False
         ParentFont = False
       end
-      object Label6: TLabel
-        Left = 80
+      object LabelImpressora: TLabel
+        Left = 97
         Height = 16
         Top = 4
-        Width = 37
-        Caption = 'Label2'
+        Width = 95
+        Caption = 'LabelImpressora'
         ParentColor = False
       end
     end
@@ -130,11 +135,11 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
       ClientWidth = 544
       TabOrder = 3
       object Label7: TLabel
-        Left = 8
+        Left = 10
         Height = 16
         Top = 4
-        Width = 42
-        Caption = 'Label1'
+        Width = 66
+        Caption = 'Operador:'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -13
         Font.Name = 'Tahoma'
@@ -144,12 +149,12 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         ParentColor = False
         ParentFont = False
       end
-      object Label8: TLabel
-        Left = 80
+      object LabelOperador: TLabel
+        Left = 97
         Height = 16
         Top = 4
-        Width = 37
-        Caption = 'Label2'
+        Width = 84
+        Caption = 'LabelOperador'
         ParentColor = False
       end
     end
@@ -163,19 +168,19 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
       ClientWidth = 534
       TabOrder = 4
       object BitBtn4: TBitBtn
-        Left = 174
+        Left = 164
         Height = 28
         Top = 24
         Width = 102
-        Caption = 'BitBtn4'
+        Action = actRemover
         TabOrder = 0
       end
       object BitBtn3: TBitBtn
-        Left = 174
+        Left = 164
         Height = 28
-        Top = 54
+        Top = 56
         Width = 102
-        Caption = 'BitBtn3'
+        Action = actAdicionar
         TabOrder = 1
       end
       object ComboTipoPagamento: TComboBox
@@ -202,7 +207,7 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         ParentColor = False
         ParentFont = False
       end
-      object CurrencyEdit1: TCurrencyEdit
+      object edtValor: TCurrencyEdit
         Left = 14
         Height = 24
         Top = 82
@@ -213,8 +218,9 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         MinValue = 0
         TabOrder = 3
         Value = 0
+        OnExit = edtValorExit
       end
-      object CurrencyEdit2: TCurrencyEdit
+      object edtTotal: TCurrencyEdit
         Left = 14
         Height = 24
         Top = 128
@@ -257,12 +263,24 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         ParentFont = False
       end
       object DBGrid1: TDBGrid
-        Left = 305
-        Height = 136
-        Top = 9
-        Width = 211
+        Left = 273
+        Height = 143
+        Top = 8
+        Width = 254
         Color = clWindow
-        Columns = <>
+        Columns = <        
+          item
+            Title.Caption = 'Tipo Pagamento'
+            Width = 110
+            FieldName = 'TIPO_PAGAMENTO'
+          end        
+          item
+            Title.Alignment = taRightJustify
+            Title.Caption = 'Valor'
+            Width = 90
+            FieldName = 'VALOR'
+          end>
+        DataSource = dsFechamento
         TabOrder = 5
         TitleFont.CharSet = ANSI_CHARSET
         TitleFont.Height = -13
@@ -271,21 +289,281 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
         TitleFont.Quality = fqDraft
       end
     end
+    object editSenhaOperador: TEdit
+      Left = 22
+      Height = 24
+      Top = 363
+      Width = 160
+      TabOrder = 5
+    end
+    object Label12: TLabel
+      Left = 22
+      Height = 16
+      Top = 339
+      Width = 110
+      Caption = 'Senha Operador:'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object GroupBox3: TGroupBox
+      Left = 198
+      Height = 85
+      Top = 330
+      Width = 352
+      Caption = 'Dados Gerente/Supervisor:'
+      ClientHeight = 67
+      ClientWidth = 348
+      TabOrder = 6
+      object editLoginGerente: TEdit
+        Left = 14
+        Height = 24
+        Top = 30
+        Width = 160
+        TabOrder = 0
+      end
+      object Label13: TLabel
+        Left = 14
+        Height = 16
+        Top = 10
+        Width = 39
+        Caption = 'Login:'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label14: TLabel
+        Left = 182
+        Height = 16
+        Top = 10
+        Width = 45
+        Caption = 'Senha:'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object editSenhaGerente: TEdit
+        Left = 182
+        Height = 24
+        Top = 30
+        Width = 160
+        OnExit = editSenhaGerenteExit
+        TabOrder = 1
+      end
+    end
   end
-  object BitBtn1: TBitBtn[2]
-    Left = 475
+  object botaoConfirma: TBitBtn[2]
+    Left = 496
     Height = 28
-    Top = 458
+    Top = 460
     Width = 102
-    Caption = 'BitBtn1'
+    Action = actConfirmar
     TabOrder = 1
   end
-  object BitBtn2: TBitBtn[3]
-    Left = 585
+  object botaoCancela: TBitBtn[3]
+    Left = 604
     Height = 28
-    Top = 458
+    Top = 459
     Width = 102
-    Caption = 'BitBtn2'
+    Action = actCancelar
     TabOrder = 2
+  end
+  object actlEncerrar: TActionList[4]
+    Images = ImglEncerrar
+    left = 24
+    top = 168
+    object actRemover: TAction
+      Caption = 'Remover'
+      OnExecute = actRemoverExecute
+    end
+    object actAdicionar: TAction
+      Caption = 'Adicionar'
+      OnExecute = actAdicionarExecute
+    end
+    object actConfirmar: TAction
+      Caption = 'Confirmar'
+      OnExecute = actConfirmarExecute
+    end
+    object actCancelar: TAction
+      Caption = 'Cancelar'
+      OnExecute = actCancelarExecute
+    end
+  end
+  object ImglEncerrar: TImageList[5]
+    left = 72
+    top = 168
+  end
+  object CDSResumo: TRxMemoryData[6]
+    FieldDefs = <    
+      item
+        Name = 'TIPO_PAGAMENTO'
+        DataType = ftString
+        Precision = -1
+        Size = 60
+      end    
+      item
+        Name = 'CALCULADO'
+        DataType = ftFloat
+        Precision = 15
+        Size = 0
+      end    
+      item
+        Name = 'DECLARADO'
+        DataType = ftFloat
+        Precision = 15
+        Size = 0
+      end    
+      item
+        Name = 'DIFERENCA'
+        DataType = ftFloat
+        Precision = 15
+        Size = 0
+      end>
+    PacketRecords = 0
+    left = 40
+    top = 264
+    object CDSResumoTIPO_PAGAMENTO: TStringField
+      DisplayWidth = 60
+      FieldKind = fkData
+      FieldName = 'TIPO_PAGAMENTO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+    object CDSResumoCALCULADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CALCULADO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object CDSResumoDECLARADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DECLARADO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+    object CDSResumoDIFERENCA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DIFERENCA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+    end
+  end
+  object qryFechamento: TSQLQuery[7]
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'TIPO_PAGAMENTO'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'VALOR'
+        DataType = ftFMTBcd
+        Precision = 18
+        Size = 6
+      end>
+    Database = dmPrincipal.IBCon
+    Transaction = dmPrincipal.SQLTrans
+    SQL.Strings = (
+      'select ID, TIPO_PAGAMENTO, VALOR from ECF_FECHAMENTO'
+      'where ID_ECF_MOVIMENTO = :pID_ECF_MOVIMENTO'
+    )
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'pID_ECF_MOVIMENTO'
+        ParamType = ptInput
+      end>
+    left = 40
+    top = 320
+    object qryFechamentoID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qryFechamentoTIPO_PAGAMENTO: TStringField
+      DisplayWidth = 20
+      FieldKind = fkData
+      FieldName = 'TIPO_PAGAMENTO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qryFechamentoVALOR: TFMTBCDField
+      DisplayWidth = 19
+      FieldKind = fkData
+      FieldName = 'VALOR'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 18
+      Currency = False
+      MaxValue = '0'
+      MinValue = '0'
+      Size = 6
+    end
+  end
+  object dsFechamento: TDatasource[8]
+    DataSet = qryFechamento
+    left = 96
+    top = 320
+  end
+  object DSResumo: TDatasource[9]
+    DataSet = CDSResumo
+    left = 96
+    top = 264
   end
 end

@@ -4,6 +4,8 @@ unit NfeDetalheVO;
 
 interface
 
+Uses Fgl;
+
 type
   TNfeDetalheVO = class
   private
@@ -160,6 +162,9 @@ type
     property ValNaoTributadoBaseIcms: Extended  read FVAL_NAO_TRIBUTADO_BASE_ICMS write FVAL_NAO_TRIBUTADO_BASE_ICMS;
 
   end;
+
+type
+TNfeDetalheListaVO = class(specialize TFPGObjectList<TNfeDetalheVO>);
 
 implementation
 

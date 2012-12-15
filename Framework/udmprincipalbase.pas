@@ -5,14 +5,14 @@ unit UdmPrincipalBase;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Menus, ZConnection, IBConnection;
+  Classes, SysUtils, FileUtil, Menus, ZConnection, IBConnection, sqldb;
 
 type
 
   { TdmPrincipalBase }
 
   TdmPrincipalBase = class(TDataModule)
-    IBCon: TIBConnection;
+    IBCon: TSQLConnector;
     procedure DataModuleCreate(Sender: TObject);
   private
     { private declarations }

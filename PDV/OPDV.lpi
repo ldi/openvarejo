@@ -68,7 +68,7 @@
         <PackageName Value="LCL"/>
       </Item12>
     </RequiredPackages>
-    <Units Count="107">
+    <Units Count="108">
       <Unit0>
         <Filename Value="OPDV.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -631,6 +631,14 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UfrmEncerraMovimento"/>
       </Unit106>
+      <Unit107>
+        <Filename Value="ufrminiciamovimento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmIniciaMovimento"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmIniciaMovimento"/>
+      </Unit107>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

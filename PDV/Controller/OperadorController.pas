@@ -3,7 +3,7 @@ unit OperadorController;
 interface
 
 uses
-  Classes, SQLExpr, SysUtils, OperadorVO, FuncionarioVO;
+  Classes, SQLdb, SysUtils, OperadorVO, FuncionarioVO;
 
 type
   TOperadorController = class
@@ -11,7 +11,7 @@ type
   public
     class function ConsultaFuncionario(Id: Integer): String;
     class function ConsultaUsuario(Login: String; Senha: String): TOperadorVO;
-    class function RetornaFuncionario: TObjectList<TFuncionarioVO>;
+    class function RetornaFuncionario: TFuncionarioListaVO;
     class function ConsultaIdOperador(Id: Integer): Boolean;
     class function GravaCargaOperador(vTupla: String): Boolean;
 
@@ -19,7 +19,7 @@ type
 
 implementation
 
-uses UDataModule, Biblioteca;
+uses UdmPrincipal, Biblioteca;
 
 var
   ConsultaSQL: String;
@@ -34,7 +34,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       Result:= Query.FieldByName('NOME').Asstring;
@@ -52,7 +52,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pID').AsInteger:=Id;
       Query.Open;
@@ -86,7 +86,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
@@ -106,9 +106,9 @@ begin
   end;
 end;
 
-class function TOperadorController.RetornaFuncionario: TObjectList<TFuncionarioVO>;
+class function TOperadorController.RetornaFuncionario: TFuncionarioListaVO;
 var
-  ListaFuncionario: TObjectList<TFuncionarioVO>;
+  ListaFuncionario: TFuncionarioListaVO;
   Funcionario: TFuncionarioVO;
 begin
 
@@ -117,7 +117,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
@@ -127,7 +127,7 @@ begin
       end
       else
       begin
-        ListaFuncionario := TObjectList<TFuncionarioVO>.Create;
+        ListaFuncionario := TFuncionarioListaVO.Create(True);
         Query.First;
 
         while not Query.Eof do
@@ -154,7 +154,7 @@ var
 begin
   try
     try
-      if FDataModule.BancoPAF = 'FIREBIRD' then
+      if dmprincipal.BancoPAF = 'FIREBIRD' then
       begin
         ConsultaSQL:= ' UPDATE OR INSERT INTO ECF_OPERADOR '+
         ' (ID, '+
@@ -167,7 +167,7 @@ begin
         DevolveConteudoDelimitado('|',vTupla)+', '+  //     LOGIN               VARCHAR(20),
         DevolveConteudoDelimitado('|',vTupla)+')';  //     SENHA               VARCHAR(20)
       end
-      else if FDataModule.BancoPAF = 'MYSQL' then
+      else if dmprincipal.BancoPAF = 'MYSQL' then
       begin
         ID := StrToInt(DevolveConteudoDelimitado('|',vTupla));   //    ID              INTEGER NOT NULL,
 
@@ -190,7 +190,7 @@ begin
           ' where ID ='+IntToStr(ID);
       end;
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ExecSQL();
 

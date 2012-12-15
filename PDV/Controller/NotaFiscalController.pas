@@ -3,7 +3,7 @@ unit NotaFiscalController;
 interface
 
 uses
-  Classes, SQLExpr, SysUtils, NotaFiscalDetalheVO, NotaFiscalCabecalhoVO, DB, ProdutoVO;
+  Classes, SQLdb, SysUtils, NotaFiscalDetalheVO, NotaFiscalCabecalhoVO, DB, ProdutoVO;
 
 type
   TNotaFiscalController = class
@@ -11,17 +11,17 @@ type
   protected
   public
     class function TabelaNotaFiscalCabecalho(Nota: String): TNotaFiscalCabecalhoVO;
-    class function TabelaNotaFiscalDetalhe(Id: Integer): TObjectList<TNotaFiscalDetalheVO>;
-    class function InsereNotaFiscal(NotaFiscalCabecalho: TNotaFiscalCabecalhoVO; ListaNotaFiscalDetalhe: TObjectList<TNotaFiscalDetalheVO>): Integer;
-    class function ConsultaNFCabecalhoSPED(DataInicio:String; DataFim:String): TObjectList<TNotaFiscalCabecalhoVO>;
-    class function ConsultaNFDetalheSPED(Id: Integer): TObjectList<TNotaFiscalDetalheVO>;
-    class function ConsultaNFCabecalhoCanceladasSPED(DataInicio:String; DataFim:String): TObjectList<TNotaFiscalCabecalhoVO>;
+    class function TabelaNotaFiscalDetalhe(Id: Integer):  TNotaFiscalDetalheListaVO;
+    class function InsereNotaFiscal(NotaFiscalCabecalho: TNotaFiscalCabecalhoVO; ListaNotaFiscalDetalhe:  TNotaFiscalDetalheListaVO): Integer;
+    class function ConsultaNFCabecalhoSPED(DataInicio:String; DataFim:String):  TNotaFiscalCabecalhoListaVO;
+    class function ConsultaNFDetalheSPED(Id: Integer):  TNotaFiscalDetalheListaVO;
+    class function ConsultaNFCabecalhoCanceladasSPED(DataInicio:String; DataFim:String):  TNotaFiscalCabecalhoListaVO;
     class procedure ExcluiNotaFiscal(Nota: String);
   end;
 
 implementation
 
-uses UDataModule, ProdutoController, Biblioteca;
+uses Udmprincipal, ProdutoController, Biblioteca;
 
 var
   ConsultaSQL: String;
@@ -38,7 +38,7 @@ begin
         'NUMERO =' + QuotedStr(Nota);
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       NotaFiscalCabecalho := TNotaFiscalCabecalhoVO.Create;
@@ -83,9 +83,9 @@ begin
   end;
 end;
 
-class function TNotaFiscalController.TabelaNotaFiscalDetalhe(Id: Integer): TObjectList<TNotaFiscalDetalheVO>;
+class function TNotaFiscalController.TabelaNotaFiscalDetalhe(Id: Integer):  TNotaFiscalDetalheListaVO;
 var
-  ListaNotaFiscalDetalhe: TObjectList<TNotaFiscalDetalheVO>;
+  ListaNotaFiscalDetalhe:  TNotaFiscalDetalheListaVO;
   NotaFiscalDetalhe: TNotaFiscalDetalheVO;
   TotalRegistros: Integer;
 begin
@@ -93,14 +93,14 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
 
       if TotalRegistros > 0 then
       begin
-        ListaNotaFiscalDetalhe := TObjectList<TNotaFiscalDetalheVO>.Create;
+        ListaNotaFiscalDetalhe :=  TNotaFiscalDetalheListaVO.Create;
 
         ConsultaSQL := 'select * from NOTA_FISCAL_DETALHE where ID_NF_CABECALHO='+IntToStr(Id);
         Query.sql.Text := ConsultaSQL;
@@ -156,7 +156,7 @@ begin
   end;
 end;
 
-class function TNotaFiscalController.InsereNotaFiscal(NotaFiscalCabecalho: TNotaFiscalCabecalhoVO; ListaNotaFiscalDetalhe: TObjectList<TNotaFiscalDetalheVO>): Integer;
+class function TNotaFiscalController.InsereNotaFiscal(NotaFiscalCabecalho: TNotaFiscalCabecalhoVO; ListaNotaFiscalDetalhe:  TNotaFiscalDetalheListaVO): Integer;
 var
   i: Integer;
 begin
@@ -218,7 +218,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pID_ECF_FUNCIONARIO').AsInteger := NotaFiscalCabecalho.IdEcfFuncionario;
       Query.ParamByName('pID_CLIENTE').AsInteger := NotaFiscalCabecalho.IdCliente;
@@ -320,7 +320,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       for i := 0 to ListaNotaFiscalDetalhe.Count - 1 do
       begin
@@ -381,9 +381,9 @@ begin
   result := NotaFiscalCabecalho.Id;
 end;
 
-class function TNotaFiscalController.ConsultaNFCabecalhoSPED(DataInicio, DataFim: String): TObjectList<TNotaFiscalCabecalhoVO>;
+class function TNotaFiscalController.ConsultaNFCabecalhoSPED(DataInicio, DataFim: String):  TNotaFiscalCabecalhoListaVO;
 var
-  ListaNFCabecalho: TObjectList<TNotaFiscalCabecalhoVO>;
+  ListaNFCabecalho:  TNotaFiscalCabecalhoListaVO;
   NFCabecalho: TNotaFiscalCabecalhoVO;
   TotalRegistros: Integer;
 begin
@@ -396,7 +396,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
@@ -412,11 +412,11 @@ begin
 
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
-      ListaNFCabecalho := TObjectList<TNotaFiscalCabecalhoVO>.Create;
+      ListaNFCabecalho :=  TNotaFiscalCabecalhoListaVO.Create;
 
       Query.First;
       while not Query.Eof do
@@ -467,9 +467,9 @@ begin
   end;
 end;
 
-class function TNotaFiscalController.ConsultaNFDetalheSPED(Id: Integer): TObjectList<TNotaFiscalDetalheVO>;
+class function TNotaFiscalController.ConsultaNFDetalheSPED(Id: Integer):  TNotaFiscalDetalheListaVO;
 var
-  ListaNFDetalhe: TObjectList<TNotaFiscalDetalheVO>;
+  ListaNFDetalhe:  TNotaFiscalDetalheListaVO;
   NFDetalhe: TNotaFiscalDetalheVO;
   TotalRegistros: Integer;
   Produto: TProdutoVO;
@@ -478,14 +478,14 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
 
       if TotalRegistros > 0 then
       begin
-        ListaNFDetalhe := TObjectList<TNotaFiscalDetalheVO>.Create;
+        ListaNFDetalhe :=  TNotaFiscalDetalheListaVO.Create;
 
         ConsultaSQL := 'select * from NOTA_FISCAL_DETALHE where ID='+IntToStr(Id);
         Query.sql.Text := ConsultaSQL;
@@ -540,9 +540,9 @@ begin
   end;
 end;
 
-class function TNotaFiscalController.ConsultaNFCabecalhoCanceladasSPED(DataInicio, DataFim: String): TObjectList<TNotaFiscalCabecalhoVO>;
+class function TNotaFiscalController.ConsultaNFCabecalhoCanceladasSPED(DataInicio, DataFim: String):  TNotaFiscalCabecalhoListaVO;
 var
-  ListaNFCabecalho: TObjectList<TNotaFiscalCabecalhoVO>;
+  ListaNFCabecalho:  TNotaFiscalCabecalhoListaVO;
   NFCabecalho: TNotaFiscalCabecalhoVO;
   TotalRegistros : Integer;
 begin
@@ -555,7 +555,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
@@ -569,11 +569,11 @@ begin
         QuotedStr(DataInicio) + ' and ' + QuotedStr(DataFim) + ')';
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
-      ListaNFCabecalho := TObjectList<TNotaFiscalCabecalhoVO>.Create;
+      ListaNFCabecalho :=  TNotaFiscalCabecalhoListaVO.Create;
 
       Query.First;
       while not Query.Eof do
@@ -636,7 +636,7 @@ begin
     try
       try
         Query := TSQLQuery.Create(nil);
-        Query.SQLConnection := FDataModule.Conexao;
+        Query.DataBase := dmPrincipal.IBCon;
         Query.sql.Text := ConsultaSQL;
         Query.ParamByName('pID').AsInteger := NotaFiscalCabecalho.Id;
         Query.ExecSQL();
@@ -652,7 +652,7 @@ begin
     try
       try
         Query := TSQLQuery.Create(nil);
-        Query.SQLConnection := FDataModule.Conexao;
+        Query.DataBase := dmPrincipal.IBCon;
         Query.sql.Text := ConsultaSQL;
         Query.ParamByName('pID').AsInteger := NotaFiscalCabecalho.Id;
         Query.ExecSQL();

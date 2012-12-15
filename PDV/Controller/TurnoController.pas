@@ -17,7 +17,7 @@ type
 
 implementation
 
-uses UDataModule, Biblioteca;
+uses Udmprincipal, Biblioteca;
 
 var
   ConsultaSQL : String;
@@ -29,7 +29,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pID').AsInteger:=Id;
       Query.Open;
@@ -50,7 +50,7 @@ var
 begin
   try
     try
-      if FDataModule.BancoPAF = 'FIREBIRD' then
+      if dmprincipal.BancoPAF = 'FIREBIRD' then
       begin
         ConsultaSQL :=
         ' UPDATE OR INSERT INTO ECF_TURNO '+
@@ -64,7 +64,7 @@ begin
         DevolveConteudoDelimitado('|',vTupla)+','+  //    HORA_INICIO  VARCHAR(8),
         DevolveConteudoDelimitado('|',vTupla)+')';  //    HORA_FIM     VARCHAR(8)
       end
-      else if FDataModule.BancoPAF = 'MYSQL' then
+      else if dmprincipal.BancoPAF = 'MYSQL' then
       begin
         ID := StrToInt(DevolveConteudoDelimitado('|',vTupla));   //    ID              INTEGER NOT NULL,
 
@@ -89,7 +89,7 @@ begin
       end;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ExecSQL();
 

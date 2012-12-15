@@ -27,9 +27,9 @@ var
   ConsultaSQL: String;
   Query: TSQLQuery;
 
-class function TPreVendaController.CarregaPreVenda(Id: Integer): TObjectList<TPreVendaDetalheVO>;
+class function TPreVendaController.CarregaPreVenda(Id: Integer): TPreVendaDetalheListaVO;
 var
-  ListaVenda: TObjectList<TPreVendaDetalheVO>;
+  ListaVenda: TPreVendaDetalheListaVO;
   PreVendaDetalhe: TPreVendaDetalheVO;
   TotalRegistros: Integer;
 begin
@@ -41,7 +41,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
@@ -64,16 +64,16 @@ begin
           Query.sql.Text := ConsultaSQL;
           Query.Open;
 
-          if not Assigned(UCaixa.Cliente) then
-            UCaixa.Cliente := TClienteVO.Create;
+          if not Assigned(Cliente) then
+            Cliente := TClienteVO.Create;
 
-          UCaixa.Cliente.Id := Query.FieldByName('ID_PESSOA').AsInteger;
-          UCaixa.Cliente.Nome := Query.FieldByName('NOME_DESTINATARIO').AsString;
-          UCaixa.Cliente.CPFOuCNPJ := Query.FieldByName('CPF_CNPJ_DESTINATARIO').AsString;
-          UCaixa.Desconto := Query.FieldByName('DESCONTO').AsFloat;
-          UCaixa.Acrescimo := Query.FieldByName('ACRESCIMO').AsFloat;
+          Cliente.Id := Query.FieldByName('ID_PESSOA').AsInteger;
+          Cliente.Nome := Query.FieldByName('NOME_DESTINATARIO').AsString;
+          Cliente.CPFOuCNPJ := Query.FieldByName('CPF_CNPJ_DESTINATARIO').AsString;
+          frmCheckout.Desconto := Query.FieldByName('DESCONTO').AsFloat;
+          frmCheckout.Acrescimo := Query.FieldByName('ACRESCIMO').AsFloat;
 
-          ListaVenda := TObjectList<TPreVendaDetalheVO>.Create(True);
+          ListaVenda := TPreVendaDetalheListaVO.Create(True);
 
           ConsultaSQL :=
             'select * from PRE_VENDA_DETALHE where ID_PRE_VENDA_CABECALHO='+IntToStr(Id);
@@ -125,7 +125,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pId').AsInteger := Id;
       Query.ParamByName('pCCF').AsInteger := CCF;
@@ -138,7 +138,7 @@ begin
   end;
 end;
 
-class procedure TPreVendaController.MesclaPreVenda(ListaPreVendaCabecalho: TObjectList<TPreVendaCabecalhoVO>; ListaPreVendaDetalhe: TObjectList<TPreVendaDetalheVO>);
+class procedure TPreVendaController.MesclaPreVenda(ListaPreVendaCabecalho: TPreVendaCabecalhoListaVO; ListaPreVendaDetalhe: TPreVendaDetalheListaVO);
 var
   i: Integer;
   NovaPreVenda: TPreVendaCabecalhoVO;
@@ -168,7 +168,7 @@ begin
       try
         try
           Query := TSQLQuery.Create(nil);
-          Query.SQLConnection := FDataModule.ConexaoBalcao;
+          Query.DataBase := dmPrincipal.IBBalcao;
           Query.sql.Text := ConsultaSQL;
           Query.ParamByName('pId').AsInteger := TPreVendaCabecalhoVO(ListaPreVendaCabecalho.Items[i]).Id;
           Query.ParamByName('pSituacao').AsString := 'M';
@@ -198,7 +198,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
 
       Query.ParamByName('pDestinatario').AsString := NovaPreVenda.NomeDestinatario;
@@ -259,7 +259,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       for i := 0 to ListaPreVendaDetalhe.Count - 1 do
       begin
@@ -283,14 +283,14 @@ begin
   end;
 
   CancelaPreVendasPendentes(ListaPreVendaCabecalho, ListaPreVendaDetalhe);
-  FCaixa.FechaMenuOperacoes;
-  FCaixa.CarregaPreVenda(IntToStr(NovaPreVenda.Id));
+  frmCheckout.FechaMenuOperacoes;
+  frmCheckout.CarregaPreVenda(IntToStr(NovaPreVenda.Id));
 end;
 
 class procedure TPreVendaController.CancelaPreVendasPendentes(DataMovimento: TDateTime);
 var
-  ListaPreVendaCabecalho: TObjectList<TPreVendaCabecalhoVO>;
-  ListaPreVendaDetalhe: TObjectList<TPreVendaDetalheVO>;
+  ListaPreVendaCabecalho: TPreVendaCabecalhoListaVO;
+  ListaPreVendaDetalhe: TPreVendaDetalheListaVO;
   TotalRegistros: Integer;
   QDetalhe: TSQLQuery;
   PreVendaCabecalho: TPreVendaCabecalhoVO;
@@ -304,7 +304,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('Data').AsDateTime := DataMovimento;
       Query.Open;
@@ -313,8 +313,8 @@ begin
       //caso existam PV pendentes procede com o processo de cancelamento de pre-vendas
       if TotalRegistros > 0 then
       begin
-        ListaPreVendaCabecalho := TObjectList<TPreVendaCabecalhoVO>.Create;
-        ListaPreVendaDetalhe := TObjectList<TPreVendaDetalheVO>.Create;
+        ListaPreVendaCabecalho := TPreVendaCabecalhoListaVO.Create(True);
+        ListaPreVendaDetalhe := TPreVendaDetalheListaVO.Create(True);
         //
         ConsultaSQL := 'select * from PRE_VENDA_CABECALHO where ' +
         'SITUACAO = ' + QuotedStr('P') + ' and DATA_PV < :Data';
@@ -330,7 +330,7 @@ begin
           ListaPreVendaCabecalho.Add(PreVendaCabecalho);
 
           QDetalhe := TSQLQuery.Create(nil);
-          QDetalhe.SQLConnection := FDataModule.ConexaoBalcao;
+          QDetalhe.DataBase := dmPrincipal.IBBalcao;
           QDetalhe.sql.Text := 'SELECT * FROM PRE_VENDA_DETALHE WHERE ID_PRE_VENDA_CABECALHO='+IntToStr(PreVendaCabecalho.Id);
           QDetalhe.Open;
 
@@ -375,7 +375,7 @@ begin
   end;
 end;
 
-class procedure TPreVendaController.CancelaPreVendasPendentes(ListaPreVendaCabecalho: TObjectList<TPreVendaCabecalhoVO>; ListaPreVendaDetalhe: TObjectList<TPreVendaDetalheVO>);
+class procedure TPreVendaController.CancelaPreVendasPendentes(ListaPreVendaCabecalho: TPreVendaCabecalhoListaVO; ListaPreVendaDetalhe: TPreVendaDetalheListaVO);
 var
   Mensagem:String;
   Empresa: TEmpresaVO;
@@ -383,31 +383,31 @@ var
   Id: String;
   VendaCabecalho: TVendaCabecalhoVO;
   VendaDetalhe: TVendaDetalheVO;
-  ListaVendaDetalhe: TObjectList<TVendaDetalheVO>;
+  ListaVendaDetalhe: TVendaDetalheListaVO;
   Produto: TProdutoVO;
 begin
-  IdMovimento := UCaixa.Movimento.Id;
+  IdMovimento := Movimento.Id;
 
   for i := 0 to ListaPreVendaCabecalho.Count - 1 do
   begin
     VendaCabecalho := TVendaCabecalhoVO.Create;
-    ListaVendaDetalhe := TObjectList<TVendaDetalheVO>.Create;
+    ListaVendaDetalhe := TVendaDetalheListaVO.Create(True);
     ItemCupom := 0;
 
     VendaCabecalho.IdMovimento := IdMovimento;
-    VendaCabecalho.DataVenda := FormatDateTime('yyyy-mm-dd', FDataModule.ACBrECF.DataHora);
-    VendaCabecalho.HoraVenda := FormatDateTime('hh:nn:ss', FDataModule.ACBrECF.DataHora);
+    VendaCabecalho.DataVenda := FormatDateTime('yyyy-mm-dd', dmprincipal.ACBrECF.DataHora);
+    VendaCabecalho.HoraVenda := FormatDateTime('hh:nn:ss', dmprincipal.ACBrECF.DataHora);
     VendaCabecalho.StatusVenda := 'C';
     VendaCabecalho.CFOP := Configuracao.CFOPECF;
-    VendaCabecalho.COO := StrToInt(FDataModule.ACBrECF.NumCOO);
-    VendaCabecalho.CCF := StrToIntDef(FDataModule.ACBrECF.NumCCF,0);
+    VendaCabecalho.COO := StrToInt(dmprincipal.ACBrECF.NumCOO);
+    VendaCabecalho.CCF := StrToIntDef(dmprincipal.ACBrECF.NumCCF,0);
     VendaCabecalho.ValorVenda := TPreVendaCabecalhoVO(ListaPreVendaCabecalho.Items[i]).Valor;
     VendaCabecalho.IdPreVenda := TPreVendaCabecalhoVO(ListaPreVendaCabecalho.Items[i]).Id;
     VendaCabecalho := TVendaController.IniciaVenda(VendaCabecalho);
 
     id := IntToStr(TPreVendaCabecalhoVO(ListaPreVendaCabecalho.Items[i]).Id);
-    Mensagem := UCaixa.MD5 + 'PV' + StringOfChar('0',10-Length(id)) + id + #13 + #10;
-    FDataModule.ACBrECF.AbreCupom;
+    //Mensagem := frmCheckout.MD5 + 'PV' + StringOfChar('0',10-Length(id)) + id + #13 + #10;
+    dmprincipal.ACBrECF.AbreCupom;
     for j := 0 to ListaPreVendaDetalhe.Count - 1 do
     begin
       if TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).IdPreVenda = TPreVendaCabecalhoVO(ListaPreVendaCabecalho.Items[i]).Id then
@@ -441,23 +441,23 @@ begin
         ListaVendaDetalhe.Add(VendaDetalhe);
         TVendaController.InserirItem(VendaDetalhe);
 
-        FDataModule.ACBrECF.VendeItem(TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).GtinProduto, TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).NomeProduto, TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).ECFICMS, TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).Quantidade, TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).ValorUnitario);
+        dmprincipal.ACBrECF.VendeItem(TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).GtinProduto, TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).NomeProduto, TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).ECFICMS, TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).Quantidade, TPreVendaDetalheVO(ListaPreVendaDetalhe.Items[j]).ValorUnitario);
       end;
     end;//for j := 0 to ListaPreVendaDetalhe.Count - 1 do
 
-    FDataModule.ACBrECF.SubtotalizaCupom();
-    FDataModule.ACBrECF.EfetuaPagamento(FDataModule.ACBrECF.FormasPagamento[0].Indice,TPreVendaCabecalhoVO(ListaPreVendaCabecalho.Items[i]).Valor);
+    dmprincipal.ACBrECF.SubtotalizaCupom();
+    dmprincipal.ACBrECF.EfetuaPagamento(dmprincipal.ACBrECF.FormasPagamento[0].Indice,TPreVendaCabecalhoVO(ListaPreVendaCabecalho.Items[i]).Valor);
 
     try
-      Empresa := TEmpresaController.PegaEmpresa(UCaixa.Configuracao.IdEmpresa);
+      Empresa := TEmpresaController.PegaEmpresa(Configuracao.IdEmpresa);
       if Empresa.UF = 'MG' then
       begin
          Mensagem := Mensagem +'MINAS LEGAL:'+
                   COPY(DevolveInteiro(Empresa.CNPJ),1,8)+
-                  FormatDateTime('ddmmyyyy', FDataModule.ACBrECF.DataHora);
-         if UCaixa.VendaCabecalho.ValorFinal >= 1 then
+                  FormatDateTime('ddmmyyyy', dmprincipal.ACBrECF.DataHora);
+         if VendaCabecalho.ValorFinal >= 1 then
             begin
-               Mensagem := Mensagem + DevolveInteiro(Format('%7.0n',[UCaixa.VendaCabecalho.ValorFinal]));
+               Mensagem := Mensagem + DevolveInteiro(Format('%7.0n',[VendaCabecalho.ValorFinal]));
             end;
          Mensagem := Mensagem + #13 + #10;
       end;
@@ -466,18 +466,18 @@ begin
         FreeAndNil(Empresa);
     end;
 
-    UECF.FechaCupom(Mensagem + UCaixa.Configuracao.MensagemCupom);
+    UECF.FechaCupom(Mensagem + Configuracao.MensagemCupom);
     UECF.CancelaCupom;
     TVendaController.CancelaVenda(VendaCabecalho, ListaVendaDetalhe);
   end;//for i := 0 to ListaPreVendaCabecalho.Count - 1 do
 
-  UCaixa.Movimento := TMovimentoController.VerificaMovimento;
+  Movimento := TMovimentoController.VerificaMovimento;
 end;
 
 class Procedure TPreVendaController.CancelaPreVendasPendentes(Id: Integer);
 var
-  ListaPreVendaCabecalho:TObjectList<TPreVendaCabecalhoVO>;
-  ListaPreVendaDetalhe:TObjectList<TPreVendaDetalheVO>;
+  ListaPreVendaCabecalho:TPreVendaCabecalhoListaVO;
+  ListaPreVendaDetalhe:TPreVendaDetalheListaVO;
   QDetalhe: TSQLQuery;
   PreVendaCabecalho: TPreVendaCabecalhoVO;
   PreVendaDetalhe: TPreVendaDetalheVO;
@@ -485,12 +485,12 @@ begin
   try
     try
       begin
-        ListaPreVendaCabecalho := TObjectList<TPreVendaCabecalhoVO>.Create;
-        ListaPreVendaDetalhe := TObjectList<TPreVendaDetalheVO>.Create;
+        ListaPreVendaCabecalho := TPreVendaCabecalhoListaVO.Create;
+        ListaPreVendaDetalhe := TPreVendaDetalheListaVO.Create;
         //
         ConsultaSQL := 'select * from PRE_VENDA_CABECALHO where ID=' +IntToStr(Id);
         Query := TSQLQuery.Create(nil);
-        Query.SQLConnection := FDataModule.ConexaoBalcao;
+        Query.DataBase := dmPrincipal.IBBalcao;
         Query.sql.Text := ConsultaSQL;
         Query.Open;
         begin
@@ -500,7 +500,7 @@ begin
           ListaPreVendaCabecalho.Add(PreVendaCabecalho);
 
           QDetalhe := TSQLQuery.Create(nil);
-          QDetalhe.SQLConnection := FDataModule.ConexaoBalcao;
+          QDetalhe.DataBase := dmPrincipal.IBBalcao;
           QDetalhe.sql.Text := 'SELECT * FROM PRE_VENDA_DETALHE WHERE ID_PRE_VENDA_CABECALHO='+IntToStr(PreVendaCabecalho.Id);
           QDetalhe.Open;
 
@@ -535,7 +535,7 @@ begin
         Query.sql.Text := ConsultaSQL;
         Query.ExecSQL();
 
-        FCaixa.FechaMenuOperacoes;
+        frmCheckout.FechaMenuOperacoes;
         CancelaPreVendasPendentes(ListaPreVendaCabecalho,ListaPreVendaDetalhe);
       end;
     except

@@ -3,7 +3,7 @@ unit ParcelaController;
 interface
 
 uses
-  Forms, Classes, SQLExpr, SysUtils, ContasPagarReceberVO, ContasParcelasVO, Generics.Collections, UPaf;
+  Forms, Classes, SQLdb, SysUtils, ContasPagarReceberVO, ContasParcelasVO, Fgl, UPaf;
 
 type
   TParcelaController = class
@@ -11,15 +11,15 @@ type
   protected
   public
     class function InserirCabecalho(pParcelaCabecalho: TContasPagarReceberVO): TContasPagarReceberVO;
-    class procedure InserirDetalhe(pListaParcelaDetalhe: TObjectList<TContasParcelasVO>);
+    class procedure InserirDetalhe(pListaParcelaDetalhe:  TContasParcelasListaVO);
     class function RetornaCabecalhoDaParcela(var IdVenda: Integer): TContasPagarReceberVO;
-    class function RetornaDetalheDaParcela(IdContas: Integer): TObjectList<TContasParcelasVO>;
-    class procedure ImprimeParcelas(Nome, CPF, COO: String; ValorTotal: Extended; pListaParcelaDetalhe: TObjectList<TContasParcelasVO>);
+    class function RetornaDetalheDaParcela(IdContas: Integer):  TContasParcelasListaVO;
+    class procedure ImprimeParcelas(Nome, CPF, COO: String; ValorTotal: Extended; pListaParcelaDetalhe:  TContasParcelasListaVO);
   end;
 
 implementation
 
-uses UDataModule, Biblioteca, UCaixa;
+uses Udmprincipal, Biblioteca, UfrmCheckout;
 
 var
   ConsultaSQL: String;
@@ -56,7 +56,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
 
       Query.ParamByName('pID_ECF_VENDA_CABECALHO').AsInteger := pParcelaCabecalho.IdEcfVendaCabecalho;
@@ -86,7 +86,7 @@ begin
   end;
 end;
 
-class procedure TParcelaController.InserirDetalhe(pListaParcelaDetalhe: TObjectList<TContasParcelasVO>);
+class procedure TParcelaController.InserirDetalhe(pListaParcelaDetalhe:  TContasParcelasListaVO);
 var
   i: Integer;
   ParcelaDetalhe: TContasParcelasVO;
@@ -130,7 +130,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
 
       for i := 0 to pListaParcelaDetalhe.Count-1 do
       begin
@@ -173,7 +173,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.open;
 
@@ -210,9 +210,9 @@ begin
   end;
 end;
 
-class function TParcelaController.RetornaDetalheDaParcela(IdContas: Integer): TObjectList<TContasParcelasVO>;
+class function TParcelaController.RetornaDetalheDaParcela(IdContas: Integer):  TContasParcelasListaVO;
 var
-  ListaParcela: TObjectList<TContasParcelasVO>;
+  ListaParcela:  TContasParcelasListaVO;
   ParcelaDetalhe: TContasParcelasVO;
   temp:string;
 begin
@@ -242,7 +242,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
@@ -252,7 +252,7 @@ begin
       end
       else
       begin
-        ListaParcela := TObjectList<TContasParcelasVO>.Create;
+        ListaParcela :=  TContasParcelasListaVO.Create;
         Query.First;
 
         while not Query.Eof do
@@ -293,7 +293,7 @@ begin
 end;
 
 
-class procedure TParcelaController.ImprimeParcelas(Nome, CPF, COO: String; ValorTotal: Extended; pListaParcelaDetalhe: TObjectList<TContasParcelasVO>);
+class procedure TParcelaController.ImprimeParcelas(Nome, CPF, COO: String; ValorTotal: Extended; pListaParcelaDetalhe:  TContasParcelasListaVO);
 var
   i, Elementos, Linhas, Adicional: integer;
   ParcelaDetalhe: TContasParcelasVO;
@@ -337,15 +337,15 @@ begin
   sContrato := StringReplace(sContrato, '<CPFCliente>', CPF, [rfReplaceAll]);
   sContrato := StringReplace(sContrato, '<QualificaEmpresa>', Configuracao.TituloTelaCaixa, [rfReplaceAll]);
   sContrato := StringReplace(sContrato, '<COO>', COO, [rfReplaceAll]);
-  sContrato := StringReplace(sContrato, '<DataVenda>', FormatDateTime('dd/mm/yyyy',FDataModule.ACBrECF.ECF.DataHora), [rfReplaceAll]);
+  sContrato := StringReplace(sContrato, '<DataVenda>', FormatDateTime('dd/mm/yyyy',dmprincipal.ACBrECF.ECF.DataHora), [rfReplaceAll]);
   sContrato := StringReplace(sContrato, '<ValorTotalVenda>', (Format('%.2m',[valortotal])+'('+mc_ValorExtenso(valortotal)+')'), [rfReplaceAll]);
 
 
   // INICIO CABEÇALHO
-  FDataModule.ACBrECF.AbreRelatorioGerencial();
-  FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-  FDataModule.ACBrECF.LinhaRelatorioGerencial('        TERMO DE COMPROMISSO CONTRATUAL         ');
-  FDataModule.ACBrECF.PulaLinhas(1);
+  dmprincipal.ACBrECF.AbreRelatorioGerencial();
+  dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+  dmprincipal.ACBrECF.LinhaRelatorioGerencial('        TERMO DE COMPROMISSO CONTRATUAL         ');
+  dmprincipal.ACBrECF.PulaLinhas(1);
   // FIM CABEÇALHO
 
   // INICIO CONTRATO PARAMETRIZADO
@@ -360,18 +360,18 @@ begin
 
   For i := 1 to Linhas do
   begin
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(Copy(sContrato,Elementos,48));
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(Copy(sContrato,Elementos,48));
     Elementos := Elementos + 48;
   end;
 
-  FDataModule.ACBrECF.PulaLinhas(2);
+  dmprincipal.ACBrECF.PulaLinhas(2);
   // FIM CONTRATO PARAMETRIZADO
 
 
   // INICIO PARCELAS
-  FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('_',48));
-  FDataModule.ACBrECF.LinhaRelatorioGerencial('            VALOR       PARCELA    VENCIMENTO   ');
-  FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('_',48));
+  dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('_',48));
+  dmprincipal.ACBrECF.LinhaRelatorioGerencial('            VALOR       PARCELA    VENCIMENTO   ');
+  dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('_',48));
 
   for i := 0 to pListaParcelaDetalhe.Count-1 do
   begin
@@ -384,20 +384,20 @@ begin
     Vencimento := FormatDateTime('dd/mm/yyyy',(TextoParaData(ParcelaDetalhe.DataVencimento)));
     Vencimento := StringOfChar(' ', 17 - Length(Vencimento)) + Vencimento;
 
-    FDataModule.ACBrECF.LinhaRelatorioGerencial(Valor+Parcela+Vencimento);
+    dmprincipal.ACBrECF.LinhaRelatorioGerencial(Valor+Parcela+Vencimento);
   end;
 
-  FDataModule.ACBrECF.PulaLinhas(4);
+  dmprincipal.ACBrECF.PulaLinhas(4);
   // FIM PARCELAS
 
 
   // INICIO RODAPÉ
-  FDataModule.ACBrECF.LinhaRelatorioGerencial('    ________________________________________    ');
-  FDataModule.ACBrECF.LinhaRelatorioGerencial(Copy(Nome,1,40));
-  FDataModule.ACBrECF.LinhaRelatorioGerencial(CPF);
-  FDataModule.ACBrECF.PulaLinhas(2);
-  FDataModule.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
-  FDataModule.ACBrECF.FechaRelatorio;
+  dmprincipal.ACBrECF.LinhaRelatorioGerencial('    ________________________________________    ');
+  dmprincipal.ACBrECF.LinhaRelatorioGerencial(Copy(Nome,1,40));
+  dmprincipal.ACBrECF.LinhaRelatorioGerencial(CPF);
+  dmprincipal.ACBrECF.PulaLinhas(2);
+  dmprincipal.ACBrECF.LinhaRelatorioGerencial(StringOfChar('=',48));
+  dmprincipal.ACBrECF.FechaRelatorio;
   UPAF.GravaR06('RG');
 end;
 

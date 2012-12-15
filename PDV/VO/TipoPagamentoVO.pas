@@ -4,6 +4,8 @@ unit TipoPagamentoVO;
 
 interface
 
+Uses Fgl;
+
 type
   TTipoPagamentoVO = class
   private
@@ -15,9 +17,7 @@ type
     FPERMITE_TROCO: String;
     FTEF_TIPO_GP: String;
     FGERA_PARCELAS: String;
-
   published
-
     property Id: Integer read FID write FID;
     property Codigo: String read FCODIGO write FCODIGO;
     property Descricao: String read FDESCRICAO write FDESCRICAO;
@@ -26,8 +26,10 @@ type
     property PermiteTroco: String read FPERMITE_TROCO write FPERMITE_TROCO;
     property TipoGP: String read FTEF_TIPO_GP write FTEF_TIPO_GP;
     property GeraParcelas: String read FGERA_PARCELAS write FGERA_PARCELAS;
-
 end;
+
+type
+TTipoPagamentoListaVO = class(specialize TFPGObjectList<TTipoPagamentoVO>);
 
 implementation
 

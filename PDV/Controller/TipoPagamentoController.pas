@@ -3,7 +3,7 @@ unit TipoPagamentoController;
 interface
 
 uses
-  Classes, SQLExpr, SysUtils, TipoPagamentoVO;
+  Classes, SQLdb, SysUtils, TipoPagamentoVO;
 
 type
   TTipoPagamentoController = class
@@ -11,13 +11,13 @@ type
   protected
   public
     class function ConsultaPeloID(pId: Integer): TTipoPagamentoVO;
-    class function TabelaTipoPagamento: TObjectList<TTipoPagamentoVO>;
+    class function TabelaTipoPagamento: TTipoPagamentoListaVO;
     class function ConsultaPelaDescricao(pDescricao: String): TTipoPagamentoVO;
   end;
 
 implementation
 
-uses UDataModule;
+uses Udmprincipal;
 
 var
   ConsultaSQL: String;
@@ -33,7 +33,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
@@ -55,9 +55,9 @@ begin
   end;
 end;
 
-class function TTipoPagamentoController.TabelaTipoPagamento: TObjectList<TTipoPagamentoVO>;
+class function TTipoPagamentoController.TabelaTipoPagamento: TTipoPagamentoListaVO;
 var
-  ListaTipoPagamento: TObjectList<TTipoPagamentoVO>;
+  ListaTipoPagamento: TTipoPagamentoListaVO;
   TipoPagamento: TTipoPagamentoVO;
 begin
   try
@@ -65,11 +65,11 @@ begin
       ConsultaSQL := 'select * from ECF_TIPO_PAGAMENTO';
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 
-      ListaTipoPagamento := TObjectList<TTipoPagamentoVO>.Create;
+      ListaTipoPagamento := TTipoPagamentoListaVO.Create(True);
 
       Query.First;
       while not Query.Eof do
@@ -105,7 +105,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
 

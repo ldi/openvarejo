@@ -2,6 +2,8 @@ unit SpedFiscalC490VO;
 
 interface
 
+Uses Fgl;
+
 type
   TSpedFiscalC490VO = class
   private
@@ -22,6 +24,9 @@ type
     property SomaICMS: Extended read FSomaICMS write FSomaICMS;
 
 end;
+
+type
+TSpedFiscalC490ListaVO = class(specialize TFPGObjectList<TSpedFiscalC490VO>);
 
 implementation
 

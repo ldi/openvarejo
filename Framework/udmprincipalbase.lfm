@@ -5,12 +5,12 @@ object dmPrincipalBase: TdmPrincipalBase
   HorizontalOffset = 494
   VerticalOffset = 260
   Width = 373
-  object IBCon: TIBConnection
+  object IBCon: TSQLConnector
     Connected = False
     LoginPrompt = False
     KeepConnection = False
     LogEvents = []
-    left = 40
+    left = 64
     top = 24
   end
 end

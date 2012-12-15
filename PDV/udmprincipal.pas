@@ -20,6 +20,7 @@ type
     ACBrSintegra: TACBrSintegra;
     ACBrSPEDFiscal: TACBrSPEDFiscal;
     IBBalcao: TSQLConnector;
+    SQLTrans: TSQLTransaction;
     procedure DataModuleCreate(Sender: TObject);
   private
     { private declarations }

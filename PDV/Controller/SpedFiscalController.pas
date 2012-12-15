@@ -1,69 +1,34 @@
-{ *******************************************************************************
-  Title: T2Ti ERP
-  Description: Classe de controle do Sped Fiscal.
-
-  The MIT License
-
-  Copyright: Copyright (C) 2010 T2Ti.COM
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation
-  files (the "Software"), to deal in the Software without
-  restriction, including without limitation the rights to use,
-  copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the
-  Software is furnished to do so, subject to the following
-  conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-  OTHER DEALINGS IN THE SOFTWARE.
-
-  The author may be contacted at:
-  t2ti.com@gmail.com</p>
-
-  @author Albert Eije (T2Ti.COM)
-  @version 1.0
-  ******************************************************************************* }
 unit SpedFiscalController;
 
 interface
 
 uses
-  Classes, SQLExpr, SysUtils, Generics.Collections, SpedFiscalC390VO, Biblioteca,
+  Classes, SQLdb, SysUtils, Fgl, SpedFiscalC390VO, Biblioteca,
   SpedFiscalC321VO, SpedFiscalC370VO, SpedFiscalC425VO, SpedFiscalC490VO, MeiosPagamentoVO, Constantes;
 
 type
   TSpedFiscalController = class
   protected
   public
-    class function TabelaC390(Id: Integer): TObjectList<TSpedFiscalC390VO>;
-    class function TabelaC321(DataInicio: String; DataFim: String): TObjectList<TSpedFiscalC321VO>;
-    class function TabelaC370(Id : Integer): TObjectList<TSpedFiscalC370VO>;
-    class function TabelaC425(DataInicio: String; DataFim: String; TotalizadorParcial: String): TObjectList<TSpedFiscalC425VO>;
-    class function TabelaC490(DataInicio: String; DataFim: String): TObjectList<TSpedFiscalC490VO>;
-    class function TabelaE110(DataInicio: String; DataFim: String): TObjectList<TMeiosPagamentoVO>;
+    class function TabelaC390(Id: Integer): TSpedFiscalC390ListaVO;
+    class function TabelaC321(DataInicio: String; DataFim: String):  TSpedFiscalC321ListaVO;
+    class function TabelaC370(Id : Integer):  TSpedFiscalC370ListaVO;
+    class function TabelaC425(DataInicio: String; DataFim: String; TotalizadorParcial: String):  TSpedFiscalC425ListaVO;
+    class function TabelaC490(DataInicio: String; DataFim: String):  TSpedFiscalC490ListaVO;
+    class function TabelaE110(DataInicio: String; DataFim: String):  TMeiosPagamentoListaVO;
  end;
 
 implementation
 
-uses UDataModule;
+uses Udmprincipal;
 
 var
   ConsultaSQL: String;
   Query: TSQLQuery;
 
-class function TSpedFiscalController.TabelaC370(Id: Integer): TObjectList<TSpedFiscalC370VO>;
+class function TSpedFiscalController.TabelaC370(Id: Integer):  TSpedFiscalC370ListaVO;
 var
-  ListaC370: TObjectList<TSpedFiscalC370VO>;
+  ListaC370:  TSpedFiscalC370ListaVO;
   RegistroC370: TSpedFiscalC370VO;
 begin
 //  DataInicio := FormatDateTime('yyyy-mm-dd', StrToDate(DataInicio));
@@ -78,10 +43,10 @@ begin
 
   try
     try
-      ListaC370 := TObjectList<TSpedFiscalC370VO>.Create;
+      ListaC370 :=  TSpedFiscalC370ListaVO.Create;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       Query.First;
@@ -109,13 +74,13 @@ begin
 
 end;
 
-class function TSpedFiscalController.TabelaC390(Id: Integer): TObjectList<TSpedFiscalC390VO>;
+class function TSpedFiscalController.TabelaC390(Id: Integer):  TSpedFiscalC390ListaVO;
 var
-  ListaC390: TObjectList<TSpedFiscalC390VO>;
+  ListaC390:  TSpedFiscalC390ListaVO;
   RegistroC390: TSpedFiscalC390VO;
 begin
-{  DataInicio := FormatDateTime('yyyy-mm-dd', StrToDate(DataInicio));
-  DataFim := FormatDateTime('yyyy-mm-dd', StrToDate(DataFim));
+  {DataInicio := FormatDateTime('yyyy-mm-dd', StrToDate(DataInicio));
+  DataFim := FormatDateTime('yyyy-mm-dd', StrToDate(DataFim));    }
 
 {  ConsultaSQL :=
     'select * from VIEW_C390 '+
@@ -130,10 +95,10 @@ begin
 
   try
     try
-      ListaC390 := TObjectList<TSpedFiscalC390VO>.Create;
+      ListaC390 :=  TSpedFiscalC390ListaVO.Create;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       Query.First;
@@ -160,9 +125,9 @@ begin
   end;
 end;
 
-class function TSpedFiscalController.TabelaC321(DataInicio: String; DataFim: String): TObjectList<TSpedFiscalC321VO>;
+class function TSpedFiscalController.TabelaC321(DataInicio: String; DataFim: String):  TSpedFiscalC321ListaVO;
 var
-  ListaC321: TObjectList<TSpedFiscalC321VO>;
+  ListaC321:  TSpedFiscalC321ListaVO;
   RegistroC321: TSpedFiscalC321VO;
 begin
   DataInicio := FormatDateTime('yyyy-mm-dd', StrToDate(DataInicio));
@@ -176,10 +141,10 @@ begin
 
   try
     try
-      ListaC321 := TObjectList<TSpedFiscalC321VO>.Create;
+      ListaC321 :=  TSpedFiscalC321ListaVO.Create;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       Query.First;
@@ -208,9 +173,9 @@ begin
   end;
 end;
 
-class function TSpedFiscalController.TabelaC425(DataInicio: String; DataFim: String; TotalizadorParcial:String): TObjectList<TSpedFiscalC425VO>;
+class function TSpedFiscalController.TabelaC425(DataInicio: String; DataFim: String; TotalizadorParcial:String):  TSpedFiscalC425ListaVO;
 var
-  ListaC425: TObjectList<TSpedFiscalC425VO>;
+  ListaC425:  TSpedFiscalC425ListaVO;
   RegistroC425: TSpedFiscalC425VO;
 begin
   DataInicio := FormatDateTime('yyyy-mm-dd', StrToDate(DataInicio));
@@ -225,10 +190,10 @@ begin
 
   try
     try
-      ListaC425 := TObjectList<TSpedFiscalC425VO>.Create;
+      ListaC425 :=  TSpedFiscalC425ListaVO.Create;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       Query.First;
@@ -255,9 +220,9 @@ begin
   end;
 end;
 
-class function TSpedFiscalController.TabelaC490(DataInicio: String; DataFim: String): TObjectList<TSpedFiscalC490VO>;
+class function TSpedFiscalController.TabelaC490(DataInicio: String; DataFim: String):  TSpedFiscalC490ListaVO;
 var
-  ListaC490: TObjectList<TSpedFiscalC490VO>;
+  ListaC490:  TSpedFiscalC490ListaVO;
   RegistroC490: TSpedFiscalC490VO;
 begin
   DataInicio := FormatDateTime('yyyy-mm-dd', StrToDate(DataInicio));
@@ -269,10 +234,10 @@ begin
 
   try
     try
-      ListaC490 := TObjectList<TSpedFiscalC490VO>.Create;
+      ListaC490 :=  TSpedFiscalC490ListaVO.Create;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       Query.First;
@@ -298,9 +263,9 @@ begin
   end;
 end;
 
-class function TSpedFiscalController.TabelaE110(DataInicio: String; DataFim: String): TObjectList<TMeiosPagamentoVO>;
+class function TSpedFiscalController.TabelaE110(DataInicio: String; DataFim: String):  TMeiosPagamentoListaVO;
 var
-  ListaE110: TObjectList<TMeiosPagamentoVO>;
+  ListaE110:  TMeiosPagamentoListaVO;
   MeiosPagamento: TMeiosPagamentoVO;
 begin
       DataInicio := FormatDateTime('yyyy-mm-dd', StrToDate(DataInicio));
@@ -314,10 +279,10 @@ begin
 
   try
     try
-      ListaE110 := TObjectList<TMeiosPagamentoVO>.Create;
+      ListaE110 :=  TMeiosPagamentoListaVO.Create;
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       Query.First;

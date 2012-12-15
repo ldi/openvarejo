@@ -32,7 +32,7 @@ uses
   FechamentoController, EmpresaController, DAVController, ContadorController,
   ConfiguracaoController, ComponentesController, ClienteController,
   ChequeController, CFOPController, CaixaController, BancoController, 
-UfrmCargaPDV, UECF, UPAF, UfrmEncerraMovimento;
+UfrmCargaPDV, UECF, UPAF, UfrmEncerraMovimento, UfrmIniciaMovimento;
 
 {$R *.res}
 
@@ -44,6 +44,7 @@ begin
   Application.CreateForm(TfrmMenuFiscal, frmMenuFiscal);
   Application.CreateForm(TfrmCargaPDV, frmCargaPDV);
   Application.CreateForm(TfrmEncerraMovimento, frmEncerraMovimento);
+  Application.CreateForm(TfrmIniciaMovimento, frmIniciaMovimento);
   Application.Run;
 end.
 

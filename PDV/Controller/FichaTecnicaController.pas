@@ -19,7 +19,7 @@ type
 
 implementation
 
-uses UDataModule, Biblioteca;
+uses Udmprincipal, Biblioteca;
 
 var
   ConsultaSQL : String;
@@ -42,7 +42,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
 
       Query.ParamByName('pID_PRODUTO').AsInteger := FichaTecnica.IdProduto;
@@ -67,7 +67,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pID').AsInteger:=Id;
       Query.Open;
@@ -90,7 +90,7 @@ begin
   try
     try
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.ParamByName('pID').AsInteger := Id;
       Query.ExecSQL();
@@ -110,7 +110,7 @@ var
 begin
   try
     try
-      if FDataModule.BancoPAF = 'FIREBIRD' then
+      if dmprincipal.BancoPAF = 'FIREBIRD' then
       begin
       ConsultaSQL := 'UPDATE OR INSERT INTO FICHA_TECNICA ' +
                     ' (ID, '+
@@ -125,7 +125,7 @@ begin
                     DevolveConteudoDelimitado('|',vTupla)+', '+  //    ID_PRODUTO_FILHO  INTEGER,
                     DevolveConteudoDelimitado('|',vTupla)+')';   //    QUANTIDADE        DECIMAL(18,6)
       end
-      else if FDataModule.BancoPAF = 'MYSQL' then
+      else if dmprincipal.BancoPAF = 'MYSQL' then
       begin
         ID := StrToInt(DevolveConteudoDelimitado('|',vTupla));   //    ID              INTEGER NOT NULL,
 
@@ -153,7 +153,7 @@ begin
 
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ExecSQL();
 

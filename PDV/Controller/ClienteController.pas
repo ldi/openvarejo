@@ -12,7 +12,7 @@ type
     class Function ConsultaCPFCNPJ(pCPFouCNPJ: String): TClienteVO;
     class function ConsultaIdCliente(pId: Integer): Boolean;
     class function ConsultaPeloID(pId: Integer): TClienteVO;
-    class Function ConsultaClienteSPED(pDataInicial, pDataFinal: String): specialize TFPGList<TClienteVO>;
+    class Function ConsultaClienteSPED(pDataInicial, pDataFinal: String): TClienteListaVO;
     class function GravaCargaCliente(vTupla: String): Boolean;
  end;
 
@@ -148,9 +148,9 @@ begin
   end;
 end;
 
-class function TClienteController.ConsultaClienteSPED(pDataInicial, pDataFinal: String): specialize TFPGList<TClienteVO>;
+class function TClienteController.ConsultaClienteSPED(pDataInicial, pDataFinal: String): TClienteListaVO;
 var
-  ListaCliente: TObjectList<TClienteVO>;
+  ListaCliente:  TClienteListaVO;
   Cliente: TClienteVO;
   TotalRegistros: Integer;
   DataInicio, DataFim : String ;
@@ -163,14 +163,14 @@ begin
       ConsultaSQL := ' select count(*) as total from NFE_CABECALHO where DATA_EMISSAO between '+QuotedStr(DataInicio)+' and '+QuotedStr(DataFim);
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.ConexaoBalcao;
+      Query.DataBase := dmPrincipal.IBBalcao;
       Query.sql.Text := ConsultaSQL;
       Query.Open;
       TotalRegistros := Query.FieldByName('TOTAL').AsInteger;
 
       if TotalRegistros > 0 then
       begin
-        ListaCliente := TObjectList<TClienteVO>.Create;
+        ListaCliente :=  TClienteListaVO.Create;
         ConsultaSQL :=  ' select '+
                         ' c.nome, '+
                         ' c.rg, '+
@@ -236,7 +236,7 @@ var
 begin
   try
     try
-      if FDataModule.BancoPAF = 'FIREBIRD' then
+      if dmprincipal.BancoPAF = 'FIREBIRD' then
       begin
         ConsultaSQL:= ' UPDATE OR INSERT INTO CLIENTE '+
           '(ID, '+
@@ -300,7 +300,7 @@ begin
           DevolveConteudoDelimitado('|',vTupla)+')';    //   CODIGO_IBGE_UF       INTEGER
 
       end
-      else if FDataModule.BancoPAF = 'MYSQL' then
+      else if dmprincipal.BancoPAF = 'MYSQL' then
       begin
         ID := StrToInt(DevolveConteudoDelimitado('|',vTupla));                        //    ID              INTEGER NOT NULL,
         if not ConsultaIdCliente(ID) then
@@ -399,7 +399,7 @@ begin
 
 
       Query := TSQLQuery.Create(nil);
-      Query.SQLConnection := FDataModule.Conexao;
+      Query.DataBase := dmPrincipal.IBCon;
       Query.sql.Text := ConsultaSQL;
       Query.ExecSQL();
 

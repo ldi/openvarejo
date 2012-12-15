@@ -1,11 +1,19 @@
 inherited dmPrincipal: TdmPrincipal
   OnCreate = DataModuleCreate
   Height = 280
-  HorizontalOffset = 494
-  VerticalOffset = 223
+  HorizontalOffset = 536
+  VerticalOffset = 234
   Width = 373
   inherited IBCon: TSQLConnector
-    top = 16
+    Connected = True
+    DatabaseName = 'C:\Projetos\OpenVarejo\DER\Banco\OPDV.FDB'
+    Password = 'masterkey'
+    Transaction = SQLTrans
+    UserName = 'SYSDBA'
+    HostName = 'localhost'
+    ConnectorType = 'Firebird'
+    left = 98
+    top = 17
   end
   object ACBrECF: TACBrECF[1]
     Porta = 'COM1'
@@ -121,7 +129,14 @@ inherited dmPrincipal: TdmPrincipal
     LoginPrompt = False
     KeepConnection = False
     LogEvents = []
-    left = 128
+    left = 216
+    top = 17
+  end
+  object SQLTrans: TSQLTransaction[7]
+    Active = True
+    Action = caNone
+    Database = IBCon
+    left = 40
     top = 17
   end
 end
