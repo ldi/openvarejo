@@ -1,0 +1,5 @@
+inherited frmIniciaMovimento: TfrmIniciaMovimento
+  Left = 417
+  Top = 182
+  Caption = 'frmIniciaMovimento'
+end
