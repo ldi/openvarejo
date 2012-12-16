@@ -31,8 +31,14 @@ uses
   LogImportacaoController, ImpressoraController, FichaTecnicaController,
   FechamentoController, EmpresaController, DAVController, ContadorController,
   ConfiguracaoController, ComponentesController, ClienteController,
-  ChequeController, CFOPController, CaixaController, BancoController, 
-UfrmCargaPDV, UECF, UPAF, UfrmEncerraMovimento, UfrmIniciaMovimento;
+  ChequeController, CFOPController, CaixaController, BancoController,
+  UfrmCargaPDV, UECF, UPAF, UfrmEncerraMovimento, UfrmIniciaMovimento,
+  UfrmConfiguracao, UfrmBotoesBase, UfrmImportaNumero, UfrmMesclaDAV,
+  UfrmMesclaPreVenda, UfrmIdentificaCliente, UfrmValorReal,
+  UfrmDescontoAcrescimo, UfrmImportaCliente, UfrmImportaProduto, 
+UfrmMovimentoAberto, ufrmlogingerentesupervisor, UfrmCancelaPreVenda, 
+UfrmExcluiProdutoVenda, UfrmLocaliza, UfrmCheques, UfrmLogImportacao, 
+UfrmNotaFiscal, UfrmPenDrive, UfrmCarregaDAV, Biblioteca;
 
 {$R *.res}
 
@@ -45,6 +51,26 @@ begin
   Application.CreateForm(TfrmCargaPDV, frmCargaPDV);
   Application.CreateForm(TfrmEncerraMovimento, frmEncerraMovimento);
   Application.CreateForm(TfrmIniciaMovimento, frmIniciaMovimento);
+  Application.CreateForm(TfrmConfiguracao, frmConfiguracao);
+  Application.CreateForm(TfrmBotoesBase, frmBotoesBase);
+  Application.CreateForm(TfrmImportaNumero, frmImportaNumero);
+  Application.CreateForm(TfrmMesclaDAV, frmMesclaDAV);
+  Application.CreateForm(TfrmMesclaPreVenda, frmMesclaPreVenda);
+  Application.CreateForm(TfrmIdentificaCliente, frmIdentificaCliente);
+  Application.CreateForm(TfrmValorReal, frmValorReal);
+  Application.CreateForm(TfrmDescontoAcrescimo, frmDescontoAcrescimo);
+  Application.CreateForm(TfrmImportaCliente, frmImportaCliente);
+  Application.CreateForm(TfrmImportaProduto, frmImportaProduto);
+  Application.CreateForm(TfrmMovimentoAberto, frmMovimentoAberto);
+  Application.CreateForm(TfrmLoginGerenteSupervisor, frmLoginGerenteSupervisor);
+  Application.CreateForm(TfrmCancelaPreVenda, frmCancelaPreVenda);
+  Application.CreateForm(TfrmExcluiProdutoVenda, frmExcluiProdutoVenda);
+  Application.CreateForm(TfrmLocaliza, frmLocaliza);
+  Application.CreateForm(TfrmCheques, frmCheques);
+  Application.CreateForm(TfrmLogImportacao, frmLogImportacao);
+  Application.CreateForm(TfrmNotaFiscal, frmNotaFiscal);
+  Application.CreateForm(TfrmPenDrive, frmPenDrive);
+  Application.CreateForm(TfrmCarregaDAV, frmCarregaDAV);
   Application.Run;
 end.
 

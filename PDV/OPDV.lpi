@@ -30,45 +30,48 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="12">
+    <RequiredPackages Count="13">
       <Item1>
-        <PackageName Value="rx"/>
+        <PackageName Value="ACBrDiversos"/>
       </Item1>
       <Item2>
-        <PackageName Value="rxnew"/>
+        <PackageName Value="rx"/>
       </Item2>
       <Item3>
-        <PackageName Value="ACBr_TEFD"/>
+        <PackageName Value="rxnew"/>
       </Item3>
       <Item4>
-        <PackageName Value="ACBrComum"/>
+        <PackageName Value="ACBr_TEFD"/>
       </Item4>
       <Item5>
-        <PackageName Value="ACBr_SPED"/>
+        <PackageName Value="ACBrComum"/>
       </Item5>
       <Item6>
-        <PackageName Value="ACBr_Sintegra"/>
+        <PackageName Value="ACBr_SPED"/>
       </Item6>
       <Item7>
-        <PackageName Value="ACBr_PAF"/>
+        <PackageName Value="ACBr_Sintegra"/>
       </Item7>
       <Item8>
-        <PackageName Value="ACBrSerial"/>
+        <PackageName Value="ACBr_PAF"/>
       </Item8>
       <Item9>
-        <PackageName Value="SQLDBLaz"/>
+        <PackageName Value="ACBrSerial"/>
       </Item9>
       <Item10>
-        <PackageName Value="FCL"/>
+        <PackageName Value="SQLDBLaz"/>
       </Item10>
       <Item11>
-        <PackageName Value="zcomponent"/>
+        <PackageName Value="FCL"/>
       </Item11>
       <Item12>
-        <PackageName Value="LCL"/>
+        <PackageName Value="zcomponent"/>
       </Item12>
+      <Item13>
+        <PackageName Value="LCL"/>
+      </Item13>
     </RequiredPackages>
-    <Units Count="108">
+    <Units Count="129">
       <Unit0>
         <Filename Value="OPDV.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -639,6 +642,171 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UfrmIniciaMovimento"/>
       </Unit107>
+      <Unit108>
+        <Filename Value="ufrmconfiguracao.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmConfiguracao"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmConfiguracao"/>
+      </Unit108>
+      <Unit109>
+        <Filename Value="..\Framework\ufrmbotoesbase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmBotoesBase"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmBotoesBase"/>
+      </Unit109>
+      <Unit110>
+        <Filename Value="ufrmimportanumero.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmImportaNumero"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmImportaNumero"/>
+      </Unit110>
+      <Unit111>
+        <Filename Value="ufrmmescladav.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMesclaDAV"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmMesclaDAV"/>
+      </Unit111>
+      <Unit112>
+        <Filename Value="ufrmmesclaprevenda.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMesclaPreVenda"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmMesclaPreVenda"/>
+      </Unit112>
+      <Unit113>
+        <Filename Value="ufrmidentificacliente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmIdentificaCliente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmIdentificaCliente"/>
+      </Unit113>
+      <Unit114>
+        <Filename Value="ufrmvalorreal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmValorReal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmValorReal"/>
+      </Unit114>
+      <Unit115>
+        <Filename Value="ufrmdescontoacrescimo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmDescontoAcrescimo"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmDescontoAcrescimo"/>
+      </Unit115>
+      <Unit116>
+        <Filename Value="ufrmimportacliente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmImportaCliente"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmImportaCliente"/>
+      </Unit116>
+      <Unit117>
+        <Filename Value="ufrmimportaproduto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmImportaProduto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmImportaProduto"/>
+      </Unit117>
+      <Unit118>
+        <Filename Value="ufrmmovimentoaberto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMovimentoAberto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmMovimentoAberto"/>
+      </Unit118>
+      <Unit119>
+        <Filename Value="ufrmlogingerentesupervisor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmLoginGerenteSupervisor"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ufrmlogingerentesupervisor"/>
+      </Unit119>
+      <Unit120>
+        <Filename Value="ufrmcancelaprevenda.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCancelaPreVenda"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmCancelaPreVenda"/>
+      </Unit120>
+      <Unit121>
+        <Filename Value="ufrmexcluiprodutovenda.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmExcluiProdutoVenda"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmExcluiProdutoVenda"/>
+      </Unit121>
+      <Unit122>
+        <Filename Value="ufrmlocaliza.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmLocaliza"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmLocaliza"/>
+      </Unit122>
+      <Unit123>
+        <Filename Value="ufrmcheques.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCheques"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmCheques"/>
+      </Unit123>
+      <Unit124>
+        <Filename Value="ufrmlogimportacao.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmLogImportacao"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmLogImportacao"/>
+      </Unit124>
+      <Unit125>
+        <Filename Value="ufrmnotafiscal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmNotaFiscal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmNotaFiscal"/>
+      </Unit125>
+      <Unit126>
+        <Filename Value="ufrmpendrive.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPenDrive"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmPenDrive"/>
+      </Unit126>
+      <Unit127>
+        <Filename Value="ufrmcarregadav.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCarregaDAV"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UfrmCarregaDAV"/>
+      </Unit127>
+      <Unit128>
+        <Filename Value="Biblioteca.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Biblioteca"/>
+      </Unit128>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

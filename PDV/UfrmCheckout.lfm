@@ -1,7 +1,7 @@
 inherited frmCheckout: TfrmCheckout
-  Left = 338
+  Left = 282
   Height = 600
-  Top = 111
+  Top = 46
   Width = 800
   Caption = 'frmCheckout'
   ClientHeight = 600
@@ -132,7 +132,7 @@ inherited frmCheckout: TfrmCheckout
     ClientHeight = 520
     ClientWidth = 800
     TabOrder = 2
-    object edtCodigo: TCurrencyEdit
+    object editCodigo: TCurrencyEdit
       Left = 313
       Height = 37
       Top = 104
@@ -149,6 +149,8 @@ inherited frmCheckout: TfrmCheckout
       ParentFont = False
       TabOrder = 0
       Value = 0
+      OnKeyDown = editCodigoKeyDown
+      OnKeyPress = editCodigoKeyPress
     end
     object LstbBobina: TListBox
       Left = 11
@@ -164,7 +166,7 @@ inherited frmCheckout: TfrmCheckout
       Top = 84
       Width = 282
     end
-    object edtquantidade: TCurrencyEdit
+    object editQuantidade: TCurrencyEdit
       Left = 313
       Height = 37
       Top = 178
@@ -452,5 +454,103 @@ inherited frmCheckout: TfrmCheckout
   object pmFuncoes: TPopupMenu[5]
     left = 190
     top = 228
+    object MenuItem19: TMenuItem
+      Caption = 'New Item1'
+    end
+  end
+  object ACBrBAL1: TACBrBAL[6]
+    Porta = 'COM1'
+    OnLePeso = ACBrBAL1LePeso
+    left = 480
+    top = 46
+  end
+  object ACBrInStore1: TACBrInStore[7]
+    left = 536
+    top = 46
+  end
+  object ACBrLCB1: TACBrLCB[8]
+    Porta = 'COM1'
+    Intervalo = 300
+    OnLeCodigo = ACBrLCB1LeCodigo
+    left = 600
+    top = 46
+  end
+  object ApplicationProperties1: TApplicationProperties[9]
+    left = 392
+    top = 48
+  end
+  object ppmListaGerente: TPopupMenu[10]
+    left = 72
+    top = 49
+    object MenuItem1: TMenuItem
+      Caption = 'Iniciar Movimento'
+      OnClick = MenuItem1Click
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Encerrar Movimento'
+      OnClick = MenuItem2Click
+    end
+    object MenuItem3: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem4: TMenuItem
+      Caption = 'Suprimento'
+      OnClick = MenuItem4Click
+    end
+    object MenuItem5: TMenuItem
+      Caption = 'Sangria'
+      OnClick = MenuItem5Click
+    end
+    object MenuItem6: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem7: TMenuItem
+      Caption = 'Redução Z'
+      OnClick = MenuItem7Click
+    end
+    object MenuItem8: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem9: TMenuItem
+      Caption = 'Consultar Cliente'
+      OnClick = MenuItem9Click
+    end
+    object MenuItem10: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem11: TMenuItem
+      Caption = 'Configurações Caixa'
+      OnClick = MenuItem11Click
+    end
+    object MenuItem13: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem16: TMenuItem
+      Caption = 'Funções Administativas TEF Discado'
+      OnClick = MenuItem16Click
+    end
+    object MenuItem15: TMenuItem
+      Caption = 'Funções administrativas do TECBAN'
+      OnClick = MenuItem15Click
+    end
+    object MenuItem14: TMenuItem
+      Caption = 'Funções administrativas do HIPER'
+      OnClick = MenuItem14Click
+    end
+    object MenuItem12: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem17: TMenuItem
+      Caption = 'Importar Tabelas com Dispositivo (pen-drive)'
+      OnClick = MenuItem17Click
+    end
+    object MenuItem18: TMenuItem
+      Caption = 'Exportar Tabelas com Dispositivo (pen-drive)'
+      OnClick = MenuItem18Click
+    end
+  end
+  object PopupMenu2: TPopupMenu[11]
+    left = 176
+    top = 49
   end
 end

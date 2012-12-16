@@ -1,7 +1,7 @@
 inherited frmEncerraMovimento: TfrmEncerraMovimento
-  Left = 390
+  Left = 421
   Height = 495
-  Top = 134
+  Top = 140
   Width = 713
   Caption = 'frmEncerraMovimento'
   ClientHeight = 495
@@ -486,7 +486,6 @@ inherited frmEncerraMovimento: TfrmEncerraMovimento
     end
   end
   object qryFechamento: TSQLQuery[7]
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'ID'

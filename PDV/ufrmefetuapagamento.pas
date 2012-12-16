@@ -6,13 +6,14 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  UfrmBase, Uvariaveisbase;
+  ACBrTEFD, UfrmBase, Uvariaveisbase;
 
 type
 
   { TfrmEfetuaPagamento }
 
   TfrmEfetuaPagamento = class(TfrmBase)
+    ACBrTEFD: TACBrTEFD;
     ComboBox1: TComboBox;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;

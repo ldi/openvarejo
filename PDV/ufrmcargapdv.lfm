@@ -1,14 +1,14 @@
 inherited frmCargaPDV: TfrmCargaPDV
-  Left = 396
-  Height = 70
-  Top = 277
+  Left = 341
+  Height = 67
+  Top = 249
   Width = 687
   Caption = 'frmCargaPDV'
-  ClientHeight = 70
+  ClientHeight = 67
   ClientWidth = 687
   object ProgressBar: TProgressBar[0]
     Left = 0
-    Height = 70
+    Height = 67
     Top = 0
     Width = 687
     Align = alClient
