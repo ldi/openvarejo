@@ -1,0 +1,77 @@
+inherited frmLoginGerenteSupervisor: TfrmLoginGerenteSupervisor
+  Left = 451
+  Height = 263
+  Top = 214
+  Caption = 'frmLoginGerenteSupervisor'
+  ClientHeight = 263
+  inherited pnlBottom: TPanel
+    Top = 215
+  end
+  object GroupBox1: TGroupBox[2]
+    Left = 95
+    Height = 180
+    Top = 12
+    Width = 246
+    Caption = 'Dados Gerente/Supervisor:'
+    ClientHeight = 162
+    ClientWidth = 242
+    TabOrder = 1
+    object editSenhaGerente: TLabeledEdit
+      Left = 10
+      Height = 24
+      Top = 125
+      Width = 231
+      EchoMode = emPassword
+      EditLabel.AnchorSideLeft.Control = editSenhaGerente
+      EditLabel.AnchorSideRight.Control = editSenhaGerente
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = editSenhaGerente
+      EditLabel.Left = 10
+      EditLabel.Height = 16
+      EditLabel.Top = 106
+      EditLabel.Width = 231
+      EditLabel.Caption = 'Senha:'
+      EditLabel.ParentColor = False
+      MaxLength = 20
+      PasswordChar = '*'
+      TabOrder = 0
+    end
+    object editLoginGerente: TLabeledEdit
+      Left = 10
+      Height = 24
+      Top = 77
+      Width = 231
+      CharCase = ecUppercase
+      EditLabel.AnchorSideLeft.Control = editLoginGerente
+      EditLabel.AnchorSideRight.Control = editLoginGerente
+      EditLabel.AnchorSideRight.Side = asrBottom
+      EditLabel.AnchorSideBottom.Control = editLoginGerente
+      EditLabel.Left = 10
+      EditLabel.Height = 16
+      EditLabel.Top = 58
+      EditLabel.Width = 231
+      EditLabel.Caption = 'Login:'
+      EditLabel.ParentColor = False
+      MaxLength = 20
+      TabOrder = 1
+    end
+    object ComboBox1: TComboBox
+      Left = 9
+      Height = 24
+      Top = 11
+      Width = 230
+      ItemHeight = 16
+      ItemIndex = 0
+      Items.Strings = (
+        'Gerente'
+        'Supervisor'
+      )
+      TabOrder = 2
+      Text = 'Gerente'
+    end
+  end
+  inherited actlBotoes: TActionList[3]
+  end
+  inherited ImglBotoes: TImageList[4]
+  end
+end

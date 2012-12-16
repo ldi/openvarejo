@@ -1,0 +1,20 @@
+inherited frmLogImportacao: TfrmLogImportacao
+  Left = 441
+  Height = 528
+  Top = 131
+  Width = 570
+  Caption = 'frmLogImportacao'
+  ClientHeight = 528
+  ClientWidth = 570
+  inherited pnlBottom: TPanel
+    Top = 480
+    Width = 570
+    ClientWidth = 570
+    inherited BitBtn1: TBitBtn
+      Left = 387
+    end
+    inherited BitBtn2: TBitBtn
+      Left = 475
+    end
+  end
+end

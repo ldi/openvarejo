@@ -1,0 +1,235 @@
+inherited frmMovimentoAberto: TfrmMovimentoAberto
+  Left = 423
+  Height = 289
+  Top = 175
+  Width = 701
+  ClientHeight = 289
+  ClientWidth = 701
+  inherited pnlBottom: TPanel
+    Top = 241
+    Width = 701
+    ClientWidth = 701
+    inherited BitBtn1: TBitBtn
+      Left = 518
+    end
+    inherited BitBtn2: TBitBtn
+      Left = 606
+    end
+  end
+  object GroupBox2: TGroupBox[2]
+    Left = 88
+    Height = 222
+    Top = 8
+    Width = 603
+    Caption = 'Movimento aberto - confirme dados para acessar movimento:'
+    ClientHeight = 204
+    ClientWidth = 599
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    object Bevel2: TBevel
+      Left = 15
+      Height = 25
+      Top = 56
+      Width = 577
+    end
+    object Bevel4: TBevel
+      Left = 15
+      Height = 25
+      Top = 87
+      Width = 577
+    end
+    object Bevel1: TBevel
+      Left = 15
+      Height = 25
+      Top = 24
+      Width = 577
+    end
+    object Label1: TLabel
+      Left = 24
+      Height = 13
+      Top = 29
+      Width = 36
+      Caption = 'Turno:'
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 24
+      Height = 13
+      Top = 62
+      Width = 53
+      Caption = 'Terminal:'
+      ParentColor = False
+    end
+    object Label4: TLabel
+      Left = 24
+      Height = 13
+      Top = 92
+      Width = 69
+      Caption = 'Impressora:'
+      ParentColor = False
+    end
+    object LabelTurno: TLabel
+      Left = 100
+      Height = 13
+      Top = 29
+      Width = 36
+      Caption = 'Turno:'
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object LabelTerminal: TLabel
+      Left = 100
+      Height = 13
+      Top = 62
+      Width = 53
+      Caption = 'Terminal:'
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object LabelImpressora: TLabel
+      Left = 100
+      Height = 13
+      Top = 92
+      Width = 69
+      Caption = 'Impressora:'
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Bevel5: TBevel
+      Left = 15
+      Height = 25
+      Top = 125
+      Width = 176
+    end
+    object Bevel6: TBevel
+      Left = 15
+      Height = 25
+      Top = 164
+      Width = 176
+    end
+    object Label5: TLabel
+      Left = 24
+      Height = 13
+      Top = 132
+      Width = 64
+      Caption = 'Data Inicio:'
+      ParentColor = False
+    end
+    object Label6: TLabel
+      Left = 24
+      Height = 13
+      Top = 170
+      Width = 64
+      Caption = 'Hora Inicio:'
+      ParentColor = False
+    end
+    object LabelData: TLabel
+      Left = 100
+      Height = 13
+      Top = 132
+      Width = 68
+      Caption = '01/01/2000'
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object LabelHora: TLabel
+      Left = 100
+      Height = 13
+      Top = 170
+      Width = 48
+      Caption = '00:00:00'
+      Font.Color = clGray
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object GroupBox1: TGroupBox
+      Left = 206
+      Height = 80
+      Top = 112
+      Width = 394
+      Caption = 'Dados Para Login:'
+      ClientHeight = 62
+      ClientWidth = 390
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      object Bevel3: TBevel
+        Left = 10
+        Height = 21
+        Top = 28
+        Width = 182
+      end
+      object Label3: TLabel
+        Left = 11
+        Height = 13
+        Top = 8
+        Width = 56
+        Caption = 'Operador:'
+        ParentColor = False
+      end
+      object LabelOperador: TLabel
+        Left = 17
+        Height = 13
+        Top = 31
+        Width = 56
+        Caption = 'Operador:'
+        Font.Color = clGray
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object editSenhaOperador: TLabeledEdit
+        Left = 206
+        Height = 21
+        Top = 28
+        Width = 170
+        EchoMode = emPassword
+        EditLabel.AnchorSideLeft.Control = editSenhaOperador
+        EditLabel.AnchorSideRight.Control = editSenhaOperador
+        EditLabel.AnchorSideRight.Side = asrBottom
+        EditLabel.AnchorSideBottom.Control = editSenhaOperador
+        EditLabel.Left = 206
+        EditLabel.Height = 13
+        EditLabel.Top = 12
+        EditLabel.Width = 170
+        EditLabel.Caption = 'Senha:'
+        EditLabel.ParentColor = False
+        MaxLength = 20
+        PasswordChar = '*'
+        TabOrder = 0
+      end
+    end
+  end
+  inherited actlBotoes: TActionList[3]
+  end
+  inherited ImglBotoes: TImageList[4]
+  end
+end

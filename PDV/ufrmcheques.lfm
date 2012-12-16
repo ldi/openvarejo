@@ -1,0 +1,20 @@
+inherited frmCheques: TfrmCheques
+  Left = 418
+  Height = 588
+  Top = 62
+  Width = 675
+  Caption = 'frmCheques'
+  ClientHeight = 588
+  ClientWidth = 675
+  inherited pnlBottom: TPanel
+    Top = 540
+    Width = 675
+    ClientWidth = 675
+    inherited BitBtn1: TBitBtn
+      Left = 492
+    end
+    inherited BitBtn2: TBitBtn
+      Left = 580
+    end
+  end
+end

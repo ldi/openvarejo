@@ -1,0 +1,43 @@
+inherited frmValorReal: TfrmValorReal
+  Left = 435
+  Height = 153
+  Top = 202
+  Width = 391
+  Caption = 'frmValorReal'
+  ClientHeight = 153
+  ClientWidth = 391
+  inherited pnlBottom: TPanel
+    Top = 105
+    Width = 391
+    ClientWidth = 391
+    inherited BitBtn1: TBitBtn
+      Left = 208
+    end
+    inherited BitBtn2: TBitBtn
+      Left = 296
+    end
+  end
+  object EditEntrada: TEdit[2]
+    Left = 104
+    Height = 24
+    Top = 56
+    Width = 264
+    TabOrder = 1
+  end
+  object LabelEntrada: TLabel[3]
+    Left = 104
+    Height = 16
+    Top = 38
+    Width = 74
+    Caption = 'LabelEntrada'
+    ParentColor = False
+  end
+  inherited actlBotoes: TActionList[4]
+    left = 16
+    top = 106
+  end
+  inherited ImglBotoes: TImageList[5]
+    left = 57
+    top = 104
+  end
+end

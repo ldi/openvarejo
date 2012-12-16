@@ -1,0 +1,36 @@
+inherited frmImportaNumero: TfrmImportaNumero
+  Left = 523
+  Height = 164
+  Top = 251
+  ClientHeight = 164
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  inherited pnlBottom: TPanel
+    Height = 47
+    Top = 117
+    ClientHeight = 47
+  end
+  object EditEntrada: TEdit[2]
+    Left = 104
+    Height = 24
+    Top = 64
+    Width = 224
+    TabOrder = 1
+  end
+  object LabelEntrada: TLabel[3]
+    Left = 105
+    Height = 16
+    Top = 40
+    Width = 74
+    Caption = 'LabelEntrada'
+    ParentColor = False
+  end
+  inherited actlBotoes: TActionList[4]
+    left = 32
+    top = 112
+  end
+  inherited ImglBotoes: TImageList[5]
+    left = 73
+    top = 112
+  end
+end

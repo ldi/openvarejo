@@ -1,0 +1,74 @@
+inherited frmCancelaPreVenda: TfrmCancelaPreVenda
+  Left = 356
+  Height = 413
+  Top = 163
+  Width = 702
+  Caption = 'frmCancelaPreVenda'
+  ClientHeight = 413
+  ClientWidth = 702
+  inherited pnlBottom: TPanel
+    Top = 365
+    Width = 702
+    ClientWidth = 702
+    inherited BitBtn1: TBitBtn
+      Left = 519
+    end
+    inherited BitBtn2: TBitBtn
+      Left = 607
+    end
+  end
+  object GroupBox1: TGroupBox[2]
+    Left = 82
+    Height = 170
+    Top = 8
+    Width = 612
+    Caption = 'Pré-Vendas disponíveis para cancelamento'
+    ClientHeight = 152
+    ClientWidth = 608
+    TabOrder = 1
+    object GridMestre: TDBGrid
+      Left = 0
+      Height = 152
+      Top = 0
+      Width = 608
+      Align = alClient
+      Color = clWindow
+      Columns = <>
+      TabOrder = 0
+      TitleFont.CharSet = ANSI_CHARSET
+      TitleFont.Height = -13
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Pitch = fpVariable
+      TitleFont.Quality = fqDraft
+    end
+  end
+  object GroupBox2: TGroupBox[3]
+    Left = 80
+    Height = 162
+    Top = 184
+    Width = 614
+    Caption = 'Produtos do DAV selecionado'
+    ClientHeight = 144
+    ClientWidth = 610
+    TabOrder = 2
+    object GridDetalhe: TDBGrid
+      Left = 0
+      Height = 144
+      Top = 0
+      Width = 610
+      Align = alClient
+      Color = clWindow
+      Columns = <>
+      TabOrder = 0
+      TitleFont.CharSet = ANSI_CHARSET
+      TitleFont.Height = -13
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Pitch = fpVariable
+      TitleFont.Quality = fqDraft
+    end
+  end
+  inherited actlBotoes: TActionList[4]
+  end
+  inherited ImglBotoes: TImageList[5]
+  end
+end

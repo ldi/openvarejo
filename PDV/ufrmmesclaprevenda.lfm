@@ -1,0 +1,163 @@
+inherited frmMesclaPreVenda: TfrmMesclaPreVenda
+  Left = 369
+  Height = 483
+  Top = 146
+  Width = 732
+  Caption = 'frmMesclaPreVenda'
+  ClientHeight = 483
+  ClientWidth = 732
+  inherited pnlBottom: TPanel
+    Top = 435
+    Width = 732
+    ClientWidth = 732
+    inherited BitBtn1: TBitBtn
+      Left = 549
+    end
+    inherited BitBtn2: TBitBtn
+      Left = 637
+    end
+  end
+  object GroupBox1: TGroupBox[2]
+    Left = 101
+    Height = 170
+    Top = 8
+    Width = 612
+    Caption = 'Pré-Vendas disponíveis para mesclagem'
+    ClientHeight = 152
+    ClientWidth = 608
+    TabOrder = 1
+    object GridMestre: TDBGrid
+      Left = 0
+      Height = 152
+      Top = 0
+      Width = 608
+      Align = alClient
+      Color = clWindow
+      Columns = <>
+      DataSource = dsMestre
+      TabOrder = 0
+      TitleFont.CharSet = ANSI_CHARSET
+      TitleFont.Height = -13
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Pitch = fpVariable
+      TitleFont.Quality = fqDraft
+    end
+  end
+  object GroupBox2: TGroupBox[3]
+    Left = 101
+    Height = 162
+    Top = 184
+    Width = 614
+    Caption = 'Produtos do DAV selecionado'
+    ClientHeight = 144
+    ClientWidth = 610
+    TabOrder = 2
+    object GridDetalhe: TDBGrid
+      Left = 0
+      Height = 144
+      Top = 0
+      Width = 610
+      Align = alClient
+      Color = clWindow
+      Columns = <>
+      TabOrder = 0
+      TitleFont.CharSet = ANSI_CHARSET
+      TitleFont.Height = -13
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Pitch = fpVariable
+      TitleFont.Quality = fqDraft
+    end
+  end
+  object Panel1: TPanel[4]
+    Left = 105
+    Height = 78
+    Top = 353
+    Width = 609
+    BevelOuter = bvLowered
+    ClientHeight = 78
+    ClientWidth = 609
+    TabOrder = 3
+    object Label2: TLabel
+      Left = 23
+      Height = 13
+      Top = 15
+      Width = 108
+      Caption = 'Nome Destinatário:'
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object EditDestinatario: TEdit
+      Left = 23
+      Height = 24
+      Top = 39
+      Width = 401
+      CharCase = ecUppercase
+      MaxLength = 100
+      TabOrder = 0
+    end
+    object EditCPFCNPJ: TEdit
+      Left = 431
+      Height = 24
+      Top = 39
+      Width = 177
+      CharCase = ecUppercase
+      MaxLength = 14
+      TabOrder = 1
+    end
+    object Label3: TLabel
+      Left = 431
+      Height = 13
+      Top = 15
+      Width = 56
+      Caption = 'CPF/CNPJ:'
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  inherited actlBotoes: TActionList[5]
+  end
+  inherited ImglBotoes: TImageList[6]
+  end
+  object QMestre: TSQLQuery[7]
+    FieldDefs = <>
+    Database = dmPrincipal.IBBalcao
+    Transaction = dmPrincipal.SQLTrans
+    SQL.Strings = (
+      'SELECT * FROM DAV_CABECALHO WHERE SITUACAO = :SITUACAO'
+      'ORDER BY ID'
+    )
+    Params = <    
+      item
+        DataType = ftFixedChar
+        Name = 'SITUACAO'
+        ParamType = ptInput
+      end>
+    left = 24
+    top = 272
+  end
+  object dsMestre: TDatasource[8]
+    DataSet = QMestre
+    left = 24
+    top = 340
+  end
+  object QDetalhe: TSQLQuery[9]
+    FieldDefs = <>
+    Database = dmPrincipal.IBBalcao
+    Params = <>
+    left = 64
+    top = 272
+  end
+  object dsDetalhe: TDatasource[10]
+    DataSet = QDetalhe
+    left = 64
+    top = 340
+  end
+end

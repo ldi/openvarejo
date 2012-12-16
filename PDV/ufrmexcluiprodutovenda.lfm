@@ -1,0 +1,6 @@
+inherited frmExcluiProdutoVenda: TfrmExcluiProdutoVenda
+  Left = 359
+  Height = 493
+  Top = 145
+  Width = 749
+end

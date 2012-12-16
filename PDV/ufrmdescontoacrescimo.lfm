@@ -1,0 +1,56 @@
+inherited frmDescontoAcrescimo: TfrmDescontoAcrescimo
+  Left = 467
+  Height = 207
+  Top = 230
+  Width = 394
+  Caption = 'frmDescontoAcrescimo'
+  ClientHeight = 207
+  ClientWidth = 394
+  inherited pnlBottom: TPanel
+    Top = 159
+    Width = 394
+    ClientWidth = 394
+    inherited BitBtn1: TBitBtn
+      Left = 211
+    end
+    inherited BitBtn2: TBitBtn
+      Left = 299
+    end
+  end
+  object ComboOperacao: TComboBox[2]
+    Left = 104
+    Height = 24
+    Top = 21
+    Width = 264
+    ItemHeight = 16
+    ItemIndex = 0
+    Items.Strings = (
+      'Desconto em Dinheiro'
+      'Desconto Percentual'
+      'Acréscimo em Dinheiro'
+      'Acréscimo Percentual'
+      ''
+      'Cancelar Desconto ou Acréscimo'
+    )
+    TabOrder = 1
+    Text = 'Desconto em Dinheiro'
+  end
+  object EditEntrada: TCurrencyEdit[3]
+    Left = 104
+    Height = 24
+    Top = 72
+    Width = 264
+    Alignment = taRightJustify
+    MaxValue = 0
+    MinValue = 0
+    TabOrder = 2
+    Value = 0
+  end
+  inherited actlBotoes: TActionList[4]
+    left = 32
+    top = 88
+  end
+  inherited ImglBotoes: TImageList[5]
+    top = 88
+  end
+end

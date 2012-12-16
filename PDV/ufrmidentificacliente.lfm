@@ -1,0 +1,159 @@
+inherited frmIdentificaCliente: TfrmIdentificaCliente
+  Left = 337
+  Height = 215
+  Top = 190
+  Width = 625
+  Caption = 'frmIdentificaCliente'
+  ClientHeight = 215
+  ClientWidth = 625
+  inherited pnlBottom: TPanel
+    Top = 167
+    Width = 625
+    ClientWidth = 625
+    inherited BitBtn1: TBitBtn
+      Left = 442
+    end
+    inherited BitBtn2: TBitBtn
+      Left = 530
+    end
+    object botaoLocaliza: TBitBtn[2]
+      Left = 296
+      Height = 30
+      Top = 7
+      Width = 109
+      Action = actConfirmar
+      Anchors = [akRight, akBottom]
+      Caption = '&Localiza (F11)'
+      TabOrder = 2
+    end
+  end
+  object panPeriodo: TPanel[2]
+    Left = 87
+    Height = 122
+    Top = 14
+    Width = 521
+    ClientHeight = 122
+    ClientWidth = 521
+    TabOrder = 1
+    object Label4: TLabel
+      Left = 16
+      Height = 13
+      Top = 8
+      Width = 13
+      Caption = 'ID'
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 16
+      Height = 13
+      Top = 56
+      Width = 55
+      Caption = 'Endereço:'
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label1: TLabel
+      Left = 91
+      Height = 13
+      Top = 8
+      Width = 56
+      Caption = 'CPF/CNPJ:'
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 219
+      Height = 13
+      Top = 8
+      Width = 35
+      Caption = 'Nome:'
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object editNome: TEdit
+      Left = 216
+      Height = 21
+      Top = 27
+      Width = 281
+      CharCase = ecUppercase
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      MaxLength = 100
+      ParentFont = False
+      TabOrder = 0
+    end
+    object editCpfCnpj: TMaskEdit
+      Left = 91
+      Height = 21
+      Top = 27
+      Width = 113
+      CharCase = ecNormal
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      MaxLength = 14
+      ParentFont = False
+      TabOrder = 1
+      SpaceChar = '_'
+    end
+    object editEndereco: TEdit
+      Left = 16
+      Height = 21
+      Top = 75
+      Width = 481
+      CharCase = ecUppercase
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      MaxLength = 100
+      ParentFont = False
+      TabOrder = 2
+    end
+    object editIDCliente: TMaskEdit
+      Left = 16
+      Height = 21
+      Top = 26
+      Width = 65
+      CharCase = ecNormal
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Verdana'
+      Font.Style = [fsBold]
+      MaxLength = 14
+      ParentFont = False
+      TabOrder = 3
+      SpaceChar = '_'
+    end
+  end
+  inherited actlBotoes: TActionList[3]
+    top = 162
+  end
+  inherited ImglBotoes: TImageList[4]
+    top = 160
+  end
+end

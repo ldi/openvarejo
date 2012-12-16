@@ -1,0 +1,7 @@
+inherited frmLocaliza: TfrmLocaliza
+  Left = 489
+  Height = 244
+  Top = 253
+  Width = 432
+  Caption = 'frmLocaliza'
+end

@@ -1,0 +1,7 @@
+inherited frmNotaFiscal: TfrmNotaFiscal
+  Left = 380
+  Height = 538
+  Top = 109
+  Width = 751
+  Caption = 'frmNotaFiscal'
+end

@@ -1,0 +1,20 @@
+inherited frmCarregaDAV: TfrmCarregaDAV
+  Left = 430
+  Height = 463
+  Top = 177
+  Width = 704
+  Caption = 'frmCarregaDAV'
+  ClientHeight = 463
+  ClientWidth = 704
+  inherited pnlBottom: TPanel
+    Top = 415
+    Width = 704
+    ClientWidth = 704
+    inherited BitBtn1: TBitBtn
+      Left = 521
+    end
+    inherited BitBtn2: TBitBtn
+      Left = 609
+    end
+  end
+end

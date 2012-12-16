@@ -1,0 +1,90 @@
+inherited frmImportaCliente: TfrmImportaCliente
+  Left = 386
+  Height = 432
+  Top = 162
+  Width = 747
+  Caption = 'frmImportaCliente'
+  ClientHeight = 432
+  ClientWidth = 747
+  inherited pnlBottom: TPanel
+    Top = 384
+    Width = 747
+    ClientWidth = 747
+    inherited BitBtn1: TBitBtn
+      Left = 564
+    end
+    inherited BitBtn2: TBitBtn
+      Left = 652
+    end
+  end
+  object GridPrincipal: TDBGrid[2]
+    Left = 105
+    Height = 280
+    Top = 7
+    Width = 623
+    Color = clWindow
+    Columns = <>
+    DataSource = dsCliente
+    TabOrder = 1
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -13
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+  end
+  object Panel1: TPanel[3]
+    Left = 105
+    Height = 69
+    Top = 292
+    Width = 623
+    ClientHeight = 69
+    ClientWidth = 623
+    TabOrder = 2
+    object EditLocaliza: TEdit
+      Left = 8
+      Height = 24
+      Top = 30
+      Width = 485
+      CharCase = ecUppercase
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Left = 8
+      Height = 13
+      Top = 11
+      Width = 69
+      Caption = 'Procura por:'
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object SpeedButton1: TSpeedButton
+      Left = 503
+      Height = 21
+      Top = 27
+      Width = 105
+      Caption = 'Localiza (F2)'
+      Flat = True
+    end
+  end
+  inherited actlBotoes: TActionList[4]
+  end
+  inherited ImglBotoes: TImageList[5]
+  end
+  object dsCliente: TDatasource[6]
+    DataSet = QCliente
+    left = 30
+    top = 315
+  end
+  object QCliente: TSQLQuery[7]
+    FieldDefs = <>
+    Database = dmPrincipal.IBCon
+    Transaction = dmPrincipal.SQLTrans
+    Params = <>
+    left = 30
+    top = 256
+  end
+end
