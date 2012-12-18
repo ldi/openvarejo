@@ -29,7 +29,7 @@ begin
     J.Filename := AFileName;
     J.OpenKey(ASectionName, True);
     AConnector.CharSet := J.GetValue('CharSet', 'Utf8');
-    AConnector.ConnectorType := J.GetValue('ConnectorType ', 'Firebird');
+    AConnector.ConnectorType := J.GetValue('ConnectorType', 'Firebird');
     AConnector.DatabaseName := J.GetValue('DatabaseName', '');
     AConnector.HostName := J.GetValue('HostName', 'LocalHost');
     AConnector.Password := J.GetValue('Password', 'mypass');
