@@ -5,4 +5,38 @@ inherited frmSplash: TfrmSplash
   Width = 673
   BorderStyle = bsNone
   Caption = 'frmSplash'
+  ClientHeight = 256
+  ClientWidth = 673
+  OnCreate = FormCreate
+  object imgPrincipal: TImage[0]
+    Left = 0
+    Height = 256
+    Top = 0
+    Width = 673
+    Align = alClient
+  end
+  object imgOperadoras: TImage[1]
+    Left = 530
+    Height = 28
+    Top = 213
+    Width = 142
+  end
+  object imgECF: TImage[2]
+    Left = 292
+    Height = 120
+    Top = 67
+    Width = 120
+  end
+  object imgBanco: TImage[3]
+    Left = 39
+    Height = 111
+    Top = 70
+    Width = 130
+  end
+  object imgTEF: TImage[4]
+    Left = 524
+    Height = 123
+    Top = 64
+    Width = 120
+  end
 end
