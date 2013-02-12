@@ -1,0 +1,7 @@
+ACBR
+SVN
+https://acbr.svn.sourceforge.net/svnroot/acbr
+
+RxLibs
+SVN
+https://lazarus-ccr.svn.sourceforge.net/svnroot/lazarus-ccr
