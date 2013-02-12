@@ -1,9 +1,0 @@
-JEDI vcl
-SVN
-http://sourceforge.net/projects/jvcl/
-
-ACBR
-SVN
-https://acbr.svn.sourceforge.net/svnroot/acbr
-
-
