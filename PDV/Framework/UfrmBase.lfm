@@ -1,0 +1,14 @@
+object frmBase: TfrmBase
+  Left = 437
+  Height = 397
+  Top = 176
+  Width = 588
+  Caption = 'frmBase'
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  OnCreate = FormCreate
+  LCLVersion = '1.1'
+end

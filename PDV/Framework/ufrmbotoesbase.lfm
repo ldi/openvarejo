@@ -1,0 +1,61 @@
+inherited frmBotoesBase: TfrmBotoesBase
+  Left = 479
+  Height = 291
+  Top = 245
+  Width = 361
+  BorderStyle = bsDialog
+  Caption = 'frmBotoesBase'
+  ClientHeight = 291
+  ClientWidth = 361
+  object imgLogo: TImage[0]
+    Left = 8
+    Height = 72
+    Top = 8
+    Width = 66
+  end
+  object pnlBottom: TPanel[1]
+    Left = 0
+    Height = 48
+    Top = 243
+    Width = 361
+    Align = alBottom
+    ClientHeight = 48
+    ClientWidth = 361
+    TabOrder = 0
+    object BitBtn1: TBitBtn
+      Left = 178
+      Height = 30
+      Top = 7
+      Width = 85
+      Action = actConfirmar
+      Anchors = [akRight, akBottom]
+      TabOrder = 0
+    end
+    object BitBtn2: TBitBtn
+      Left = 266
+      Height = 30
+      Top = 7
+      Width = 85
+      Action = actCancelar
+      Anchors = [akRight, akBottom]
+      TabOrder = 1
+    end
+  end
+  object actlBotoes: TActionList[2]
+    Images = ImglBotoes
+    left = 24
+    top = 176
+    object actConfirmar: TAction
+      Caption = 'Confirmar'
+      OnExecute = actConfirmarExecute
+    end
+    object actCancelar: TAction
+      Caption = 'Cancelar'
+      OnExecute = actCancelarExecute
+    end
+  end
+  object ImglBotoes: TImageList[3]
+    left = 65
+    top = 174
+  end
+end
